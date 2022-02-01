@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/01 12:40:30 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/01 14:10:59 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@ int	check_grid(char **grid)
 {
 	int	x;
 	int	y;
+	int	status;
+
+	status = 1;
 	x = 0;
 	while (x < 4)
 	{
-		printf("\n");
+//		printf("\n");
 		y = 0;
 		while (y < 4)
 		{
-			printf("grid[%d][%d] = %c\n", x, y, grid[x][y]);
 			if (grid[x][y] != '.' && grid[x][y] != '#')
-				printf("error\n");
+					status = -1;
+//			printf("grid[%d][%d] = %c\n", x, y, grid[x][y]);
 			y++;
 		}
-//	if (grid[x][y] != '\n')
-//		return (-1);
 	x++;
 	}
 	y = 0;
-//	if (grid[x][y] != '\n')
-//		return (-1);
-	printf("je suis a la fin de check grid");
-	return (1);
+	return (status);
 }

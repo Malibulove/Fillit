@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	}
 	if (check_grid(grid) == -1)
 		printf("grid is not ok");
-	if (check_grid(grid) == 1)
+	else if (check_grid(grid) == 1)
 		printf("grid is fine");
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/01 14:10:59 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/01 15:14:23 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ int	check_grid(char **grid)
 //			printf("grid[%d][%d] = %c\n", x, y, grid[x][y]);
 			y++;
 		}
+	if (ft_strcmp(&grid[x][y], "\0"))
+		status = -1;
 	x++;
 	}
 	y = 0;
+	if (ft_strcmp(&grid[x][y], "\0"))
+		status = -1;
 	return (status);
 }

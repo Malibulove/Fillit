@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+int	check_grid(char **grid);
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -26,13 +27,17 @@ int main(int argc, char **argv)
 	while (ret > 0)
 	{
 		temp = line;
-		printf("line =%s\n", line);
-
+		printf("line = %s\n", line);
 		grid[i] = ft_strdup(temp);
 		printf("grid[%d] = %s\n", i, grid[i]);
 		i++;
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
+	check_grid(grid);
+//	printf("grid[1][0] = %c\n", grid[1][0]);
+//	printf("grid[1][1] = %c\n", grid[1][1]);
+//	printf("grid[1][2] = %c\n", grid[1][2]);
+//	printf("grid[1][3] = %c\n", grid[1][3]);
 	close(fd);
 }

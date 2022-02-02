@@ -6,7 +6,7 @@
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 21:13:45 by ycucchi           #+#    #+#              #
-#    Updated: 2022/01/28 18:02:59 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/02/02 18:26:44 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 .c.o: $(SOURCES)
-		gcc $(FLAGS) -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
 		ar rcs $(NAME) $(OBJECTS)

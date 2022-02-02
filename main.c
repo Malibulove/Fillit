@@ -12,7 +12,6 @@ int main(int argc, char **argv)
 	int		fd;
 	char	*line;
 	int		ret;
-	char	*temp;
 	int		i;
 	char	**grid;
 
@@ -26,15 +25,14 @@ int main(int argc, char **argv)
 	ret = get_next_line(fd, &line);
 	while (ret > 0)
 	{
-		temp = line;
-		grid[i] = ft_strdup(temp);
+		grid[i] = ft_strdup(line);
 		i++;
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
 	if (check_grid(grid) == -1)
 		printf("grid is not ok");
-	else if (check_grid(grid) == 1)
+	else
 		printf("grid is fine");
 	close(fd);
 }

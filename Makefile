@@ -28,7 +28,7 @@ $(NAME):
 	gcc $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ)
 	make clean -C libft/
 	
 fclean: clean

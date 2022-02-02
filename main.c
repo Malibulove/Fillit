@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	check_grid(char **grid);
+int	check_grid(char **grid, int grid_count);
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -14,9 +14,11 @@ int main(int argc, char **argv)
 	int		ret;
 	int		i;
 	char	**grid;
+	int		grid_count;
 
 	i = 0;
-	grid = (char **)malloc(sizeof(char *) * 5);
+	grid_count = 0;
+	grid = (char **)malloc(sizeof(char *) * 50);
 	if (argc > 2)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
@@ -30,9 +32,18 @@ int main(int argc, char **argv)
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
-	if (check_grid(grid) == -1)
-		printf("grid is not ok");
+	if (&grid[i][0] != NULL)
+		printf("error\n");
 	else
-		printf("grid is fine");
+		while (i > 0)
+		{
+			printf("i = %d\n", i);
+			if (check_grid(grid, grid_count) == -1)
+				printf("grid is not ok\n");
+			else
+				printf("grid is fine\n");
+			i = i - 5;
+			grid_count++;
+		}
 	close(fd);
 }

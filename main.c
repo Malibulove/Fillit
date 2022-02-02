@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 	else
 		while (i > 0)
 		{
-			printf("i = %d\n", i);
+//			printf("i = %d\n", i);
 			if (check_grid(grid, grid_count) == -1)
 				printf("grid is not ok\n");
 			else

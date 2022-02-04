@@ -2,13 +2,15 @@
 #include "fillit.h"
 #include <stdio.h>
 
-t_list	*list_tetri(char **grid, int grid_count)
+// Uses the amount of pieces in a file (grid count) and a while look to create list for every piece ->
+
+t_list	*list_tetri(char *coordinates, int grid_count)
 {
 	char	*buf;
 	t_list	*list;
 	t_etris	*tetris;
 
-	buf = ft_strnew(9);
+	buf = ft_strnew(sizeof(coordinates));
 	list = NULL;
 	tetris = get_piece(buf);
 	while ((grid_count >= 0)
@@ -20,13 +22,14 @@ t_list	*list_tetri(char **grid, int grid_count)
 		}
 		ft_lstadd(&list, ft_lstnew(tetris, sizeof(t_etris)));
 		ft_memdel((void **)&tetris);
+		grid_count--;
 	}
 	return (list);
 }
 
-// Reads a piece from a valid grid, allocates a structure and populates it. ->
+// Reads a piece from a valid grid, allocates a structure and populates it ->
 
-t_etris	*get_piece(char *str)
+t_etris	*get_piece(char *coordinates)
 {
 	t_point		*mi;
 	t_point		*max;
@@ -51,27 +54,28 @@ t_etris	*get_piece(char *str)
 	return (tetri);
 }
 
-void	min_max(char *str, t_point *min, t_point *max)
+// Finds the minimum and maximun values of the piece ->
+
+void	min_max(char *coordinates, t_point *min, t_point *max)
 {
 	int i;
 
 	i = 0;
-	while (i < 20)
+	while (coordinates[i] == '\0')
 	{
-		if (str[i] == '#')
-		{
-			if (i / 5 < min->y)
-				min->y = i / 5;
-			if (i / 5 > max->y)
-				max->y = i / 5;
-			if (i % 5 < min->x)
-				min->x = i % 5;
-			if (i % 5 > max->x)
-				max->x = i % 5;
-		}
+		if (i / 5 < min->y)
+			min->y = i / 5;
+		if (i / 5 > max->y)
+			max->y = i / 5;
+		if (i % 5 < min->x)
+			min->x = i % 5;
+		if (i % 5 > max->x)
+			max->x = i % 5;
 		i++;
 	}
 }
+
+// Creates a new tetrimino structure ->
 
 t_etris		*tetris_new(char **pos, int width, int height, char value)
 {
@@ -85,6 +89,8 @@ t_etris		*tetris_new(char **pos, int width, int height, char value)
 	return (tetris);
 }
 
+// Creates a new point stucture ->
+
 t_point		*point_new(int x, int y)
 {
 	t_point		*point;
@@ -94,6 +100,9 @@ t_point		*point_new(int x, int y)
 	point->y = y;
 	return (point);
 }
+
+// Allocates memory and returns a “fresh” link ->
+// The variables "content" and "content_size" of the new link are initialized by copy of the parameters of the function.
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
@@ -120,6 +129,8 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	node->next = NULL;
 	return (node);
 }
+
+// Adds the element new at the beginning of the list ->
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {

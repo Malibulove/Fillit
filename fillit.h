@@ -33,7 +33,7 @@ typedef struct s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-t_list			*list_tetri(char **grid, int grid_count);
+t_list			*list_tetri(char *coordinates, int grid_count);
 t_point			*point_new(int x, int y);
 t_etris			*tetris_new(char **pos, int width, int height, char c);
 #endif

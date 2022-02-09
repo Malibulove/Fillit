@@ -44,7 +44,6 @@ int	check_grid(char **grid, int grid_count)
 				}
 			y++;
 		}
-		store_tet(tet, grid_count);						//uhhhh, can we use this here :D
 		if (ft_strcmp(&grid[x][y], "\0"))
 			return (-1);
 		x++;
@@ -70,6 +69,7 @@ int	check_grid(char **grid, int grid_count)
 	printf(" grid count = %d", grid_count);
 	printf("\n");
 // end of testing part
+	store_tet(tet, grid_count);						//<- added by emma, otherwise the code above is the same
 	return (*tet);
 }
 
@@ -193,9 +193,25 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	char *name;
 
 	name = NULL;
-	(tetcmp(tet, I_PIECE_0, sizeof(tet))) && (name = "I_PIECE_0");
-	(tetcmp(tet, O_PIECE_0, sizeof(tet))) && (name = "O_PIECE_0");
-	// etc
+	(tetcmp(tet, I_PIECE, sizeof(tet))) && (name = "I_PIECE");
+	(tetcmp(tet, IH_PIECE, sizeof(tet))) && (name = "IH_PIECE");
+	(tetcmp(tet, O_PIECE, sizeof(tet))) && (name = "O_PIECE");
+	(tetcmp(tet, L_PIECE, sizeof(tet))) && (name = "L_PIECE");
+	(tetcmp(tet, LR_PIECE, sizeof(tet))) && (name = "LR_PIECE");
+	(tetcmp(tet, LD_PIECE, sizeof(tet))) && (name = "LD_PIECE");
+	(tetcmp(tet, LL_PIECE, sizeof(tet))) && (name = "LL_PIECE");
+	(tetcmp(tet, J_PIECE, sizeof(tet))) && (name = "J_PIECE");
+	(tetcmp(tet, JR_PIECE, sizeof(tet))) && (name = "JR_PIECE");
+	(tetcmp(tet, JD_PIECE, sizeof(tet))) && (name = "JD_PIECE");
+	(tetcmp(tet, JL_PIECE, sizeof(tet))) && (name = "JL_PIECE");
+	(tetcmp(tet, T_PIECE, sizeof(tet))) && (name = "T_PIECE");
+	(tetcmp(tet, TR_PIECE, sizeof(tet))) && (name = "TR_PIECE");
+	(tetcmp(tet, TD_PIECE, sizeof(tet))) && (name = "TD_PIECE");
+	(tetcmp(tet, TL_PIECE, sizeof(tet))) && (name = "TL_PIECE");
+	(tetcmp(tet, S_PIECE, sizeof(tet))) && (name = "S_PIECE");
+	(tetcmp(tet, SR_PIECE, sizeof(tet))) && (name = "SR_PIECE");
+	(tetcmp(tet, Z_PIECE, sizeof(tet))) && (name = "Z_PIECE");
+	(tetcmp(tet, ZR_PIECE, sizeof(tet))) && (name = "ZR_PIECE");
 	return (name);
 }
 
@@ -220,9 +236,25 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 	int *tet;
 
 	tet = (int *)malloc(sizeof(int) * 8);
-	(ft_strcmp(name, "I_PIECE_0") == 0) && (dup_coord(tet, I_PIECE_0));
-	(ft_strcmp(name, "O_PIECE_0") == 0) && (dup_coord(tet, O_PIECE_0));
-	// etc
+	(ft_strcmp(id, "I_PIECE") == 0) && (dup_coord(tet, I_PIECE));
+	(ft_strcmp(id, "IH_PIECE") == 0) && (dup_coord(tet, IH_PIECE));
+	(ft_strcmp(id, "O_PIECE") == 0) && (dup_coord(tet, O_PIECE));
+	(ft_strcmp(id, "L_PIECE") == 0) && (dup_coord(tet, L_PIECE));
+	(ft_strcmp(id, "LR_PIECE") == 0) && (dup_coord(tet, LR_PIECE));
+	(ft_strcmp(id, "LD_PIECE") == 0) && (dup_coord(tet, LD_PIECE));
+	(ft_strcmp(id, "LL_PIECE") == 0) && (dup_coord(tet, LL_PIECE));
+	(ft_strcmp(id, "J_PIECE") == 0) && (dup_coord(tet, J_PIECE));
+	(ft_strcmp(id, "JR_PIECE") == 0) && (dup_coord(tet, JR_PIECE));
+	(ft_strcmp(id, "JD_PIECE") == 0) && (dup_coord(tet, JD_PIECE));
+	(ft_strcmp(id, "JL_PIECE") == 0) && (dup_coord(tet, JL_PIECE));
+	(ft_strcmp(id, "T_PIECE") == 0) && (dup_coord(tet, T_PIECE));
+	(ft_strcmp(id, "TR_PIECE") == 0) && (dup_coord(tet, TR_PIECE));
+	(ft_strcmp(id, "TD_PIECE") == 0) && (dup_coord(tet, TD_PIECE));
+	(ft_strcmp(id, "TL_PIECE") == 0) && (dup_coord(tet, TL_PIECE));
+	(ft_strcmp(id, "S_PIECE") == 0) && (dup_coord(tet, S_PIECE));
+	(ft_strcmp(id, "SR_PIECE") == 0) && (dup_coord(tet, SR_PIECE));
+	(ft_strcmp(id, "Z_PIECE") == 0) && (dup_coord(tet, Z_PIECE));
+	(ft_strcmp(id, "ZR_PIECE") == 0) && (dup_coord(tet, ZR_PIECE));
 	return (tet);
 }
 

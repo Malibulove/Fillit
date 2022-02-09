@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_grid.c                                       :+:      :+:    :+:   */
+/*   check_grid_userinput.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/02 18:21:31 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/09 10:49:49 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_grid(char **grid, int grid_count)
 	int	x;
 	int	z;
 	int	y;
+	int	i; // testing
+	int	test; // testing
 	int	count_hash;
 	int	*tet;
 
@@ -49,7 +51,22 @@ int	check_grid(char **grid, int grid_count)
 	y = 0;
 	if (count_hash != 4)
 		return (-1);
-	for (int i = 0; i < 8; i++)	//testing ...sorry, this damn thing "continues too long" and stacks the rest of the coordinates but the function itself works
-	printf("%d", tet[i]);		//testing
+
+// testing part
+	i = 0;
+	while (i < 8)
+	{
+	if (i == 0 || i == 2 || i == 4 || i == 6)
+	{
+		test = (tet[i] - (5 * grid_count));
+		printf("%d", test);
+	}
+	else
+		printf("%d", tet[i]);
+	i++;
+	}
+	printf(" grid count = %d", grid_count);
+	printf("\n");
+// end of testing part
 	return (*tet);
 }

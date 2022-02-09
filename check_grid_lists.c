@@ -23,7 +23,9 @@ int	check_grid(char **grid, int grid_count)
 	int	test; // testing
 	int	count_hash;
 	int	*tet;
-
+	t_tetris *cursor; // testing lists
+	t_tetris *piece; // testing lists
+	
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
 	z = 0;
@@ -55,6 +57,8 @@ int	check_grid(char **grid, int grid_count)
 
 // testing part
 	i = 0;
+	cursor = store_tet(tet, grid_count);			// testing lists
+	piece = cursor;									// testing lists
 	while (i < 8)
 	{
 	if (i == 0 || i == 2 || i == 4 || i == 6)
@@ -63,13 +67,20 @@ int	check_grid(char **grid, int grid_count)
 		printf("%d", test);
 	}
 	else
+	{
 		printf("%d", tet[i]);
+			while (piece != NULL)					// testing lists
+			{
+				piece = piece->next;				// testing lists
+				printf("%p", piece->next);			// testing lists
+			}
+	}
 	i++;
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
 // end of testing part
-	store_tet(tet, grid_count);						//<- added by emma, otherwise the code above is the same
+	store_tet(tet, grid_count);
 	return (*tet);
 }
 
@@ -236,25 +247,25 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 	int *tet;
 
 	tet = (int *)malloc(sizeof(int) * 8);
-	(ft_strcmp(id, "I_PIECE") == 0) && (dup_coord(tet, I_PIECE));
-	(ft_strcmp(id, "IH_PIECE") == 0) && (dup_coord(tet, IH_PIECE));
-	(ft_strcmp(id, "O_PIECE") == 0) && (dup_coord(tet, O_PIECE));
-	(ft_strcmp(id, "L_PIECE") == 0) && (dup_coord(tet, L_PIECE));
-	(ft_strcmp(id, "LR_PIECE") == 0) && (dup_coord(tet, LR_PIECE));
-	(ft_strcmp(id, "LD_PIECE") == 0) && (dup_coord(tet, LD_PIECE));
-	(ft_strcmp(id, "LL_PIECE") == 0) && (dup_coord(tet, LL_PIECE));
-	(ft_strcmp(id, "J_PIECE") == 0) && (dup_coord(tet, J_PIECE));
-	(ft_strcmp(id, "JR_PIECE") == 0) && (dup_coord(tet, JR_PIECE));
-	(ft_strcmp(id, "JD_PIECE") == 0) && (dup_coord(tet, JD_PIECE));
-	(ft_strcmp(id, "JL_PIECE") == 0) && (dup_coord(tet, JL_PIECE));
-	(ft_strcmp(id, "T_PIECE") == 0) && (dup_coord(tet, T_PIECE));
-	(ft_strcmp(id, "TR_PIECE") == 0) && (dup_coord(tet, TR_PIECE));
-	(ft_strcmp(id, "TD_PIECE") == 0) && (dup_coord(tet, TD_PIECE));
-	(ft_strcmp(id, "TL_PIECE") == 0) && (dup_coord(tet, TL_PIECE));
-	(ft_strcmp(id, "S_PIECE") == 0) && (dup_coord(tet, S_PIECE));
-	(ft_strcmp(id, "SR_PIECE") == 0) && (dup_coord(tet, SR_PIECE));
-	(ft_strcmp(id, "Z_PIECE") == 0) && (dup_coord(tet, Z_PIECE));
-	(ft_strcmp(id, "ZR_PIECE") == 0) && (dup_coord(tet, ZR_PIECE));
+	(ft_strcmp(name, "I_PIECE") == 0) && (dup_coord(tet, I_PIECE));
+	(ft_strcmp(name, "IH_PIECE") == 0) && (dup_coord(tet, IH_PIECE));
+	(ft_strcmp(name, "O_PIECE") == 0) && (dup_coord(tet, O_PIECE));
+	(ft_strcmp(name, "L_PIECE") == 0) && (dup_coord(tet, L_PIECE));
+	(ft_strcmp(name, "LR_PIECE") == 0) && (dup_coord(tet, LR_PIECE));
+	(ft_strcmp(name, "LD_PIECE") == 0) && (dup_coord(tet, LD_PIECE));
+	(ft_strcmp(name, "LL_PIECE") == 0) && (dup_coord(tet, LL_PIECE));
+	(ft_strcmp(name, "J_PIECE") == 0) && (dup_coord(tet, J_PIECE));
+	(ft_strcmp(name, "JR_PIECE") == 0) && (dup_coord(tet, JR_PIECE));
+	(ft_strcmp(name, "JD_PIECE") == 0) && (dup_coord(tet, JD_PIECE));
+	(ft_strcmp(name, "JL_PIECE") == 0) && (dup_coord(tet, JL_PIECE));
+	(ft_strcmp(name, "T_PIECE") == 0) && (dup_coord(tet, T_PIECE));
+	(ft_strcmp(name, "TR_PIECE") == 0) && (dup_coord(tet, TR_PIECE));
+	(ft_strcmp(name, "TD_PIECE") == 0) && (dup_coord(tet, TD_PIECE));
+	(ft_strcmp(name, "TL_PIECE") == 0) && (dup_coord(tet, TL_PIECE));
+	(ft_strcmp(name, "S_PIECE") == 0) && (dup_coord(tet, S_PIECE));
+	(ft_strcmp(name, "SR_PIECE") == 0) && (dup_coord(tet, SR_PIECE));
+	(ft_strcmp(name, "Z_PIECE") == 0) && (dup_coord(tet, Z_PIECE));
+	(ft_strcmp(name, "ZR_PIECE") == 0) && (dup_coord(tet, ZR_PIECE));
 	return (tet);
 }
 

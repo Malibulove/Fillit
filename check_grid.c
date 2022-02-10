@@ -23,8 +23,6 @@ int	check_grid(char **grid, int grid_count)
 	int	test; // testing
 	int	count_hash;
 	int	*tet;
-	t_tetris *cursor; // testing lists
-	t_tetris *piece; // testing lists
 	
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
@@ -57,8 +55,6 @@ int	check_grid(char **grid, int grid_count)
 
 // testing part
 	i = 0;
-	cursor = store_tet(tet, grid_count);			// testing lists
-	piece = cursor;									// testing lists
 	while (i < 8)
 	{
 	if (i == 0 || i == 2 || i == 4 || i == 6)
@@ -67,14 +63,7 @@ int	check_grid(char **grid, int grid_count)
 		printf("%d", test);
 	}
 	else
-	{
 		printf("%d", tet[i]);
-			while (piece != NULL)					// testing lists
-			{
-				piece = piece->next;				// testing lists
-				printf("%p", piece->next);			// testing lists
-			}
-	}
 	i++;
 	}
 	printf(" grid count = %d", grid_count);
@@ -83,7 +72,6 @@ int	check_grid(char **grid, int grid_count)
 	store_tet(tet, grid_count);
 	return (*tet);
 }
-
 
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------
 

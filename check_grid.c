@@ -204,7 +204,6 @@ t_tetris	*store_tet(int *tet, int grid_count)
 			printf("else dans loop\n");
 		}
 		printf("\n");
-		free(tet_translated);
 		printf("apres free\n");
 		grid_count--;
 	}

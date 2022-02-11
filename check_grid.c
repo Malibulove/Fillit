@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/10 15:54:18 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/11 12:44:03 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int	check_grid(char **grid, int grid_count)
 	
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
+	if (!tet)
+		printf("malloc error");
 	z = 0;
 	x = 0 + (grid_count * 5);
-	while (x < (4 + (grid_count * 5)))
+		while (x < (4 + (grid_count * 5)))
 	{
 		y = 0;
 		while (y < 4)
@@ -47,12 +49,12 @@ int	check_grid(char **grid, int grid_count)
 		if (ft_strcmp(&grid[x][y], "\0"))
 			return (-1);
 		x++;
-		}
+	}
 	z++;
 	y = 0;
-	if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
+//	we need to handle last line
+	if (count_hash != 4)
 		return (-1);
-
 // testing part
 	i = 0;
 	while (i < 8)
@@ -69,7 +71,9 @@ int	check_grid(char **grid, int grid_count)
 	printf(" grid count = %d", grid_count);
 	printf("\n");
 // end of testing part
+	printf("fin de check grid\n");
 	store_tet(tet, grid_count);
+	printf("fin de store tet, avant return tet\n");
 	return (*tet);
 }
 
@@ -139,10 +143,12 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris *piece;
 
+	printf("inside add piece\n");
 	piece = (t_tetris *)malloc(sizeof(t_tetris));
 	piece->tet_id = tet_id;
 	piece->c = tet_c;
 	piece->next = NULL;
+	printf("end of add piece\n");
 	return (piece);
 }
 
@@ -151,10 +157,15 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	t_tetris *cursor;
 	t_tetris *piece;
 
+	printf("inside append\n");
 	cursor = head;
 	while (cursor->next != NULL)
 		cursor = cursor->next;
+	printf("after while inside append\n");
+	printf("tet id = %p\n", tet_id);
+	printf("c = %c\n", c);
 	piece = add_piece(tet_id, c);
+	printf("after add piece\n");
 	cursor->next = piece;
 	return (head);
 }
@@ -170,16 +181,34 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	c = 'A';
 	first = NULL;
 	tet_id = get_tetid(tet);
+	if (!tet_id)
+		printf("tet id exist pas\n");
+	printf("avant loop\n");
 	while (grid_count != 0)
 	{
+		printf("%d\n", grid_count);
 		tet_translated = trans_coord(tet);
+		printf("apres trans cord\n");
+		printf("first = %p\n", first);
+		if (!(tet_id = get_tetid(tet)))
+			exit(EXIT_FAILURE);
 		if (first == NULL)
+		{
 			first = add_piece(tet_id, c++);
+			printf("apres if dans loop\n");
+		}
 		else
+		{
+			printf("avant append\n");
 			piece = append(tet_id, first, c++);
+			printf("else dans loop\n");
+		}
+		printf("\n");
 		free(tet_translated);
+		printf("apres free\n");
 		grid_count--;
 	}
+	printf("sortie de loop\n");
 	return (first);
 }
 

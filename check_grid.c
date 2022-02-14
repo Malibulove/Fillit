@@ -21,6 +21,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	int	y;
 	int	j; // testing
 	int	test; // testing
+	int first_grid[8] = {0,0,1,0,1,1,2,1}; // testing collision
 	int	count_hash;
 	int	*tet;
 	
@@ -74,6 +75,10 @@ int	check_grid(char **grid, int grid_count, int i)
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
+	if (piece_collision(first_grid, tet) == 1)		// testing collision
+			printf("the pieces collide\n");			// testing collision
+	if (piece_collision(first_grid, tet) == -1)		// testing collision
+			printf("the pieces do not collide\n");	// testing collision
 // end of testing part
 	store_tet(tet, grid_count);
 	return (*tet);

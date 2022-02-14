@@ -69,11 +69,13 @@ int	piece_collision(int *tet2, int *tet)
 {
 	int size;
 	int i;
+	int j;
 	int x;
 	int y;
 	char **grid;
 
 	i = 0;
+	j = 1;
 	x = 0;
 	y = 0;
 	size = 4;
@@ -81,18 +83,17 @@ int	piece_collision(int *tet2, int *tet)
 	**grid = grid[x][y];
 	while (x < 4)
 	{
-		x = tet2[i];
-		i = i + 2;
-		i++;
+		grid[x][y] = tet2[i];
+		i = i + 1;
+			while (y < 4)
+			{
+				grid[x][y] = tet2[j];
+				j = j + 1;
+				y++;
+				j++;
+			}
 		x++;
-	}
-	while (y < 4)
-	{
-		i = 1;
-		y = tet2[i];
-		i = i + 2;
 		i++;
-		y++;
 	}
 	i = 0;
 	while (size > 0)
@@ -104,8 +105,6 @@ int	piece_collision(int *tet2, int *tet)
 	}
 	return (0);
 }
-
-
 
 int	collision(int *tet2, int *tet, int size)
 {

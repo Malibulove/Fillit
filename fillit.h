@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   tetrimino_lists.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/14 12:47:35 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/01 11:41:56 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_tetris
 # define Z_PIECE (int [8]) {0,0,1,0,1,1,2,1}
 # define ZR_PIECE (int [8]) {1,0,0,1,1,1,0,2}
 
-int			check_grid(char **grid, int grid_count, int i);
+int			check_grid(char **grid, int grid_count);
 char		*get_tetid(int *tet);
 int			*trans_coord(int *tet);
 int			dup_coord(int *dst, int *src);
@@ -53,5 +53,11 @@ t_tetris	*store_tet(int *tet, int grid_count);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*add_piece(void *tet_id, char c);
 int			*convert_id(char *id);
+
+int			top_x(int *tet);
+int			top_y(int *tet);
+int			box_collision(int *tet, int size);
+int			piece_collision(int *tet2, int *tet);
+int			collision(int *tet2, int *tet, int size);
 
 #endif

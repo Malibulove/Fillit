@@ -6,9 +6,13 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/11 10:54:41 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/10 15:44:50 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft/libft.h"
+#include "fillit.h"
+#include <stdio.h>
 
 int	top_x(int *tet)
 {
@@ -61,16 +65,49 @@ int	box_collision(int *tet, int size)
 	return(0);
 }
 
-int	piece_collision(char **grid, int *tet)
+int	piece_collision(int *tet2, int *tet)
 {
-	if (!grid || !tet)
-		return(1);
-	return(0);
+	int size;
+	int i;
+	int x;
+	int y;
+	char **grid;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	size = 4;
+	grid = NULL;
+	**grid = grid[x][y];
+	while (x < 4)
+	{
+		x = tet2[i];
+		i = i + 2;
+		i++;
+	}
+	while (y < 4)
+	{
+		i = 1;
+		y = tet2[i];
+		i = i + 2;
+		i++;
+	}
+	i = 0;
+	while (size > 0)
+	{
+		if (grid[tet[i + 1]][tet[i]] != '.')
+			return (1);
+		i = i + 2;
+		size--;
+	}
+	return (0);
 }
 
-int	collision(char **grid, int *tet, int size)
+
+
+int	collision(int *tet2, int *tet, int size)
 {
-	if (box_collision(tet, size) != 0 && piece_collision(grid, tet) != 0)
+	if (box_collision(tet, size) != 0 && piece_collision(tet2, tet) != 0)
 		return(1);
 	else
 		return(0);

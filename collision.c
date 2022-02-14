@@ -67,41 +67,17 @@ int	box_collision(int *tet, int size)
 
 int	piece_collision(int *tet2, int *tet)
 {
-	int size;
 	int i;
-	int j;
-	int x;
-	int y;
-	char **grid;
 
 	i = 0;
-	j = 1;
-	x = 0;
-	y = 0;
-	size = 4;
-	grid = NULL;
-	**grid = grid[x][y];
-	while (x < 4)
+	while (i < 8)
 	{
-		grid[x][y] = tet2[i];
-		i = i + 1;
-			while (y < 4)
+		if (i == 0 || i == 2 || i == 4 || i == 6)
 			{
-				grid[x][y] = tet2[j];
-				j = j + 1;
-				y++;
-				j++;
-			}
-		x++;
+			if (tet[i] == tet2[i])
+				return (1);
+			}		
 		i++;
-	}
-	i = 0;
-	while (size > 0)
-	{
-		if (grid[tet[i + 1]][tet[i]] != '.')
-			return (1);
-		i = i + 2;
-		size--;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/14 17:34:37 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:57:37 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	check_grid(char **grid, int grid_count, int i)
 	int	y;
 	int	count_hash;
 	int	*tet;
-	
+
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
 	if (!tet)
 		printf("malloc error");
 	z = 0;
 	x = 0 + (grid_count * 5);
-		while (x < (4 + (grid_count * 5)))
+	while (x < (4 + (grid_count * 5)))
 	{
 		y = 0;
 		while (y < 4)
@@ -36,12 +36,12 @@ int	check_grid(char **grid, int grid_count, int i)
 			if (grid[x][y] != '.' && grid[x][y] != '#')
 				return (-1);
 			if (grid[x][y] == '#')
-				{
+			{
 				tet[z] = x;
 				tet[z + 1] = y;
 				z = z + 2;
 				count_hash++;
-				}
+			}
 			y++;
 		}
 		if (ft_strcmp(&grid[x][y], "\0"))
@@ -53,7 +53,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	error_check(grid, count_hash, i, x, y);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-	return(*tet);
+	return (*tet);
 }
 
 int	error_check(char **grid, int count_hash, int i, int x, int y)
@@ -61,30 +61,30 @@ int	error_check(char **grid, int count_hash, int i, int x, int y)
 	if (&grid[x][y] == NULL && i == 4)
 	{
 		if (count_hash != 4)
-		return (-1);
+			return (-1);
 	}
 	else if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
-		return(-1);
+		return (-1);
 	return (1);
 }
 
 int	*print_tet(int *tet, int grid_count)
 {
-	int j;
-	int test;
-	int first_grid[8] = {0,0,1,0,1,1,2,1};
+	int	j;
+	int	test;
+	int	first_grid[8] = {0, 0, 1, 0, 1, 1, 2, 1};
 
 	j = 0;
 	while (j < 8)
 	{
-	if (j == 0 || j == 2 || j == 4 || j == 6)
-	{
-		test = (tet[j] - (5 * grid_count));
-		printf("%d", test);
-	}
-	else
-		printf("%d", tet[j]);
-	j++;
+		if (j == 0 || j == 2 || j == 4 || j == 6)
+		{
+			test = (tet[j] - (5 * grid_count));
+			printf("%d", test);
+		}
+		else
+			printf("%d", tet[j]);
+		j++;
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
@@ -99,10 +99,10 @@ int	*print_tet(int *tet, int grid_count)
 
 int		*trans_coord(int *tet)
 {
-	int lx;
-	int ly;
-	int i;
-	int size;
+	int	lx;
+	int	ly;
+	int	i;
+	int	size;
 
 	size = 4;
 	lx = low_x(tet);
@@ -119,9 +119,9 @@ int		*trans_coord(int *tet)
 
 int		low_x(int *tet)
 {
-	int x;
-	int i;
-	int size;
+	int	x;
+	int	i;
+	int	size;
 
 	size = 4;
 	i = 0;
@@ -138,9 +138,9 @@ int		low_x(int *tet)
 
 int		low_y(int *tet)
 {
-	int y;
-	int i;
-	int size;
+	int	y;
+	int	i;
+	int	size;
 
 	size = 4;
 	i = 1;
@@ -159,7 +159,7 @@ int		low_y(int *tet)
 
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
-	t_tetris *piece;
+	t_tetris	*piece;
 
 	piece = (t_tetris *)malloc(sizeof(t_tetris));
 	piece->tet_id = tet_id;
@@ -170,8 +170,8 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 
 t_tetris	*append(void *tet_id, t_tetris *head, char c)
 {
-	t_tetris *cursor;
-	t_tetris *piece;
+	t_tetris	*cursor;
+	t_tetris	*piece;
 
 	cursor = head;
 	while (cursor->next != NULL)
@@ -212,7 +212,7 @@ t_tetris	*store_tet(int *tet, int grid_count)
 
 char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
 {
-	char *name;
+	char	*name;
 
 	name = NULL;
 	(tetcmp(tet, I_PIECE, sizeof(tet))) && (name = "I_PIECE");
@@ -239,7 +239,7 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 
 int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the size of the user input tet)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i <= n)
@@ -255,7 +255,7 @@ int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the s
 
 int		*convert_id(char *name) // converts the name back into and actual tetrimino
 {
-	int *tet;
+	int	*tet;
 
 	tet = (int *)malloc(sizeof(int) * 8);
 	(ft_strcmp(name, "I_PIECE") == 0) && (dup_coord(tet, I_PIECE));
@@ -282,8 +282,8 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 
 int		dup_coord(int *dst, int *src)
 {
-	int *pdst;
-	int i;
+	int	pdst;
+	int	i;
 
 	i = 0;
 	pdst = dst;

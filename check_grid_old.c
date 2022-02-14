@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_grid.c                                       :+:      :+:    :+:   */
+/*   check_grid_old.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/02 18:21:31 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/11 15:16:26 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <stdio.h>
 
-int	check_grid(char **grid, int grid_count)
+int	check_grid_old(char **grid, int grid_count)
 {
 	int	x;
 	int	z;
@@ -41,6 +41,8 @@ int	check_grid(char **grid, int grid_count)
 		x++;
 		z++;
 	}
+	if (!grid[x][y])
+		return (-1);
 	y = 0;
 	if (count_hash != 4)
 		return (-1);

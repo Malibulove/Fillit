@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/10 15:44:50 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/11 10:54:41 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	box_collision(int *tet, int size)
 	int	y;
 
 	x = top_x(tet);
-	y = yop_y(tet);
+	y = top_y(tet);
 	if (x >= size || y >= size)
 		return(1);
 	return(0);
@@ -63,12 +63,14 @@ int	box_collision(int *tet, int size)
 
 int	piece_collision(char **grid, int *tet)
 {
-	
+	if (!grid || !tet)
+		return(1);
+	return(0);
 }
 
 int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != 0 && piece_collision(tet, size) != 0)
+	if (box_collision(tet, size) != 0 && piece_collision(grid, tet) != 0)
 		return(1);
 	else
 		return(0);

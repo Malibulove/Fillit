@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	check_grid(char **grid, int grid_count);
+int	check_grid(char **grid, int grid_count, int i);
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 		while (i > 0)
 		{
 //			printf("i = %d\n", i);
-			if (check_grid(grid, grid_count) == -1)
+			if (check_grid(grid, grid_count, i) == -1)
 				printf("grid is not ok\n");
 			else
 				printf("grid is fine\n");

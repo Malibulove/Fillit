@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/11 14:08:45 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/14 13:29:40 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "fillit.h"
 #include <stdio.h>
 
-int	check_grid(char **grid, int grid_count)
+int	check_grid(char **grid, int grid_count, int i)
 {
 	int	x;
 	int	z;
 	int	y;
-	int	i; // testing
+	int	j; // testing
 	int	test; // testing
 	int	count_hash;
 	int	*tet;
@@ -52,21 +52,25 @@ int	check_grid(char **grid, int grid_count)
 	}
 	z++;
 	y = 0;
-//	we need to handle last line
-	if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
+	if (&grid[x][y] == NULL && i == 4)
+	{
+		if (count_hash != 4)
 		return (-1);
+	}
+	else if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
+		return(-1);
 // testing part
-	i = 0;
-	while (i < 8)
+	j = 0;
+	while (j < 8)
 	{
-	if (i == 0 || i == 2 || i == 4 || i == 6)
+	if (j == 0 || j == 2 || j == 4 || j == 6)
 	{
-		test = (tet[i] - (5 * grid_count));
+		test = (tet[j] - (5 * grid_count));
 		printf("%d", test);
 	}
 	else
-		printf("%d", tet[i]);
-	i++;
+		printf("%d", tet[j]);
+	j++;
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");

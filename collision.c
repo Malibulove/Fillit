@@ -84,6 +84,7 @@ int	piece_collision(int *tet2, int *tet)
 		x = tet2[i];
 		i = i + 2;
 		i++;
+		x++;
 	}
 	while (y < 4)
 	{
@@ -91,6 +92,7 @@ int	piece_collision(int *tet2, int *tet)
 		y = tet2[i];
 		i = i + 2;
 		i++;
+		y++;
 	}
 	i = 0;
 	while (size > 0)

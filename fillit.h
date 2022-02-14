@@ -42,7 +42,7 @@ typedef struct		s_tetris
 # define Z_PIECE (int [8]) {0,0,1,0,1,1,2,1}
 # define ZR_PIECE (int [8]) {1,0,0,1,1,1,0,2}
 
-int			check_grid(char **grid, int grid_count);
+int			check_grid(char **grid, int grid_count, int i);
 char		*get_tetid(int *tet);
 int			*trans_coord(int *tet);
 int			dup_coord(int *dst, int *src);

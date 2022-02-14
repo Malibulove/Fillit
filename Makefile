@@ -6,12 +6,12 @@
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/02/11 15:09:10 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/02/14 17:27:55 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = main.c check_grid.c check_grid_old.c
+SRCS = main.c check_grid.c check_grid_old.c collision.c
 HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/

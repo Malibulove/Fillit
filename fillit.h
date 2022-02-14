@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetrimino_lists.h                                  :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/01 11:41:56 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:33:19 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct		s_tetris
 # define ZR_PIECE (int [8]) {1,0,0,1,1,1,0,2}
 
 int			check_grid(char **grid, int grid_count, int i);
+int			*print_tet(int *tet, int grid_count);
+int			error_check(char** grid, int count_hash, int i, int x, int y);
 char		*get_tetid(int *tet);
 int			*trans_coord(int *tet);
 int			dup_coord(int *dst, int *src);

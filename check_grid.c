@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/14 13:29:40 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/14 17:34:37 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ int	check_grid(char **grid, int grid_count, int i)
 	int	x;
 	int	z;
 	int	y;
-	int	j; // testing
-	int	test; // testing
-	int first_grid[8] = {0,0,1,0,1,1,2,1}; // testing collision
 	int	count_hash;
 	int	*tet;
 	
@@ -53,6 +50,14 @@ int	check_grid(char **grid, int grid_count, int i)
 	}
 	z++;
 	y = 0;
+	error_check(grid, count_hash, i, x, y);
+	print_tet(tet, grid_count);
+	store_tet(tet, grid_count);
+	return(*tet);
+}
+
+int	error_check(char **grid, int count_hash, int i, int x, int y)
+{
 	if (&grid[x][y] == NULL && i == 4)
 	{
 		if (count_hash != 4)
@@ -60,7 +65,15 @@ int	check_grid(char **grid, int grid_count, int i)
 	}
 	else if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
 		return(-1);
-// testing part
+	return (1);
+}
+
+int	*print_tet(int *tet, int grid_count)
+{
+	int j;
+	int test;
+	int first_grid[8] = {0,0,1,0,1,1,2,1};
+
 	j = 0;
 	while (j < 8)
 	{
@@ -79,9 +92,7 @@ int	check_grid(char **grid, int grid_count, int i)
 			printf("the pieces collide\n");			// testing collision
 	if (piece_collision(first_grid, tet) == -1)		// testing collision
 			printf("the pieces do not collide\n");	// testing collision
-// end of testing part
-	store_tet(tet, grid_count);
-	return (*tet);
+	return (tet);
 }
 
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------

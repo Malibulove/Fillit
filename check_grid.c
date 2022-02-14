@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/14 17:57:37 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/14 18:02:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	*print_tet(int *tet, int grid_count)
 
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------
 
-int		*trans_coord(int *tet)
+int	*trans_coord(int *tet)
 {
 	int	lx;
 	int	ly;
@@ -117,7 +117,7 @@ int		*trans_coord(int *tet)
 	return (tet);
 }
 
-int		low_x(int *tet)
+int	low_x(int *tet)
 {
 	int	x;
 	int	i;
@@ -136,7 +136,7 @@ int		low_x(int *tet)
 	return (x);
 }
 
-int		low_y(int *tet)
+int	low_y(int *tet)
 {
 	int	y;
 	int	i;

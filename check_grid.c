@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/14 18:02:11 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/15 10:07:31 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,7 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 
 int		dup_coord(int *dst, int *src)
 {
-	int	pdst;
+	int	*pdst;
 	int	i;
 
 	i = 0;

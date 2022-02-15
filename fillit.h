@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/14 17:33:19 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/15 14:30:28 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int			top_y(int *tet);
 int			box_collision(int *tet, int size);
 int			piece_collision(int *tet2, int *tet);
 int			collision(int *tet2, int *tet, int size);
+int			preread(int fd);
 
 #endif

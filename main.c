@@ -1,12 +1,11 @@
 #include "./libft/libft.h"
 #include <stdio.h>
-
+#include "fillit.h"
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <string.h>
 #include <stdlib.h>
 
-int	check_grid(char **grid, int grid_count, int i);
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -18,9 +17,10 @@ int main(int argc, char **argv)
 
 	i = 0;
 	grid_count = 0;
-	grid = (char **)malloc(sizeof(char *) * 50);
 	if (argc > 2)
 		return (0);
+	fd = open(argv[1], O_RDONLY);
+	grid = (char **)malloc(sizeof(char *) * (preread(fd)));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (0);

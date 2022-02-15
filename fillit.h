@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/15 14:30:28 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/15 16:53:12 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define FILLIT_H
 # include <string.h>
 # include "libft/libft.h"
+# include <stdlib.h>
+# include <sys/stat.h>
+# include <stdio.h> // need to be removed before submit
+# include <fcntl.h>
 
 typedef struct		s_tetris
 {

@@ -1,12 +1,19 @@
-#include "./libft/libft.h"
-#include <stdio.h>
-#include "fillit.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
+/*   Updated: 2022/02/15 17:03:42 by ycucchi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(int argc, char **argv)
+#include "./libft/libft.h"
+#include "fillit.h"
+
+int	main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;

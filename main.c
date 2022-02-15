@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 17:03:42 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/15 18:10:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,14 @@ int	main(int argc, char **argv)
 	grid_count = 0;
 	if (argc > 2)
 		return (0);
-	fd = open(argv[1], O_RDONLY);
-	grid = (char **)malloc(sizeof(char *) * (preread(fd)));
+	grid = (char **)malloc(sizeof(char *) * preread(argv));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		return (0);
 	ret = get_next_line(fd, &line);
 	while (ret > 0)
 	{
-		grid[i] = ft_strdup(line);
-		i++;
+		grid[i++] = ft_strdup(line);
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
@@ -44,7 +42,6 @@ int	main(int argc, char **argv)
 	else
 		while (i > 0)
 		{
-//			printf("i = %d\n", i);
 			if (check_grid(grid, grid_count, i) == -1)
 				printf("grid is not ok\n");
 			else

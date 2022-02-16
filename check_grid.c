@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/16 11:44:40 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/16 12:43:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	*print_tet(int *tet, int grid_count)
 	int	j;
 	int	test;
 	int	first_grid[8] = {0, 0, 1, 0, 1, 1, 2, 1};
-	int *new_tet;
+	int	new_tet;
 
 	j = 0;
 	while (j < 8)
@@ -95,17 +95,17 @@ int	*print_tet(int *tet, int grid_count)
 			{
 			printf("the pieces collide\n");
 			solve_tet(first_grid, tet, 10);
-			printf("the pieces have been moved, this is the situation now: ");
+			printf("the pieces have been moved, this is the situation now: \n");
 			j = 0;
 			while (j < 8)
 				{
 					if (j == 0 || j == 2 || j == 4 || j == 6)
 					{
-						*new_tet = (first_grid[j] - (5 * grid_count));
+						new_tet = (first_grid[j] - (5 * grid_count));
 						printf("%d", new_tet);
 					}
 					else
-						printf("%d", new_tet[j]);
+						printf("%d", new_tet);
 					j++;
 				}
 			}

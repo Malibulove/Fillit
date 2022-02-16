@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 10:07:31 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/15 18:12:20 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	check_grid(char **grid, int grid_count, int i)
 				return (-1);
 			if (grid[x][y] == '#')
 			{
+				if (count_hash >= 4)
+					return(-1);
 				tet[z] = x;
 				tet[z + 1] = y;
 				z = z + 2;
@@ -50,7 +52,8 @@ int	check_grid(char **grid, int grid_count, int i)
 	}
 	z++;
 	y = 0;
-	error_check(grid, count_hash, i, x, y);
+	if (error_check(grid, count_hash, i, x, y) != 1)
+		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
 	return (*tet);

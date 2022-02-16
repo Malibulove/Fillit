@@ -6,7 +6,11 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/02/14 17:33:19 by ycucchi          ###   ########.fr       */
+=======
+/*   Updated: 2022/02/15 17:55:21 by ycucchi          ###   ########.fr       */
+>>>>>>> 4224288c9adaa8a5832e403d8e23392e975042fb
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +18,10 @@
 # define FILLIT_H
 # include <string.h>
 # include "libft/libft.h"
+# include <stdlib.h>
+# include <sys/stat.h>
+# include <stdio.h> // need to be removed before submit
+# include <fcntl.h>
 
 typedef struct		s_tetris
 {
@@ -61,6 +69,7 @@ int			top_y(int *tet);
 int			box_collision(int *tet, int size);
 int			piece_collision(int *tet2, int *tet);
 int			collision(int *tet2, int *tet, int size);
+int			preread(char **argv);
 
 int			solve_tet(char **grid, t_tetris *stack, int size);
 int			stack_tet(t_tetris *stack);

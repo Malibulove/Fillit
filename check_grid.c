@@ -75,6 +75,7 @@ int	*print_tet(int *tet, int grid_count)
 	int	j;
 	int	test;
 	int	first_grid[8] = {0, 0, 1, 0, 1, 1, 2, 1};
+	int *new_tet;
 
 	j = 0;
 	while (j < 8)
@@ -90,17 +91,26 @@ int	*print_tet(int *tet, int grid_count)
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
-	if (piece_collision(first_grid, tet) == 1)		// testing collision
-			printf("the pieces collide\n");			// testing collision
-	if (piece_collision(first_grid, tet) == 0)		// testing collision
-			printf("the pieces do not collide\n");	// testing collision
 	if (piece_collision(first_grid, tet) == 1)
-		{
-			if (solve_tet(first_grid, tet, 2) == 1)
-				printf("the pieces have been moved and they don't collide\n");
-			else
-				printf("the pieces still collide\n");
-		}
+			{
+			printf("the pieces collide\n");
+			solve_tet(first_grid, tet, 10);
+			printf("the pieces have been moved, this is the situation now: ");
+			j = 0;
+			while (j < 8)
+				{
+					if (j == 0 || j == 2 || j == 4 || j == 6)
+					{
+						*new_tet = (first_grid[j] - (5 * grid_count));
+						printf("%d", new_tet);
+					}
+					else
+						printf("%d", new_tet[j]);
+					j++;
+				}
+			}
+	if (piece_collision(first_grid, tet) == 0)
+			printf("the pieces do not collide\n");
 	return (tet);
 }
 

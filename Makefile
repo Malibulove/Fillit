@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = main.c check_grid.c check_grid_old.c collision.c solver.c
+SRCS = main.c check_grid.c check_grid_old.c collision.c preread.c solver.c
 HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/

@@ -95,6 +95,13 @@ int	*print_tet(int *tet, int grid_count)
 			printf("the pieces collide\n");			// testing collision
 	if (piece_collision(first_grid, tet) == 0)		// testing collision
 			printf("the pieces do not collide\n");	// testing collision
+	if (piece_collision(first_grid, tet) == 1)
+		{
+			if (solve_tet(first_grid, tet, 2) == 1)
+				printf("the pieces have been moved and they don't collide\n");
+			else
+				printf("the pieces still collide\n");
+		}
 	return (tet);
 }
 

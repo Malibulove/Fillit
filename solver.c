@@ -11,23 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "fillit/h"
+#include "fillit.h"
 
-int		stack_tet(t_tetris *stack)
-{
-	int *stacked_tet;
-	int x;
-	int y;
+// int		stack_tet(t_tetris *stack)
+// {
+// 	int *stacked_tet;
 
-	stacked_tet = (int *)malloc(sizeof(int) * 8);
-	if (!stack)
-	{
-		free(stacked_tet);
-		return (-1);
-	}
-	dup_coord(stacked_tet, stack->tet_id);
-	return (stacked_tet);
-}
+// 	stacked_tet = (int *)malloc(sizeof(int) * 8);
+// 	if (!stack)
+// 	{
+// 		free(stacked_tet);
+// 		return (-1);
+// 	}
+// 	dup_coord(stacked_tet, stack->tet_id);
+// 	return (*stacked_tet);
+// }
 
 int		solve_tet(int *tet2, int *tet, int size)
 {
@@ -35,8 +33,8 @@ int		solve_tet(int *tet2, int *tet, int size)
 	int y;
 
 	y = -1;
-	tet = stacked_tet(tet);     // i don't really know if storing can work like this
-	tet2 = stacked_tet(tet2);
+	// *tet = stack_tet(tet);
+	// *tet2 = stack_tet(tet2);
 	while (y < size)
 	{
 		x = -1;
@@ -53,7 +51,7 @@ int		solve_tet(int *tet2, int *tet, int size)
 	return (0);
 }
 
-int		*x_shift(int *tab, int x)
+int		*x_shift(int *tet, int x)
 {
 	int i;
 	int size;
@@ -62,13 +60,13 @@ int		*x_shift(int *tab, int x)
 	i = 0;
 	while (size--)
 	{
-		tab[i] = tab[i] + x;
+		tet[i] = tet[i] + x;
 		i += 2;
 	}
-	return (tab);
+	return (tet);
 }
 
-int		*y_shift(int *tab, int y)
+int		*y_shift(int *tet, int y)
 {
 	int i;
 	int size;
@@ -77,15 +75,15 @@ int		*y_shift(int *tab, int y)
 	i = 1;
 	while (size--)
 	{
-		tab[i] = tab[i] + y;
+		tet[i] = tet[i] + y;
 		i += 2;
 	}
-	return (tab);
+	return (tet);
 }
 
-int		*shift_tet(int *tab, int x, int y)
+int		*shift_tet(int *tet, int x, int y)
 {
-	tab = x_shift(tab, x);
-	tab = y_shift(tab, y);
-	return (tab);
+	tet = x_shift(tet, x);
+	tet = y_shift(tet, y);
+	return (tet);
 }

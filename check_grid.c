@@ -6,13 +6,12 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 18:12:20 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/16 11:44:40 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
-#include <stdio.h>
 
 int	check_grid(char **grid, int grid_count, int i)
 {

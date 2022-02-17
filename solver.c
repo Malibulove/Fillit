@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/16 15:37:57 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 17:36:31 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int		solve_tet(int *tet2, int *tet, int size)
 		while (x < size)
 		{
 			shift_tet(tet, x, y);
-			if (collision(tet2, tet, size) != 1)    // we only move tet and tet2 stays, that's probably a problem later
+			if (collision(tet2, tet, size) != 1)
+// we only move tet and tet2 stays, that's probably a problem later
 				return (1);
             x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 17:11:00 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 18:15:00 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-	if (!store_tet(tet, grid_count))
+	if (store_tet(tet, grid_count))
 		return (-1);
 	return (*tet);
 }
@@ -233,7 +233,7 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	if (!(tet_id = get_tetid(tet)))
 	{
 		printf("tetriminos not recognised\n");
-		exit(EXIT_FAILURE);
+		ft_exit();
 	}
 	if (first == NULL)
 		first = add_piece(tet_id, c++);
@@ -370,4 +370,10 @@ int		dup_coord(int *dst, int *src)
 		i++;
 	}
 	return (1);
+}
+
+void	ft_exit(void)
+{
+	ft_putstr("error\n");
+	exit(EXIT_FAILURE);
 }

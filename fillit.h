@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/17 11:41:16 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 14:47:16 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int			check_grid(char **grid, int grid_count, int i);
 int			*print_tet(int *tet, int grid_count);
 int			error_check(char** grid, int count_hash, int i, int x, int y);
 char		*get_tetid(int *tet);
-int			*trans_coord(int *tet);
+int			*trans_coord(int *tet, int grid_count);
 int			dup_coord(int *dst, int *src);
-int			low_x(int *tet);
+int			low_x(int *tet, int grid_count);
 int			low_y(int *tet);
 int			tetcmp(int *tet, int *arr, int n);
 t_tetris	*store_tet(int *tet, int grid_count);

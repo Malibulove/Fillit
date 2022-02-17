@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 13:44:58 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 15:58:10 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	*print_tet(int *tet, int grid_count)
 
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------
 
-int	*trans_coord(int *tet)
+int	*trans_coord(int *tet, int grid_count)
 {
 	int	lx;
 	int	ly;
@@ -128,23 +128,22 @@ int	*trans_coord(int *tet)
 
 	printf("enter trans cord\n");
 	size = 4;
-	lx = low_x(tet);
+	lx = low_x(tet, grid_count);
 	ly = low_y(tet);
-	printf("ly = %d\n", ly);
 	printf("lx = %d\n", lx);
+	printf("ly = %d\n", ly);
 	i = 0;
-	while (size > 0)
+	while (size--)
 	{
-		tet[i] = tet[i] - lx;
+		tet[i] = (tet[i] - grid_count * 5) - lx;
 		tet[i + 1] = tet[i + 1] - ly;
 		i = i + 2;
 	}
-	while (i > 0)
-	printf("%d\n", tet[i]);
+	printf("sortie\n");
 	return (tet);
 }
 
-int		low_x(int *tet)
+int		low_x(int *tet, int grid_count)
 {
 	int x;
 	int i;
@@ -152,16 +151,18 @@ int		low_x(int *tet)
 
 	size = 4;
 	i = 0;
-	x = tet[i];
+	printf("tet i = %d\n", tet[i]);
+	x = tet[i] - (grid_count * 5);
 	printf("x avant loop = %d\n", x);
 	while (size--)
 	{
-		if (tet[i] >= 0 && tet[i] <= 3)
+		x = tet[i] - (grid_count * 5);
+		if ((tet[i] - (grid_count * 5)) >= 0 && (tet[i] - (grid_count * 5)) <= 3)
 			if (tet[i] < x)
-				x = tet[i];
+				x = tet[i] - (grid_count * 5);
 		i += 2;
-		printf("x = %d\n", x);
 	}
+	i = 0;
 	return (x);
 }
 
@@ -228,7 +229,7 @@ t_tetris	*store_tet(int *tet, int grid_count)
 //		exit(EXIT_FAILURE);
 	while (grid_count != 0)
 	{
-		tet_translated = trans_coord(tet);
+		tet_translated = trans_coord(tet, grid_count);
 		printf("tet translated = %d\n", tet_translated[0]);
 		printf("tet translated = %d\n", tet_translated[1]);
 		printf("tet translated = %d\n", tet_translated[2]);

@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 18:10:11 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 17:07:57 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main(int argc, char **argv)
 		while (i > 0)
 		{
 			if (check_grid(grid, grid_count, i) == -1)
-				printf("grid is not ok\n");
+				printf("=========> grid is not ok <=========\n");
 			else
-				printf("grid is fine\n");
+				printf("=========> grid is fine <=========\n");
 			i = i - 5;
 			grid_count++;
 		}

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/17 14:47:16 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 16:24:26 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_tetris
 
 # define I_PIECE (int [8]) {0,0,0,1,0,2,0,3}
 # define IH_PIECE (int [8]) {0,0,1,0,2,0,3,0}
-# define O_PIECE (int [8]) {0,0,1,0,0,1,1,1}
+# define O_PIECE (int [8]) {0,0,0,1,1,0,1,1}
 # define L_PIECE (int [8]) {0,0,0,1,0,2,1,2}
 # define LR_PIECE (int [8]) {0,0,1,0,2,0,0,1}
 # define LD_PIECE (int [8]) {0,0,1,0,1,1,1,2}

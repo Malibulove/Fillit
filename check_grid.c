@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 16:12:35 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 17:11:00 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	*trans_coord(int *tet, int grid_count)
 	int	i;
 	int	size;
 
-	printf("enter trans cord\n");
+	printf("doing magic coord trans\n");
 	size = 4;
 	lx = low_x(tet, grid_count);
 	ly = low_y(tet);
@@ -139,7 +139,7 @@ int	*trans_coord(int *tet, int grid_count)
 		tet[i + 1] = tet[i + 1] - ly;
 		i = i + 2;
 	}
-	printf("sortie\n");
+	printf("magic is done, now we can check if tetriminos is valid\n");
 	return (tet);
 }
 
@@ -151,9 +151,7 @@ int		low_x(int *tet, int grid_count)
 
 	size = 4;
 	i = 0;
-	printf("tet i = %d\n", tet[i]);
 	x = tet[i];
-	printf("x avant loop = %d\n", x);
 	while (size--)
 	{
 		if ((tet[i] - (grid_count * 5)) >= 0 && (tet[i] - (grid_count * 5)) <= 3)
@@ -222,32 +220,25 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	i = 0;
 	c = 'A';
 	first = NULL;
-	if (grid_count == 0)
-		tet_id = get_tetid(tet);
-//	if (!tet_id)
-//		exit(EXIT_FAILURE);
-	while (grid_count != 0)
+	tet_translated = trans_coord(tet, grid_count);
+	printf("after magic, new coord = %d", tet_translated[0]);
+	printf("%d", tet_translated[1]);
+	printf("%d", tet_translated[2]);
+	printf("%d", tet_translated[3]);
+	printf("%d", tet_translated[4]);
+	printf("%d", tet_translated[5]);
+	printf("%d", tet_translated[6]);
+	printf("%d", tet_translated[7]);
+	printf("\n");
+	if (!(tet_id = get_tetid(tet)))
 	{
-		tet_translated = trans_coord(tet, grid_count);
-		printf("tet translated = %d\n", tet_translated[0]);
-		printf("tet translated = %d\n", tet_translated[1]);
-		printf("tet translated = %d\n", tet_translated[2]);
-		printf("tet translated = %d\n", tet_translated[3]);
-		printf("tet translated = %d\n", tet_translated[4]);
-		printf("tet translated = %d\n", tet_translated[5]);
-		printf("tet translated = %d\n", tet_translated[6]);
-		printf("tet translated = %d\n", tet_translated[7]);
-		if (!(tet_id = get_tetid(tet)))
-		{
-			printf("GROS BUG\n");
-			exit(EXIT_FAILURE);
-		}
-		if (first == NULL)
-			first = add_piece(tet_id, c++);
-		else
-			piece = append(tet_id, first, c++);
-		grid_count--;
+		printf("tetriminos not recognised\n");
+		exit(EXIT_FAILURE);
 	}
+	if (first == NULL)
+		first = add_piece(tet_id, c++);
+	else
+		piece = append(tet_id, first, c++);
 	return (first);
 }
 
@@ -298,7 +289,7 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 		name = "Z_PIECE";
 	else if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
 		name = "ZR_PIECE";
-	printf("%s\n", name);
+	printf("it's a match with : %s\n", name);
 	return (name);
 }
 
@@ -307,10 +298,8 @@ int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the s
 	int	i;
 
 	i = 0;
-	printf("n = %d\n", n);
 	while (i < n)
 	{
-		printf("tet[%d] = %d\n", i, tet[i]);
 		if (tet[i] != libtet[i])
 			return (-1);
 		i++;

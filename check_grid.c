@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 15:58:10 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 16:12:35 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,13 +152,12 @@ int		low_x(int *tet, int grid_count)
 	size = 4;
 	i = 0;
 	printf("tet i = %d\n", tet[i]);
-	x = tet[i] - (grid_count * 5);
+	x = tet[i];
 	printf("x avant loop = %d\n", x);
 	while (size--)
 	{
-		x = tet[i] - (grid_count * 5);
 		if ((tet[i] - (grid_count * 5)) >= 0 && (tet[i] - (grid_count * 5)) <= 3)
-			if (tet[i] < x)
+			if ((tet[i] - grid_count * 5) < x)
 				x = tet[i] - (grid_count * 5);
 		i += 2;
 	}

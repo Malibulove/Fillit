@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 13:28:51 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 13:44:58 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,30 +144,32 @@ int	*trans_coord(int *tet)
 	return (tet);
 }
 
-int	low_x(int *tet)
+int		low_x(int *tet)
 {
-	int	x;
-	int	i;
-	int	size;
+	int x;
+	int i;
+	int size;
 
 	size = 4;
 	i = 0;
 	x = tet[i];
+	printf("x avant loop = %d\n", x);
 	while (size--)
 	{
 		if (tet[i] >= 0 && tet[i] <= 3)
 			if (tet[i] < x)
 				x = tet[i];
-		i = i - 2;
+		i += 2;
+		printf("x = %d\n", x);
 	}
 	return (x);
 }
 
-int	low_y(int *tet)
+int		low_y(int *tet)
 {
-	int	y;
-	int	i;
-	int	size;
+	int y;
+	int i;
+	int size;
 
 	size = 4;
 	i = 1;
@@ -177,7 +179,7 @@ int	low_y(int *tet)
 		if (tet[i] >= 0 && tet[i] <= 3)
 			if (tet[i] < y)
 				y = tet[i];
-		i = i - 2;
+		i += 2;
 	}
 	return (y);
 }

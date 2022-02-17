@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 18:15:00 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 18:16:49 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-	if (store_tet(tet, grid_count))
-		return (-1);
+	store_tet(tet, grid_count);
 	return (*tet);
 }
 

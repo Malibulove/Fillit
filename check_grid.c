@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 12:28:58 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 13:28:51 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-	store_tet(tet, grid_count);
+	if (!store_tet(tet, grid_count))
+		return (-1);
 	return (*tet);
 }
 
@@ -125,16 +126,21 @@ int	*trans_coord(int *tet)
 	int	i;
 	int	size;
 
+	printf("enter trans cord\n");
 	size = 4;
 	lx = low_x(tet);
 	ly = low_y(tet);
+	printf("ly = %d\n", ly);
+	printf("lx = %d\n", lx);
 	i = 0;
-	while (size--)
+	while (size > 0)
 	{
 		tet[i] = tet[i] - lx;
 		tet[i + 1] = tet[i + 1] - ly;
-		i = i - 2;
+		i = i + 2;
 	}
+	while (i > 0)
+	printf("%d\n", tet[i]);
 	return (tet);
 }
 
@@ -214,13 +220,24 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	i = 0;
 	c = 'A';
 	first = NULL;
-	tet_id = get_tetid(tet);
+	if (grid_count == 0)
+		tet_id = get_tetid(tet);
+//	if (!tet_id)
+//		exit(EXIT_FAILURE);
 	while (grid_count != 0)
 	{
 		tet_translated = trans_coord(tet);
+		printf("tet translated = %d\n", tet_translated[0]);
+		printf("tet translated = %d\n", tet_translated[1]);
+		printf("tet translated = %d\n", tet_translated[2]);
+		printf("tet translated = %d\n", tet_translated[3]);
+		printf("tet translated = %d\n", tet_translated[4]);
+		printf("tet translated = %d\n", tet_translated[5]);
+		printf("tet translated = %d\n", tet_translated[6]);
+		printf("tet translated = %d\n", tet_translated[7]);
 		if (!(tet_id = get_tetid(tet)))
 		{
-			printf("%s\n", tet_id);
+			printf("GROS BUG\n");
 			exit(EXIT_FAILURE);
 		}
 		if (first == NULL)
@@ -243,42 +260,43 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	name = NULL;
 	if (tetcmp(tet, I_PIECE, sizeof(tet)) == 1)
 		name = "I_PIECE";
-	if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
 		name = "IH_PIECE";
-	if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
 		name = "O_PIECE";
-	if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
 		name = "L_PIECE";
-	if (tetcmp(tet, LR_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, LR_PIECE, sizeof(tet)) == 1)
 		name = "LR_PIECE";
-	if (tetcmp(tet, LD_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, LD_PIECE, sizeof(tet)) == 1)
 		name = "LD_PIECE";
-	if (tetcmp(tet, LL_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, LL_PIECE, sizeof(tet)) == 1)
 		name = "LL_PIECE";
-	if (tetcmp(tet, J_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, J_PIECE, sizeof(tet)) == 1)
 		name = "J_PIECE";
-	if (tetcmp(tet, JR_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, JR_PIECE, sizeof(tet)) == 1)
 		name = "JR_PIECE";
-	if (tetcmp(tet, JD_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, JD_PIECE, sizeof(tet)) == 1)
 		name = "JD_PIECE";
-	if (tetcmp(tet, JL_PIECE,sizeof(tet)) == 1)
+	else if (tetcmp(tet, JL_PIECE,sizeof(tet)) == 1)
 		name = "JL_PIECE";
-	if (tetcmp(tet, T_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, T_PIECE, sizeof(tet)) == 1)
 		name = "T_PIECE";
-	if (tetcmp(tet, TR_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, TR_PIECE, sizeof(tet)) == 1)
 		name = "TR_PIECE";
-	if (tetcmp(tet, TD_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, TD_PIECE, sizeof(tet)) == 1)
 		name = "TD_PIECE";
-	if (tetcmp(tet, TL_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, TL_PIECE, sizeof(tet)) == 1)
 		name = "TL_PIECE";
-	if (tetcmp(tet, S_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, S_PIECE, sizeof(tet)) == 1)
 		name = "S_PIECE";
-	if (tetcmp(tet, SR_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, SR_PIECE, sizeof(tet)) == 1)
 		name = "SR_PIECE";
-	if (tetcmp(tet, Z_PIECE, sizeof(tet)) == 1)
+	else if (tetcmp(tet, Z_PIECE, sizeof(tet)) == 1)
 		name = "Z_PIECE";
-	if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
+	else if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
 		name = "ZR_PIECE";
+	printf("%s\n", name);
 	return (name);
 }
 
@@ -287,8 +305,10 @@ int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the s
 	int	i;
 
 	i = 0;
-	while (i <= n)
+	printf("n = %d\n", n);
+	while (i < n)
 	{
+		printf("tet[%d] = %d\n", i, tet[i]);
 		if (tet[i] != libtet[i])
 			return (-1);
 		i++;

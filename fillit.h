@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 10:18:37 by ekantane          #+#    #+#             */
-/*   Updated: 2022/02/15 17:55:21 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 11:41:16 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_tetris	*store_tet(int *tet, int grid_count);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*add_piece(void *tet_id, char c);
 int			*convert_id(char *id);
-
+t_tetris	*id_to_coord(t_tetris *stack);
 int			top_x(int *tet);
 int			top_y(int *tet);
 int			box_collision(int *tet, int size);

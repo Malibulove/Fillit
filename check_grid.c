@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/16 12:43:11 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/17 12:28:58 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int	*print_tet(int *tet, int grid_count)
 {
 	int	j;
 	int	test;
-	int	first_grid[8] = {0, 0, 1, 0, 1, 1, 2, 1};
-	int	new_tet;
+//	int	first_grid[8] = {0, 0, 0, 1, 0, 2, 0, 3};
+//	int	new_tet;
 
 	j = 0;
 	while (j < 8)
@@ -91,6 +91,7 @@ int	*print_tet(int *tet, int grid_count)
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
+/*
 	if (piece_collision(first_grid, tet) == 1)
 			{
 			printf("the pieces collide\n");
@@ -111,6 +112,7 @@ int	*print_tet(int *tet, int grid_count)
 			}
 	if (piece_collision(first_grid, tet) == 0)
 			printf("the pieces do not collide\n");
+*/
 	return (tet);
 }
 
@@ -207,7 +209,9 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	t_tetris	*piece;
 	t_tetris	*first;
 	char		c;
+	int			i;
 
+	i = 0;
 	c = 'A';
 	first = NULL;
 	tet_id = get_tetid(tet);
@@ -215,7 +219,10 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	{
 		tet_translated = trans_coord(tet);
 		if (!(tet_id = get_tetid(tet)))
+		{
+			printf("%s\n", tet_id);
 			exit(EXIT_FAILURE);
+		}
 		if (first == NULL)
 			first = add_piece(tet_id, c++);
 		else
@@ -234,25 +241,44 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	char	*name;
 
 	name = NULL;
-	(tetcmp(tet, I_PIECE, sizeof(tet))) && (name = "I_PIECE");
-	(tetcmp(tet, IH_PIECE, sizeof(tet))) && (name = "IH_PIECE");
-	(tetcmp(tet, O_PIECE, sizeof(tet))) && (name = "O_PIECE");
-	(tetcmp(tet, L_PIECE, sizeof(tet))) && (name = "L_PIECE");
-	(tetcmp(tet, LR_PIECE, sizeof(tet))) && (name = "LR_PIECE");
-	(tetcmp(tet, LD_PIECE, sizeof(tet))) && (name = "LD_PIECE");
-	(tetcmp(tet, LL_PIECE, sizeof(tet))) && (name = "LL_PIECE");
-	(tetcmp(tet, J_PIECE, sizeof(tet))) && (name = "J_PIECE");
-	(tetcmp(tet, JR_PIECE, sizeof(tet))) && (name = "JR_PIECE");
-	(tetcmp(tet, JD_PIECE, sizeof(tet))) && (name = "JD_PIECE");
-	(tetcmp(tet, JL_PIECE, sizeof(tet))) && (name = "JL_PIECE");
-	(tetcmp(tet, T_PIECE, sizeof(tet))) && (name = "T_PIECE");
-	(tetcmp(tet, TR_PIECE, sizeof(tet))) && (name = "TR_PIECE");
-	(tetcmp(tet, TD_PIECE, sizeof(tet))) && (name = "TD_PIECE");
-	(tetcmp(tet, TL_PIECE, sizeof(tet))) && (name = "TL_PIECE");
-	(tetcmp(tet, S_PIECE, sizeof(tet))) && (name = "S_PIECE");
-	(tetcmp(tet, SR_PIECE, sizeof(tet))) && (name = "SR_PIECE");
-	(tetcmp(tet, Z_PIECE, sizeof(tet))) && (name = "Z_PIECE");
-	(tetcmp(tet, ZR_PIECE, sizeof(tet))) && (name = "ZR_PIECE");
+	if (tetcmp(tet, I_PIECE, sizeof(tet)) == 1)
+		name = "I_PIECE";
+	if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
+		name = "IH_PIECE";
+	if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
+		name = "O_PIECE";
+	if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
+		name = "L_PIECE";
+	if (tetcmp(tet, LR_PIECE, sizeof(tet)) == 1)
+		name = "LR_PIECE";
+	if (tetcmp(tet, LD_PIECE, sizeof(tet)) == 1)
+		name = "LD_PIECE";
+	if (tetcmp(tet, LL_PIECE, sizeof(tet)) == 1)
+		name = "LL_PIECE";
+	if (tetcmp(tet, J_PIECE, sizeof(tet)) == 1)
+		name = "J_PIECE";
+	if (tetcmp(tet, JR_PIECE, sizeof(tet)) == 1)
+		name = "JR_PIECE";
+	if (tetcmp(tet, JD_PIECE, sizeof(tet)) == 1)
+		name = "JD_PIECE";
+	if (tetcmp(tet, JL_PIECE,sizeof(tet)) == 1)
+		name = "JL_PIECE";
+	if (tetcmp(tet, T_PIECE, sizeof(tet)) == 1)
+		name = "T_PIECE";
+	if (tetcmp(tet, TR_PIECE, sizeof(tet)) == 1)
+		name = "TR_PIECE";
+	if (tetcmp(tet, TD_PIECE, sizeof(tet)) == 1)
+		name = "TD_PIECE";
+	if (tetcmp(tet, TL_PIECE, sizeof(tet)) == 1)
+		name = "TL_PIECE";
+	if (tetcmp(tet, S_PIECE, sizeof(tet)) == 1)
+		name = "S_PIECE";
+	if (tetcmp(tet, SR_PIECE, sizeof(tet)) == 1)
+		name = "SR_PIECE";
+	if (tetcmp(tet, Z_PIECE, sizeof(tet)) == 1)
+		name = "Z_PIECE";
+	if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
+		name = "ZR_PIECE";
 	return (name);
 }
 
@@ -297,6 +323,27 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 	(ft_strcmp(name, "Z_PIECE") == 0) && (dup_coord(tet, Z_PIECE));
 	(ft_strcmp(name, "ZR_PIECE") == 0) && (dup_coord(tet, ZR_PIECE));
 	return (tet);
+}
+
+t_tetris	*id_to_coord(t_tetris *stack)
+{
+	t_tetris	*head;
+	t_tetris	*piece;
+	char		*tet_id;
+	char		c;
+
+	c = 'A';
+	head = NULL;
+	while (stack)
+	{
+		tet_id = stack->tet_id;
+		if (head == NULL)
+			head = add_piece(convert_id(tet_id), c++);
+		else
+			piece = append(convert_id(tet_id), head, c++);
+		stack = stack->next;
+	}
+	return (head);
 }
 
 int		dup_coord(int *dst, int *src)

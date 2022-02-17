@@ -6,26 +6,26 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 12:20:56 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/16 15:37:57 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-// int		stack_tet(t_tetris *stack)
-// {
-// 	int *stacked_tet;
+//int		stack_tet(t_tetris *stack)
+//{
+//	int *stacked_tet;
 
-// 	stacked_tet = (int *)malloc(sizeof(int) * 8);
-// 	if (!stack)
-// 	{
-// 		free(stacked_tet);
-// 		return (-1);
-// 	}
-// 	dup_coord(stacked_tet, stack->tet_id);
-// 	return (*stacked_tet);
-// }
+//	stacked_tet = (int *)malloc(sizeof(int) * 8);
+//	if (!stack)
+//	{
+//		free(stacked_tet);
+//		return (-1);
+//	}
+//	dup_coord(stacked_tet, stack->tet_id);
+//	return (*stacked_tet);
+//}
 
 int		solve_tet(int *tet2, int *tet, int size)
 {
@@ -33,8 +33,8 @@ int		solve_tet(int *tet2, int *tet, int size)
 	int y;
 
 	y = -1;
-	// *tet = stack_tet(tet);
-	// *tet2 = stack_tet(tet2);
+//	*tet = stack_tet(tet);
+//	*tet2 = stack_tet(tet2);
 	while (y < size)
 	{
 		x = -1;

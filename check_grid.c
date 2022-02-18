@@ -55,33 +55,42 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-//	contain_grid(grid);		// collision test
+	if (solve_tet(grid, tet, 10) == 1)		// solver test start
+		{
+		printf("pieces collided with first grid -> pieces moved\n");
+		print_tet(tet, grid_count);
+		printf("\n");
+		}									// solver test end
+	// first_grid = grid;
+	// contain_grid(first_grid);			// collision test
 	return (*tet);
 }
 
-// char contain_grid(char **grid)
-// {
-// 	int j;
-// 	int k;
-// 	int x;
-// 	int y;
-// 	char **first_grid;
+/*
+char contain_grid(char **grid)
+{
+	int j;
+	int k;
+	int x;
+	int y;
+	char **first_grid;
 
-// 	j = 0;
-// 	k = 0;
-// 	x = 0;
-// 	y = 0;
-// 	first_grid = NULL;
-// 	while (y < 4)
-// 	{
-// 		first_grid[j][k] = grid[x][y];
-// 		j++;
-// 		k++;
-// 		x++;
-// 		y++;
-// 	}
-// 	return (**first_grid);
-// }
+	j = 0;
+	k = 0;
+	x = 0;
+	y = 0;
+	first_grid = NULL;
+	while (y < 4)
+	{
+		first_grid[j][k] = grid[x][y];
+		j++;
+		k++;
+		x++;
+		y++;
+	}
+	return (**first_grid);
+}
+*/
 
 int	error_check(char **grid, int count_hash, int i, int x, int y)
 {
@@ -99,8 +108,6 @@ int	*print_tet(int *tet, int grid_count)
 {
 	int	j;
 	int	test;
-//	int	first_grid[8] = {0, 0, 0, 1, 0, 2, 0, 3};
-//	int	new_tet;
 
 	j = 0;
 	while (j < 8)
@@ -116,28 +123,6 @@ int	*print_tet(int *tet, int grid_count)
 	}
 	printf(" grid count = %d", grid_count);
 	printf("\n");
-/*
-	if (piece_collision(first_grid, tet) == 1)
-			{
-			printf("the pieces collide\n");
-			solve_tet(first_grid, tet, 10);
-			printf("the pieces have been moved, this is the situation now: \n");
-			j = 0;
-			while (j < 8)
-				{
-					if (j == 0 || j == 2 || j == 4 || j == 6)
-					{
-						new_tet = (first_grid[j] - (5 * grid_count));
-						printf("%d", new_tet);
-					}
-					else
-						printf("%d", new_tet);
-					j++;
-				}
-			}
-	if (piece_collision(first_grid, tet) == 0)
-			printf("the pieces do not collide\n");
-*/
 	return (tet);
 }
 

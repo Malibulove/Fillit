@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 17:07:57 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/18 11:40:57 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	main(int argc, char **argv)
 		free(line);
 		ret = get_next_line(fd, &line);
 	}
-	if (&grid[i][0] != NULL)
-		printf("error\n");
-	else
+//	if (&grid[i][0] != NULL)
+//		printf("error\n");
+//	else
 		while (i > 0)
 		{
 			if (check_grid(grid, grid_count, i) == -1)

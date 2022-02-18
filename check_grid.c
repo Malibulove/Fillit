@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 18:23:23 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/18 12:55:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,7 +294,9 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	(tetcmp(tet, SR_PIECE, sizeof(tet))) && (name = "SR_PIECE");
 	(tetcmp(tet, Z_PIECE, sizeof(tet))) && (name = "Z_PIECE");
 	(tetcmp(tet, ZR_PIECE, sizeof(tet))) && (name = "ZR_PIECE");
+	printf("\033[31m");
 	printf("it's a match with : %s\n", name);
+	printf("\033[00m");
 	return (name);
 }
 

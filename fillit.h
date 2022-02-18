@@ -64,11 +64,12 @@ void		ft_exit(void);
 int			top_x(int *tet);
 int			top_y(int *tet);
 int			box_collision(int *tet, int size);
-int			piece_collision(int *tet2, int *tet);
-int			collision(int *tet2, int *tet, int size);
+int			piece_collision(char **grid, int *tet);
+int			collision(char **grid, int *tet, int size);
+char		contain_grid(char **grid);
 int			preread(char **argv);
 
-int			solve_tet(int *tet2, int *tet, int size);
+int			solve_tet(char **grid, int *tet, int size);
 int			stack_tet(t_tetris *stack);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);

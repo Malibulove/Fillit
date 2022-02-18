@@ -27,7 +27,7 @@
 //	return (*stacked_tet);
 //}
 
-int		solve_tet(int *tet2, int *tet, int size)
+int		solve_tet(char **grid, int *tet, int size)
 {
 	int x;
 	int y;
@@ -41,8 +41,7 @@ int		solve_tet(int *tet2, int *tet, int size)
 		while (x < size)
 		{
 			shift_tet(tet, x, y);
-			if (collision(tet2, tet, size) != 1)
-// we only move tet and tet2 stays, that's probably a problem later
+			if (collision(grid, tet, size) != 1)
 				return (1);
             x++;
 		}

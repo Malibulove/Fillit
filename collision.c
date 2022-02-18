@@ -33,6 +33,7 @@ int	top_x(int *tet)
 	}
 	return(x);
 }
+
 int	top_y(int *tet)
 {
 	int	column_count;
@@ -65,26 +66,25 @@ int	box_collision(int *tet, int size)
 	return(0);
 }
 
-int	piece_collision(int *tet2, int *tet)
+int		piece_collision(char **grid, int *tet)
 {
+	int size;
 	int i;
 
 	i = 0;
-	while (i < 8)
+	size = 4;
+	while (size--)
 	{
-		if (i == 0 || i == 2 || i == 4 || i == 6)
-			{
-			if (tet[i] == tet2[i])
-				return (1);
-			}		
-		i++;
+		if (grid[tet[i + 1]][tet[i]] != '.')
+			return (1);
+		i = i + 2;
 	}
 	return (0);
 }
 
-int	collision(int *tet2, int *tet, int size)
+int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != 0 && piece_collision(tet2, tet) != 0)
+	if (box_collision(tet, size) != 0 && piece_collision(grid, tet) != 0)
 		return(1);
 	else
 		return(0);

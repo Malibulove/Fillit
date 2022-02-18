@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/18 16:35:39 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/18 17:17:25 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	int	x;
 	int	z;
 	int	y;
+	int j;
 	int	count_hash;
 	int	*tet;
 
@@ -56,11 +57,16 @@ int	check_grid(char **grid, int grid_count, int i)
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
 	if (grid_count != 0 && solve_tet(grid, tet, 10) == 1)		// solver test start
-		{
+	{
 		printf("pieces collided with first grid -> pieces moved\n");
-		print_tet(tet, grid_count);
+		j = 0;
+		while (j < 8)
+		{
+			printf("%d", tet[j]);
+			j++;
+		}
 		printf("\n");
-		}									// solver test end
+	}									// solver test end
 	// first_grid = grid;
 	// contain_grid(first_grid);			// collision test
 	return (*tet);

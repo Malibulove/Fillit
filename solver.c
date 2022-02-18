@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 17:36:31 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/18 17:02:01 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int		solve_tet(char **grid, int *tet, int size)
 	int x;
 	int y;
 
-	y = -1;
+	y = 0;
 //	*tet = stack_tet(tet);
 //	*tet2 = stack_tet(tet2);
+
 	while (y < size)
 	{
-		x = -1;
+		x = 0;
 		while (x < size)
 		{
 			shift_tet(tet, x, y);
@@ -83,7 +84,17 @@ int		*y_shift(int *tet, int y)
 
 int		*shift_tet(int *tet, int x, int y)
 {
+	int	i;
+
+	i = 0;
 	tet = x_shift(tet, x);
 	tet = y_shift(tet, y);
+	printf("tet after shift = ");
+	while (i < 8)
+	{
+		printf("%d", tet[i]);
+		i++;
+	}
+	printf("\n");
 	return (tet);
 }

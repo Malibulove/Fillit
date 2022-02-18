@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/18 12:55:11 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/18 15:19:35 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,28 +275,45 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	char	*name;
 
 	name = NULL;
-	(tetcmp(tet, I_PIECE, sizeof(tet))) && (name = "I_PIECE");
-	(tetcmp(tet, IH_PIECE, sizeof(tet))) && (name = "IH_PIECE");
-	(tetcmp(tet, O_PIECE, sizeof(tet))) && (name = "O_PIECE");
-	(tetcmp(tet, L_PIECE, sizeof(tet))) && (name = "L_PIECE");
-	(tetcmp(tet, LR_PIECE, sizeof(tet))) && (name = "LR_PIECE");
-	(tetcmp(tet, LD_PIECE, sizeof(tet))) && (name = "LD_PIECE");
-	(tetcmp(tet, LL_PIECE, sizeof(tet))) && (name = "LL_PIECE");
-	(tetcmp(tet, J_PIECE, sizeof(tet))) && (name = "J_PIECE");
-	(tetcmp(tet, JR_PIECE, sizeof(tet))) && (name = "JR_PIECE");
-	(tetcmp(tet, JD_PIECE, sizeof(tet))) && (name = "JD_PIECE");
-	(tetcmp(tet, JL_PIECE, sizeof(tet))) && (name = "JL_PIECE");
-	(tetcmp(tet, T_PIECE, sizeof(tet))) && (name = "T_PIECE");
-	(tetcmp(tet, TR_PIECE, sizeof(tet))) && (name = "TR_PIECE");
-	(tetcmp(tet, TD_PIECE, sizeof(tet))) && (name = "TD_PIECE");
-	(tetcmp(tet, TL_PIECE, sizeof(tet))) && (name = "TL_PIECE");
-	(tetcmp(tet, S_PIECE, sizeof(tet))) && (name = "S_PIECE");
-	(tetcmp(tet, SR_PIECE, sizeof(tet))) && (name = "SR_PIECE");
-	(tetcmp(tet, Z_PIECE, sizeof(tet))) && (name = "Z_PIECE");
-	(tetcmp(tet, ZR_PIECE, sizeof(tet))) && (name = "ZR_PIECE");
-	printf("\033[31m");
+	if (tetcmp(tet, I_PIECE, sizeof(tet)) == 1)
+		name = "I_PIECE";
+	else if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
+		name = "IH_PIECE";
+	else if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
+		name = "O_PIECE";
+	else if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
+		name = "L_PIECE";
+	else if (tetcmp(tet, LR_PIECE, sizeof(tet)) == 1)
+		name = "LR_PIECE";
+	else if (tetcmp(tet, LD_PIECE, sizeof(tet)) == 1)
+		name = "LD_PIECE";
+	else if (tetcmp(tet, LL_PIECE, sizeof(tet)) == 1)
+		name = "LL_PIECE";
+	else if (tetcmp(tet, J_PIECE, sizeof(tet)) == 1)
+		name = "J_PIECE";
+	else if (tetcmp(tet, JR_PIECE, sizeof(tet)) == 1)
+		name = "JR_PIECE";
+	else if (tetcmp(tet, JD_PIECE, sizeof(tet)) == 1)
+		name = "JD_PIECE";
+	else if (tetcmp(tet, JL_PIECE,sizeof(tet)) == 1)
+		name = "JL_PIECE";
+	else if (tetcmp(tet, T_PIECE, sizeof(tet)) == 1)
+		name = "T_PIECE";
+	else if (tetcmp(tet, TR_PIECE, sizeof(tet)) == 1)
+		name = "TR_PIECE";
+	else if (tetcmp(tet, TD_PIECE, sizeof(tet)) == 1)
+		name = "TD_PIECE";
+	else if (tetcmp(tet, TL_PIECE, sizeof(tet)) == 1)
+		name = "TL_PIECE";
+	else if (tetcmp(tet, S_PIECE, sizeof(tet)) == 1)
+		name = "S_PIECE";
+	else if (tetcmp(tet, SR_PIECE, sizeof(tet)) == 1)
+		name = "SR_PIECE";
+	else if (tetcmp(tet, Z_PIECE, sizeof(tet)) == 1)
+		name = "Z_PIECE";
+	else if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
+		name = "ZR_PIECE";
 	printf("it's a match with : %s\n", name);
-	printf("\033[00m");
 	return (name);
 }
 

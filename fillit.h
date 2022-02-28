@@ -56,7 +56,7 @@ int			dup_coord(int *dst, int *src);
 int			low_x(int *tet, int grid_count);
 int			low_y(int *tet);
 int			tetcmp(int *tet, int *arr, int n);
-t_tetris	*store_tet(int *tet, int grid_count, t_tetris *first);
+t_tetris	*store_tet(int *tet, int grid_count);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*add_piece(void *tet_id, char c);
 int			*convert_id(char *id);

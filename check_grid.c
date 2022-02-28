@@ -55,7 +55,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-//	store_tet(tet, grid_count, grid);
+	store_tet(tet, grid_count);
 	if (grid_count != 0 && collision(grid, tet, 4) != 0)		// solver test start
 	{
 		printf("pieces collided with first grid -> pieces moved\n");
@@ -219,11 +219,12 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
-t_tetris	*store_tet(int *tet, int grid_count, t_tetris *first)
+t_tetris	*store_tet(int *tet, int grid_count)
 {
 	int			*tet_translated;
 	char		*tet_id;
 	t_tetris	*piece;
+	t_tetris	*first;
 	char		c;
 	int			i;
 

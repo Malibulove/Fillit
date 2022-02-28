@@ -6,26 +6,33 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 14:53:57 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:37:50 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-//int		stack_tet(t_tetris *stack)
-//{
-//	int *stacked_tet;
+/*
+t_tetris	stack_tet(void *tet_id, t_tetris *head, char c)
+{
+	t_tetris	*cursor;
+	t_tetris	*piece;
 
-//	stacked_tet = (int *)malloc(sizeof(int) * 8);
-//	if (!stack)
-//	{
-//		free(stacked_tet);
-//		return (-1);
-//	}
-//	dup_coord(stacked_tet, stack->tet_id);
-//	return (*stacked_tet);
-//}
+	cursor = head;
+	while (cursor->next != NULL)
+		cursor = cursor->next;
+	piece = add_piece(tet_id, c);
+	cursor->next = piece;
+	return (head);
+}
+
+	while (cursor->next != NULL)			// use something like this loop
+	{
+		
+		cursor = cursor->next;
+	}
+*/
 
 int		solve_tet(char **grid, int *tet, int size)
 {

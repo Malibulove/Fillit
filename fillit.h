@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 14:53:30 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:21:18 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			dup_coord(int *dst, int *src);
 int			low_x(int *tet, int grid_count);
 int			low_y(int *tet);
 int			tetcmp(int *tet, int *arr, int n);
-t_tetris	*store_tet(int *tet, int grid_count);
+t_tetris	*store_tet(int *tet, int grid_count, t_tetris *first);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*add_piece(void *tet_id, char c);
 int			*convert_id(char *id);

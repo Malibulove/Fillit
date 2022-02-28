@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 14:55:12 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:43:20 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-	store_tet(tet, grid_count);
-	if (grid_count != 0 && collision(grid, tet, 10) != 0)		// solver test start
+//	store_tet(tet, grid_count, grid);
+	if (grid_count != 0 && collision(grid, tet, 4) != 0)		// solver test start
 	{
 		printf("pieces collided with first grid -> pieces moved\n");
-
+		
 	}									// solver test end
-			solve_tet(grid, tet, 10);
+			solve_tet(grid, tet, 4);
 		print_grid(grid, tet);
 	// first_grid = grid;
 	// contain_grid(first_grid);			// collision test
@@ -219,12 +219,11 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
-t_tetris	*store_tet(int *tet, int grid_count)
+t_tetris	*store_tet(int *tet, int grid_count, t_tetris *first)
 {
 	int			*tet_translated;
 	char		*tet_id;
 	t_tetris	*piece;
-	t_tetris	*first;
 	char		c;
 	int			i;
 

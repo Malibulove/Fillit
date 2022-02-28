@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/25 14:02:37 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 13:32:46 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ if (collision(grid, tet, size) == 1)
 		x++;
 		shift_tet(tet, x, y);
 		if (collision(grid, tet, size) != 1)
-			return (1);
+			return (0);
 		if (collision(grid, tet, size) == 1)
 			{
 			x = x - 1;

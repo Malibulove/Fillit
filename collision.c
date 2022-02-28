@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/10 15:44:50 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/28 14:09:01 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		piece_collision(char **grid, int *tet)
 
 int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != 0 && piece_collision(grid, tet) != 0)
+	if (box_collision(tet, size) != 0 || piece_collision(grid, tet) != 0)
 		return(1);
 	else
 		return(0);

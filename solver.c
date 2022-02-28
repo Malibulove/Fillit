@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/18 17:02:01 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/25 14:02:37 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,34 @@ int		solve_tet(char **grid, int *tet, int size)
 	int x;
 	int y;
 
-	y = 0;
+
 //	*tet = stack_tet(tet);
 //	*tet2 = stack_tet(tet2);
 
-	while (y < size)
+if (collision(grid, tet, size) == 1)
+{
+	x = 0;
+	while (x < size)
 	{
-		x = 0;
-		while (x < size)
-		{
+		y = 0;
+		x++;
+		shift_tet(tet, x, y);
+		if (collision(grid, tet, size) != 1)
+			return (1);
+		if (collision(grid, tet, size) == 1)
+			{
+			x = x - 1;
+			while (y < size)
+			{
+			y++;
 			shift_tet(tet, x, y);
-			if (collision(grid, tet, size) != 1)
-				return (1);
-            x++;
-		}
-        y++;
+				if (collision(grid, tet, size) != 1)
+					return (1);
+				if (collision(grid, tet, size) == 1)
+					x++;
+			}
+			}
+	}
 	}
 	free(tet);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/17 18:11:08 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:30 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ int			stack_tet(t_tetris *stack);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
+void		print_grid(char **grid, int *tet);
+void		insert_piece(char **grid, int *tet, char c);
 
 #endif

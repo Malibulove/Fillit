@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 13:32:46 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:57 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,39 @@ if (collision(grid, tet, size) == 1)
 	}
 	free(tet);
 	return (0);
+}
+
+void	insert_piece(char **grid, int *tet, char c)
+{
+	int i;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	i = 0;
+	while (i < 8)
+	{
+		y = tet[i + 1];
+		x = tet[i];
+		grid[y][x] = c;
+		i += 2;
+	}
+}
+
+void	print_grid(char **grid, int *tet)
+{
+	int	i;
+	char c;
+
+	i = -1;
+	c = 'A';
+	insert_piece(grid, tet, c);
+	while (grid[++i])
+	{
+		ft_putstr(grid[i]);
+		ft_putchar('\n');
+	}
 }
 
 int		*x_shift(int *tet, int x)

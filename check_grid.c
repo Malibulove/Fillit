@@ -56,7 +56,7 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-	if (grid_count != 0 && collision(grid, tet, 4) != 0)		// solver test start
+	if (grid_count != 0 && collision(grid, tet, 4) == -1)		// solver test start
 	{
 		printf("pieces collided with first grid -> pieces moved\n");
 		

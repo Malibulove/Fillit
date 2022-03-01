@@ -84,7 +84,7 @@ int		piece_collision(char **grid, int *tet)
 
 int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != 0 || piece_collision(grid, tet) != 0)
+	if (box_collision(tet, size) != -1 || piece_collision(grid, tet) != -1)
 		return(1);
 	else
 		return(0);

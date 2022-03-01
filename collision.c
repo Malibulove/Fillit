@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 13:11:58 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:06:25 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ int	box_collision(int *tet, int size)
 	return(0);
 }
 
-int		piece_collision(char **grid, int *tet)
+int		piece_collision(char **grid, int *tet, int size)
 {
-	int size;
 	int i;
 
 	i = 0;
-	size = 4;
 	while (size--)
 	{
 		if (grid[tet[i + 1]][tet[i]] != '.')
@@ -84,7 +82,7 @@ int		piece_collision(char **grid, int *tet)
 
 int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != -1 || piece_collision(grid, tet) != -1)
+	if (box_collision(tet, size) != -1 || piece_collision(grid, tet, size) != -1)
 		return(1);
 	else
 		return(0);

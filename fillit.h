@@ -68,7 +68,6 @@ int			piece_collision(char **grid, int *tet, int size);
 int			collision(char **grid, int *tet, int size);
 char		contain_grid(char **grid);
 int			preread(char **argv);
-
 int			solve_tet(char **grid, int *tet, int size);
 int			stack_tet(t_tetris *stack);
 int			*x_shift(int *tet, int x);

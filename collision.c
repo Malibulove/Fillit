@@ -14,6 +14,8 @@
 #include "fillit.h"
 #include <stdio.h>
 
+/* This and the following function measure the maximum x and y coordinates of the tetriminos
+when the piece is positioned in the origo. */
 int	top_x(int *tet)
 {
 	int	line_count;
@@ -54,6 +56,8 @@ int	top_y(int *tet)
 	return(y);
 }
 
+/* If the maximum x and y coordinates of the tetriminos are bigger or the same (is this right?) as the size,
+the function returns a flag meaning the collision happens. */
 int	box_collision(int *tet, int size)
 {
 	int	x;
@@ -66,6 +70,8 @@ int	box_collision(int *tet, int size)
 	return(0);
 }
 
+/* Here we check if the coordinates of tetriminos inside the grid array correspond to the first tetrimino as hashes.
+If yes (instead of periods), theres collision. */
 int		piece_collision(char **grid, int *tet, int size)
 {
 	int i;
@@ -80,6 +86,7 @@ int		piece_collision(char **grid, int *tet, int size)
 	return (0);
 }
 
+/* This function serves a port for both the box collision and the piece collision. */
 int	collision(char **grid, int *tet, int size)
 {
 	if (box_collision(tet, size) != -1 || piece_collision(grid, tet, size) != -1)

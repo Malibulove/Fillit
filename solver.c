@@ -61,6 +61,7 @@ bigger than 8
 	return (0);
 }
 
+/* Here we include the tet being handled as part of the first grid. */
 void	insert_piece(char **grid, int *tet, char c)
 {
 	int i;
@@ -79,6 +80,8 @@ void	insert_piece(char **grid, int *tet, char c)
 	}
 }
 
+/* Here we print the grid by using differing letters. 'A' is used as a placeholder here, later we can use something like
+tet->c so that we get some help from the struct in fillit.h. */
 void	print_grid(char **grid, int *tet)
 {
 	int	i;
@@ -94,6 +97,7 @@ void	print_grid(char **grid, int *tet)
 	}
 }
 
+/* This and the following function move the tetriminos maximum as many ticks as there are space. */
 int		*x_shift(int *tet, int x)
 {
 	int i;
@@ -150,6 +154,7 @@ int		*reset_x(int *tet, int size)
 	return(tet);
 }
 
+/* This function serves as a port combining x and y shifting. */
 int		*shift_tet(int *tet, int x, int y)
 {
 	int	i;

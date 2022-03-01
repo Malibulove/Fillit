@@ -56,44 +56,13 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-	if (grid_count != 0 && collision(grid, tet, 4) == -1)		// solver test start
+	if (grid_count != 0 && collision(grid, tet, 4) == -1)		// solver test
 	{
 		printf("pieces collided with first grid -> pieces moved\n");
-		
-	}									// solver test end
-		if (grid_count != 0)
-			solve_tet(grid, tet, 4);
-//		print_grid(grid, tet);
-	// first_grid = grid;
-	// contain_grid(first_grid);			// collision test
+		solve_tet(grid, tet, 4);
+	}
 	return (*tet);
 }
-
-/*
-char contain_grid(char **grid)
-{
-	int j;
-	int k;
-	int x;
-	int y;
-	char **first_grid;
-
-	j = 0;
-	k = 0;
-	x = 0;
-	y = 0;
-	first_grid = NULL;
-	while (y < 4)
-	{
-		first_grid[j][k] = grid[x][y];
-		j++;
-		k++;
-		x++;
-		y++;
-	}
-	return (**first_grid);
-}
-*/
 
 int	error_check(char **grid, int count_hash, int i, int x, int y)
 {
@@ -196,6 +165,7 @@ int		low_y(int *tet)
 
 // -------------- LISTING --------------------------------------------------------
 
+/* Adds a list in the end. Might not be needed. */
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris	*piece;
@@ -207,6 +177,7 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 	return (piece);
 }
 
+/* Creates the head of the list. Might not be needed. */
 t_tetris	*append(void *tet_id, t_tetris *head, char c)
 {
 	t_tetris	*cursor;

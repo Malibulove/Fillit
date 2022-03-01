@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 16:03:47 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:15:24 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ int		solve_tet(char **grid, int *tet, int size)
 			{
 				printf("y = %d\n", y);
 				shift_tet(tet, x, y);
-				reset_y(tet);
+//				reset_y(tet);
 				if (collision(grid, tet, size) == 1)
 				{
 					printf("collision\n");
-					reset_y(tet);
-					reset_x(tet);
+//					reset_y(tet);
+//					reset_x(tet);
 				}
 				if (collision(grid, tet, size) == 0)
 					printf("==> NO COLLISION <==\n");
@@ -124,12 +124,12 @@ int		*y_shift(int *tet, int y)
 {
 	int i;
 	int size;
-
+	y = y + 0;
 	size = 4;
 	i = 1;
 	while (size--)
 	{
-		tet[i] = tet[i] + y;
+		tet[i] = tet[i] + 1;
 		i += 2;
 	}
 	return (tet);

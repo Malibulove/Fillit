@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 18:15:55 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 23:37:20 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ after that we can start the all process again until we don't have any collision
 we will need to change shift_tet because if size is bigger than 4, i will be
 bigger than 8
 */
+	int *temp;
+	temp = (int *)malloc(sizeof(int) * 8);
+	*temp = dup_coord(temp, tet);
 	if (collision(grid, tet, size) == 1)
 	{
 		printf("there's a collision, we need to move tetriminos\n");
@@ -37,26 +40,29 @@ bigger than 8
 		printf("size = %d\n", size);
 		while (x < size)
 		{
+			reset_y(tet, size, y);
 			printf("x = %d\n", x);
 			y = 0;
 			while (y < size)
 			{
 				printf("y = %d\n", y);
-				shift_tet(tet, x, y);
-//				reset_y(tet, size);
-				if (collision(grid, tet, size) == 1)
+//				shift_tet(tet, x, y);
+//				reset_y(tet, size, y);
+				if (box_collision(tet, size) == -1)
 				{
-					printf("collision\n");
-//					reset_y(tet, size);
-//					reset_x(tet, size);
+					printf("box collision, we need to reset Ys\n");
+					reset_y(tet, size, y);
+//					reset_x(tet, size, x);
 				}
 				if (collision(grid, tet, size) == 0)
 					printf("==> NO COLLISION <==\n");
+				shift_tet(tet, x, y);
+				reset_x(tet, size, x);
 				y++;
 			}
 			x++;
 		}
-		size++;
+//		size++;
 	}
 	free(tet);
 	return (0);
@@ -134,6 +140,7 @@ int		*reset_y(int *tet, int size, int y)
 	int i;
 
 	i = 1;
+	printf("y inside reset y = %d\n", y);
 	while (size--)
 	{
 		tet[i] = tet[i] - y;

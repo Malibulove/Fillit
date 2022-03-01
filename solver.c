@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 23:57:47 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/02 00:07:14 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ bigger than 8
 		printf("size = %d\n", size);
 		while (x < size)
 		{
-			printf("size = %d\n", size);
 			reset_y(tet, size, y);
 			printf("x = %d\n", x);
 			y = 0;
@@ -57,10 +56,15 @@ bigger than 8
 			}
 			x++;
 		}
-		size++;
-		reset_x(tet, size, x);
-		reset_y(tet, size, y);
+//		size++;
+//		reset_x(tet, size, x);
+//		reset_y(tet, size, y);
+/*
+We need to find a solution for the size to increase, so far it's not doing
+anything 
+*/
 	}
+	printf("end of solve_tet\n");
 	free(tet);
 	return (0);
 }

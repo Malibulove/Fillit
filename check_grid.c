@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 18:42:42 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 17:58:39 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-	if (grid_count != 0 && collision(grid, tet, 4) == -1)		// solver test
+	if (grid_count != 0 && collision(grid, tet, 4) == 1)		// solver test
 	{
-		printf("pieces collided with first grid -> pieces moved\n");
+		printf("/!\\* Collision */!\\ -> we need to move tetriminos\n");
 		solve_tet(grid, tet, 4);
 	}
 	return (*tet);

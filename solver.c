@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 15:37:50 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/03/01 14:24:49 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,32 @@ int		solve_tet(char **grid, int *tet, int size)
 {
 	int x;
 	int y;
-
-
-//	*tet = stack_tet(tet);
-//	*tet2 = stack_tet(tet2);
-
-if (collision(grid, tet, size) == 1)
-{
-	x = 0;
-	while (x < size)
+// if collision = 1 ==> collision
+// if collision = 0 ==> pas de collision
+	printf("size = %d\n", size);
+	if (collision(grid, tet, size) == 1)
 	{
-		y = 0;
-		x++;
-		shift_tet(tet, x, y);
-		if (collision(grid, tet, size) != 1)
-			return (0);
-		if (collision(grid, tet, size) == 1)
-			{
-			x = x - 1;
+		x = 0;
+		while (x < size)
+		{
+			printf("x = %d\n", x);
+			y = 0;
 			while (y < size)
 			{
-			y++;
-			shift_tet(tet, x, y);
+				printf("y = %d\n", y);
+				shift_tet(tet, x, y);
+				reset_y(tet);
 				if (collision(grid, tet, size) != 1)
-					return (1);
-				if (collision(grid, tet, size) == 1)
-					x++;
+				{
+					printf("collision = 0\n");
+					reset_y(tet);
+					reset_x(tet);
+				}
+				y++;
 			}
-			}
-	}
+			x++;
+		}
+		size++;
 	}
 	free(tet);
 	return (0);
@@ -133,6 +130,36 @@ int		*y_shift(int *tet, int y)
 		i += 2;
 	}
 	return (tet);
+}
+
+int		*reset_y(int *tet)
+{
+	int i;
+	int size;
+
+	size = 4;
+	i = 1;
+	while (size--)
+	{
+		tet[i] = 0;
+		i += 2;
+	}
+	return (tet);
+}
+
+int		*reset_x(int *tet)
+{
+	int i;
+	int size;
+
+	size = 4;
+	i = 1;
+	while (size--)
+	{
+		tet[i] = 0;
+		i +=2;
+	}
+	return(tet);
 }
 
 int		*shift_tet(int *tet, int x, int y)

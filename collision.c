@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 16:06:25 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 18:16:58 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	box_collision(int *tet, int size)
 
 	x = top_x(tet);
 	y = top_y(tet);
-	if (x >= size || y >= size)
+	if (x > size || y > size)
 		return(-1);
 	return(0);
 }

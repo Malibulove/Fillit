@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 16:31:21 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 18:15:55 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ bigger than 8
 */
 	if (collision(grid, tet, size) == 1)
 	{
+		printf("there's a collision, we need to move tetriminos\n");
 		x = 0;
 		printf("size = %d\n", size);
 		while (x < size)
@@ -128,27 +129,27 @@ int		*y_shift(int *tet, int y)
 	return (tet);
 }
 
-int		*reset_y(int *tet, int size)
+int		*reset_y(int *tet, int size, int y)
 {
 	int i;
 
 	i = 1;
 	while (size--)
 	{
-		tet[i] = 0;
+		tet[i] = tet[i] - y;
 		i += 2;
 	}
 	return (tet);
 }
 
-int		*reset_x(int *tet, int size)
+int		*reset_x(int *tet, int size, int x)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	while (size--)
 	{
-		tet[i] = 0;
+		tet[i] = tet[i] - x;
 		i +=2;
 	}
 	return(tet);

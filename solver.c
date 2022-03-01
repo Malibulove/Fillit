@@ -6,41 +6,30 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 16:15:24 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:31:21 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-/*
-t_tetris	stack_tet(void *tet_id, t_tetris *head, char c)
-{
-	t_tetris	*cursor;
-	t_tetris	*piece;
-
-	cursor = head;
-	while (cursor->next != NULL)
-		cursor = cursor->next;
-	piece = add_piece(tet_id, c);
-	cursor->next = piece;
-	return (head);
-}
-
-	while (cursor->next != NULL)			// use something like this loop
-	{
-		
-		cursor = cursor->next;
-	}
-*/
-
 int		solve_tet(char **grid, int *tet, int size)
 {
 	int x;
 	int y;
-// if collision = 1 ==> collision
-// if collision = 0 ==> pas de collision
-	printf("size = %d\n", size);
+/*
+comment the function here :
+if collision = 1 ==> collision
+if collision = 0 ==> pas de collision
+we want to check first by incresing Ys
+if it's not enough, reset Ys (we can't just reset everything to 0)
+then we increase x by 1 and we try again threw all Ys
+we go threw all Xs and Ys and IF it's not enough we will increase size by 1
+after that we can start the all process again until we don't have any collision
+(from grid/piece)
+we will need to change shift_tet because if size is bigger than 4, i will be
+bigger than 8
+*/
 	if (collision(grid, tet, size) == 1)
 	{
 		x = 0;
@@ -53,12 +42,12 @@ int		solve_tet(char **grid, int *tet, int size)
 			{
 				printf("y = %d\n", y);
 				shift_tet(tet, x, y);
-//				reset_y(tet);
+//				reset_y(tet, size);
 				if (collision(grid, tet, size) == 1)
 				{
 					printf("collision\n");
-//					reset_y(tet);
-//					reset_x(tet);
+//					reset_y(tet, size);
+//					reset_x(tet, size);
 				}
 				if (collision(grid, tet, size) == 0)
 					printf("==> NO COLLISION <==\n");
@@ -135,12 +124,10 @@ int		*y_shift(int *tet, int y)
 	return (tet);
 }
 
-int		*reset_y(int *tet)
+int		*reset_y(int *tet, int size)
 {
 	int i;
-	int size;
 
-	size = 4;
 	i = 1;
 	while (size--)
 	{
@@ -150,12 +137,10 @@ int		*reset_y(int *tet)
 	return (tet);
 }
 
-int		*reset_x(int *tet)
+int		*reset_x(int *tet, int size)
 {
 	int i;
-	int size;
 
-	size = 4;
 	i = 1;
 	while (size--)
 	{

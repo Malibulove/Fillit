@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 16:06:06 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/01 16:19:07 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
 void		print_grid(char **grid, int *tet);
 void		insert_piece(char **grid, int *tet, char c);
-int			*reset_y(int *tet);
-int			*reset_x(int *tet);
+int			*reset_y(int *tet, int size);
+int			*reset_x(int *tet, int size);
 
 #endif

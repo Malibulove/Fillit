@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/28 15:43:20 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:42:42 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ int	check_grid(char **grid, int grid_count, int i)
 		printf("pieces collided with first grid -> pieces moved\n");
 		
 	}									// solver test end
+		if (grid_count != 0)
 			solve_tet(grid, tet, 4);
-		print_grid(grid, tet);
+//		print_grid(grid, tet);
 	// first_grid = grid;
 	// contain_grid(first_grid);			// collision test
 	return (*tet);

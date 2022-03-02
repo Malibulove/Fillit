@@ -57,7 +57,7 @@ int	check_grid(char **grid, int grid_count, int i)
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
 	if (grid_count != 0)		// solver test
-		solve_tet(grid, tet, 4);
+		solve_tet(grid, tet, 5);
 	return (*tet);
 }
 

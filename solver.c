@@ -55,6 +55,8 @@ bigger than 8
 				y++;
 			}
 			x++;
+			if (size == 5 && collision(grid, tet, size) == 1) // the function doesnt really know that 5 is the final size, atm the number is just a placeholder
+			break ;
 		}
 //		size++;
 //		reset_x(tet, size, x);

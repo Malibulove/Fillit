@@ -222,11 +222,8 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	return (first);
 }
 
-// -------------- FINDING THE LIBRARY EQUIVALENT OF TET (In other words: Comparing tetriminos) --------------
-
-// 1.
-
-char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
+/* Finds the name of the tetrimino by comparing it to the arrays in fillit.h. */
+char	*get_tetid(int *tet)
 {
 	char	*name;
 
@@ -273,7 +270,8 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	return (name);
 }
 
-int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the size of the user input tet)
+/* Compares the user input tetrimino to the tetriminos in fillit.h. */
+int	tetcmp(int *tet, int *libtet, int n)
 {
 	int	i;
 
@@ -287,9 +285,8 @@ int	tetcmp(int *tet, int *libtet, int n) // (user input tet, pre-made tet, the s
 	return (1);
 }
 
-// 2.
-
-int		*convert_id(char *name) // converts the name back into and actual tetrimino
+/* Converts the name back into and actual tetrimino. */
+int		*convert_id(char *name)
 {
 	int	*tet;
 
@@ -316,6 +313,7 @@ int		*convert_id(char *name) // converts the name back into and actual tetrimino
 	return (tet);
 }
 
+/* Serves as a port to create the list. */
 t_tetris	*id_to_coord(t_tetris *stack)
 {
 	t_tetris	*head;
@@ -337,6 +335,7 @@ t_tetris	*id_to_coord(t_tetris *stack)
 	return (head);
 }
 
+/* Duplicates the coordinate arrays. */
 int		dup_coord(int *dst, int *src)
 {
 	int	*pdst;

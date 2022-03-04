@@ -6,17 +6,20 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 13:11:40 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 13:19:26 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
+/*
 int		solve_tet(char **grid, t_tetris *stack, int size)
 {
+	
 	return (0);
 }
+*/
 
 /* Here we include the tet being handled as part of the first grid. */
 void	insert_piece(char **grid, int *tet, char c)

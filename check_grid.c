@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 13:15:07 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 17:35:49 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ int	check_grid(char **grid, int grid_count, int i)
 	int	x;
 	int	z;
 	int	y;
-
+	int	size;
 	int	count_hash;
 	int	*tet;
 	t_tetris	*tmp;
 	t_tetris	*stack;
 
+	size = 4;
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
 	if (!tet)
@@ -59,7 +60,11 @@ int	check_grid(char **grid, int grid_count, int i)
 	tmp = store_tet(tet, grid_count);
 	stack = id_to_coord(tmp);
 	free(tmp);
-	print_tet(tet, grid_count);
+//	print_tet(tet, grid_count);
+	if (grid_count != 0)
+		solve_tet(grid, stack, size);
+	else
+		insert_piece(grid, tet, stack->c);
 	return (*tet);
 }
 

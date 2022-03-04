@@ -6,20 +6,59 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 13:19:26 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 17:23:41 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-/*
 int		solve_tet(char **grid, t_tetris *stack, int size)
 {
-	
+	int		x;
+	int		y;
+	int		*tet;
+
+	y = -1;
+	tet = (int *)malloc(sizeof(int) * 8);
+	if (!stack)
+	{
+		free(tet);
+		return (1);
+	}
+	while (++y < size)
+	{
+		x = -1;
+		printf("y = %d\n", y);
+		while (++x < size)
+		{
+			printf("x = %d\n", x);
+			dup_coord(tet, stack->tet_id);
+			shift_tet(tet, x ,y);
+			if (help_solve(grid, tet, stack, size))
+				return (1);
+		}
+	}
+	free(tet);
 	return (0);
 }
-*/
+
+int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
+{
+	if (collision(grid, tet, size))
+	{
+		printf("collision = %d\n", collision(grid, tet, size));
+		insert_piece(grid, tet, stack->c);
+		if (solve_tet(grid, stack->next, size))
+		{
+			printf("after solve_tet");
+			free(tet);
+			return (1);
+		}
+		clear_piece(grid, tet);
+	}
+	return (0);
+}
 
 /* Here we include the tet being handled as part of the first grid. */
 void	insert_piece(char **grid, int *tet, char c)
@@ -38,10 +77,29 @@ void	insert_piece(char **grid, int *tet, char c)
 		grid[y][x] = c;
 		i += 2;
 	}
+	printf("piece inserted\n");
+}
+
+void	clear_piece(char **grid, int *tet)
+{
+	int i;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	i = 0;
+	while (i < 8)
+	{
+		y = tet[i + 1];
+		x = tet[i];
+		grid[y][x] = '.';
+		i += 2;
+	}
 }
 
 /* Here we print the grid by using differing letters. 'A' is used as a placeholder here, later we can use something like
-tet->c so that we get some help from the struct in fillit.h. */
+tet->c so that we get some help from the struct in fillit.h */
 void	print_grid(char **grid, int *tet)
 {
 	int	i;
@@ -104,4 +162,69 @@ int		*shift_tet(int *tet, int x, int y)
 	}
 	printf("\n");
 	return (tet);
+}
+
+int		start_size(t_tetris *stack)
+{
+	int		blocks;
+	int		size;
+
+	size = 2;
+	blocks = (count_tet(stack) * 4);
+	while (blocks > (size * size))
+		size += 1;
+	return (size);
+}
+
+char	*gen_line(int col)
+{
+	char	*line;
+	int		i;
+
+	i = 0;
+	if (!(line = (char *)malloc(sizeof(char) * col + 1)))
+		return (NULL);
+	while (i < col)
+	{
+		line[i] = '.';
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+char	**gen_grid(int size)
+{
+	char	**grid;
+	int		i;
+	char	*line;
+
+	i = 0;
+	if (!(grid = (char **)malloc(sizeof(char *) * size + 1)))
+		return (NULL);
+	while (i < size)
+	{
+		grid[i] = (char *)malloc(sizeof(char) * size + 1);
+		line = gen_line(size);
+		ft_strcpy(grid[i], line);
+		free(line);
+		i++;
+	}
+	grid[i] = NULL;
+	return (grid);
+}
+
+int			count_tet(t_tetris *stack)
+{
+	int			c;
+	t_tetris	*tmp;
+
+	tmp = stack;
+	c = 0;
+	while (tmp)
+	{
+		c++;
+		tmp = tmp->next;
+	}
+	return (c);
 }

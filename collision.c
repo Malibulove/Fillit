@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 13:08:05 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 16:51:40 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	box_collision(int *tet, int size)
 	x = top_x(tet);
 	y = top_y(tet);
 	if (x > size || y > size)
-		return(-1);
+		return(1);
 	return(0);
 }
 
@@ -79,7 +79,7 @@ int		piece_collision(char **grid, int *tet, int size)
 	while (size--)
 	{
 		if (grid[tet[i + 1]][tet[i]] != '.')
-			return (-1);
+			return (1);
 		i = i + 2;
 	}
 	return (0);
@@ -88,8 +88,5 @@ int		piece_collision(char **grid, int *tet, int size)
 /* This function serves a port for both the box collision and the piece collision. */
 int	collision(char **grid, int *tet, int size)
 {
-	if (box_collision(tet, size) != -1 || piece_collision(grid, tet, size) != -1)
-		return(1);
-	else
-		return(0);
+	return (!(box_collision(tet, size)) && !(piece_collision(grid, tet, size)));
 }

@@ -56,10 +56,10 @@ int	check_grid(char **grid, int grid_count, int i)
 	y = 0;
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
-	print_tet(tet, grid_count);
 	tmp = store_tet(tet, grid_count);
 	stack = id_to_coord(tmp);
 	free(tmp);
+	print_tet(tet, grid_count);
 	return (*tet);
 }
 

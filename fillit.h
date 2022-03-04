@@ -75,5 +75,6 @@ int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
 void		print_grid(char **grid, int *tet);
 void		insert_piece(char **grid, int *tet, char c);
+t_tetris	*id_to_coord(t_tetris *stack);
 
 #endif

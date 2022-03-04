@@ -21,6 +21,8 @@ int	check_grid(char **grid, int grid_count, int i)
 
 	int	count_hash;
 	int	*tet;
+	t_tetris	*tmp;
+	t_tetris	*stack;
 
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
@@ -55,7 +57,9 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	print_tet(tet, grid_count);
-	store_tet(tet, grid_count);
+	tmp = store_tet(tet, grid_count);
+	stack = id_to_coord(tmp);
+	free(tmp);
 	return (*tet);
 }
 

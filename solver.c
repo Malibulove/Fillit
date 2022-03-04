@@ -6,68 +6,15 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/02 00:07:14 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 13:11:40 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-int		solve_tet(char **grid, int *tet, int size)
+int		solve_tet(char **grid, t_tetris *stack, int size)
 {
-	int x;
-	int y;
-/*
-comment the function here :
-if collision = 1 ==> collision
-if collision = 0 ==> pas de collision
-we want to check first by incresing Ys
-if it's not enough, reset Ys (we can't just reset everything to 0)
-then we increase x by 1 and we try again threw all Ys
-we go threw all Xs and Ys and IF it's not enough we will increase size by 1
-after that we can start the all process again until we don't have any collision
-(from grid/piece)
-we will need to change shift_tet because if size is bigger than 4, i will be
-bigger than 8
-*/
-	if (collision(grid, tet, size) == 1)
-	{
-		printf("there's a collision, we need to move tetriminos\n");
-		x = 0;
-		printf("size = %d\n", size);
-		while (x < size)
-		{
-			reset_y(tet, size, y);
-			printf("x = %d\n", x);
-			y = 0;
-			while (y < size)
-			{
-				printf("y = %d\n", y);
-				if (box_collision(tet, size) == -1)
-				{
-					printf("box collision, we need to reset Ys\n");
-					reset_y(tet, size, y);
-				}
-				if (collision(grid, tet, size) == 0)
-					printf("==> NO COLLISION <==\n");
-				shift_tet(tet, x, y);
-				reset_x(tet, size, x);
-				y++;
-			}
-			x++;
-			if (size == 5 && collision(grid, tet, size) == 1) // the function doesnt really know that 5 is the final size, atm the number is just a placeholder
-			break ;
-		}
-//		size++;
-//		reset_x(tet, size, x);
-//		reset_y(tet, size, y);
-/*
-We need to find a solution for the size to increase, so far it's not doing
-anything 
-*/
-	}
-	printf("end of solve_tet\n");
-	free(tet);
 	return (0);
 }
 
@@ -127,41 +74,15 @@ int		*y_shift(int *tet, int y)
 {
 	int i;
 	int size;
-	y = y + 0;
+
 	size = 4;
 	i = 1;
 	while (size--)
 	{
-		tet[i] = tet[i] + 1;
+		tet[i] = tet[i] + y;
 		i += 2;
 	}
 	return (tet);
-}
-
-int		*reset_y(int *tet, int size, int y)
-{
-	int i;
-
-	i = 1;
-	while (size--)
-	{
-		tet[i] = tet[i] - y;
-		i += 2;
-	}
-	return (tet);
-}
-
-int		*reset_x(int *tet, int size, int x)
-{
-	int i;
-
-	i = 0;
-	while (size--)
-	{
-		tet[i] = tet[i] - x;
-		i +=2;
-	}
-	return(tet);
 }
 
 /* This function serves as a port combining x and y shifting. */

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 23:56:31 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 13:15:07 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	print_tet(tet, grid_count);
 	store_tet(tet, grid_count);
-	if (grid_count != 0)		// solver test
-		solve_tet(grid, tet, 5);
 	return (*tet);
 }
 

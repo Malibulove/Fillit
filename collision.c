@@ -6,13 +6,12 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 18:16:58 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 13:08:05 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
-#include <stdio.h>
 
 /* This and the following function measure the maximum x and y coordinates of the tetriminos
 when the piece is positioned in the origo. */

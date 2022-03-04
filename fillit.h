@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/01 18:15:34 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/04 13:13:13 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			piece_collision(char **grid, int *tet, int size);
 int			collision(char **grid, int *tet, int size);
 char		contain_grid(char **grid);
 int			preread(char **argv);
-int			solve_tet(char **grid, int *tet, int size);
+int			solve_tet(char **grid, t_tetris *stack, int size);
 int			stack_tet(t_tetris *stack);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);

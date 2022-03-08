@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/07 12:04:58 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/08 19:03:30 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,27 @@ int	check_grid(char **grid, int grid_count, int i)
 		return (-1);
 	tmp = store_tet(tet, grid_count);
 	size = start_size(tmp);
+	printf("after size =\n");
 	stack = id_to_coord(tmp);
+	printf("after stack =\n");
 	stck_free(tmp);
 	grid = gen_grid(size);
+	printf("grid gen\n");
 		while (!solve_tet(grid, stack, size))
 	{
+		printf("inside the while to increase size\n");
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
 	}
 	solve_tet(grid, stack, size);
+	printf("after solve temp in check grid\n");
 	insert_piece(grid, tet, stack->c);
+	printf("after inser piece in check grid\n");
 	print_grid(grid, size);
+	printf("after print grid in check grid\n");
 	stck_free_coord(stack);
+	printf("end of check_grid\n");
 //	print_list(stack);
 	return (*tet);
 }
@@ -121,6 +129,7 @@ int	*trans_coord(int *tet, int grid_count)
 
 	printf("doing magic coord trans\n");
 	size = 4;
+	printf("grid count = %d\n", grid_count);
 	lx = low_x(tet, grid_count);
 	ly = low_y(tet);
 	printf("lx = %d\n", lx);
@@ -218,29 +227,27 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	first = NULL;
 	counter = 2;
 
-	while (counter != 0)
+	tet_translated = trans_coord(tet, grid_count);
+	printf("after magic, new coord = %d", tet_translated[0]);
+	printf("%d", tet_translated[1]);
+	printf("%d", tet_translated[2]);
+	printf("%d", tet_translated[3]);
+	printf("%d", tet_translated[4]);
+	printf("%d", tet_translated[5]);
+	printf("%d", tet_translated[6]);
+	printf("%d", tet_translated[7]);
+	printf("\n");
+	if (!(tet_id = get_tetid(tet)))
 	{
-		tet_translated = trans_coord(tet, grid_count);
-		printf("after magic, new coord = %d", tet_translated[0]);
-		printf("%d", tet_translated[1]);
-		printf("%d", tet_translated[2]);
-		printf("%d", tet_translated[3]);
-		printf("%d", tet_translated[4]);
-		printf("%d", tet_translated[5]);
-		printf("%d", tet_translated[6]);
-		printf("%d", tet_translated[7]);
-		printf("\n");
-		if (!(tet_id = get_tetid(tet)))
-		{
-			printf("tetriminos not recognised\n");
-			ft_exit();
-		}
-		if (first == NULL)
-			first = add_piece(tet_id, c++);
-		else
-			piece = append(tet_id, first, c++);
-		counter--;
+		printf("tetriminos not recognised\n");
+	ft_exit();
 	}
+	if (first == NULL)
+		first = add_piece(tet_id, c++);
+	else
+		piece = append(tet_id, first, c++);
+	counter--;
+
 	return (first);
 }
 

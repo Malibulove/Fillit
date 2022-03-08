@@ -58,16 +58,21 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	tmp = store_tet(tet, grid_count);
+	size = start_size(tmp);
 	stack = id_to_coord(tmp);
-	free(tmp);
-//	print_tet(tet, grid_count);
-	if (grid_count == 0)
-		insert_piece(grid, tet, stack->c);
-	else
+	stck_free(tmp);
+	grid = gen_grid(size);
+		while (!solve_tet(grid, stack, size))
 	{
-		solve_tet(grid, stack, size);
-		insert_piece(grid, tet, stack->c);
+		free_grid(grid, size);
+		size = size + 1;
+		grid = gen_grid(size);
 	}
+	solve_tet(grid, stack, size);
+	insert_piece(grid, tet, stack->c);
+	print_grid(grid, size);
+	stck_free_coord(stack);
+//	print_list(stack);
 	return (*tet);
 }
 
@@ -206,29 +211,36 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	t_tetris	*first;
 	char		c;
 	int			i;
+	int			counter;
 
 	i = 0;
 	c = 'A';
 	first = NULL;
-	tet_translated = trans_coord(tet, grid_count);
-	printf("after magic, new coord = %d", tet_translated[0]);
-	printf("%d", tet_translated[1]);
-	printf("%d", tet_translated[2]);
-	printf("%d", tet_translated[3]);
-	printf("%d", tet_translated[4]);
-	printf("%d", tet_translated[5]);
-	printf("%d", tet_translated[6]);
-	printf("%d", tet_translated[7]);
-	printf("\n");
-	if (!(tet_id = get_tetid(tet)))
+	counter = 2;
+
+	while (counter != 0)
 	{
-		printf("tetriminos not recognised\n");
-		ft_exit();
+		tet_translated = trans_coord(tet, grid_count);
+		printf("after magic, new coord = %d", tet_translated[0]);
+		printf("%d", tet_translated[1]);
+		printf("%d", tet_translated[2]);
+		printf("%d", tet_translated[3]);
+		printf("%d", tet_translated[4]);
+		printf("%d", tet_translated[5]);
+		printf("%d", tet_translated[6]);
+		printf("%d", tet_translated[7]);
+		printf("\n");
+		if (!(tet_id = get_tetid(tet)))
+		{
+			printf("tetriminos not recognised\n");
+			ft_exit();
+		}
+		if (first == NULL)
+			first = add_piece(tet_id, c++);
+		else
+			piece = append(tet_id, first, c++);
+		counter--;
 	}
-	if (first == NULL)
-		first = add_piece(tet_id, c++);
-	else
-		piece = append(tet_id, first, c++);
 	return (first);
 }
 

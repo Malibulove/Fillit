@@ -100,19 +100,20 @@ void	clear_piece(char **grid, int *tet)
 
 /* Here we print the grid by using differing letters. 'A' is used as a placeholder here, later we can use something like
 tet->c so that we get some help from the struct in fillit.h */
-void	print_grid(char **grid, int *tet)
+void	print_grid(char **grid, int size)
 {
 	int	i;
-	char c;
+//	char c;
 
 	i = -1;
-	c = 'A';
-	insert_piece(grid, tet, c);
+//	c = 'A';
+//	insert_piece(grid, tet, c);
 	while (grid[++i])
 	{
 		ft_putstr(grid[i]);
 		ft_putchar('\n');
 	}
+	free_grid(grid, size);
 }
 
 /* This and the following function move the tetriminos maximum as many ticks as there are space. */
@@ -227,4 +228,44 @@ int			count_tet(t_tetris *stack)
 		tmp = tmp->next;
 	}
 	return (c);
+}
+
+void	stck_free(t_tetris *stack)
+{
+	t_tetris *tmp;
+
+	tmp = NULL;
+	while (stack)
+	{
+		tmp = stack;
+		stack = tmp->next;
+		free(tmp);
+	}
+}
+
+void	stck_free_coord(t_tetris *stack)
+{
+	t_tetris *tmp;
+
+	tmp = NULL;
+	while (stack)
+	{
+		tmp = stack;
+		stack = tmp->next;
+		free(tmp->tet_id);
+		free(tmp);
+	}
+}
+
+void	free_grid(char **grid, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		ft_strdel(&grid[i]);
+		i++;
+	}
+	free(grid);
 }

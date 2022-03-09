@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 17:23:08 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/09 11:45:29 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			stack_tet(t_tetris *stack);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
-void		print_grid(char **grid, int size);
+void		print_grid(char **grid, int *tet, int size);
 void		insert_piece(char **grid, int *tet, char c);
 t_tetris	*id_to_coord(t_tetris *stack);
 void		clear_piece(char **grid, int *tet);

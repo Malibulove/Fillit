@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 17:23:41 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/09 13:17:03 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
 	if (collision(grid, tet, size))
 	{
 		printf("collision = %d\n", collision(grid, tet, size));
-		insert_piece(grid, tet, stack->c);
+//		insert_piece(grid, tet, stack->c);
 		if (solve_tet(grid, stack->next, size))
 		{
 			printf("after solve_tet");
@@ -100,13 +100,15 @@ void	clear_piece(char **grid, int *tet)
 
 /* Here we print the grid by using differing letters. 'A' is used as a placeholder here, later we can use something like
 tet->c so that we get some help from the struct in fillit.h */
-void	print_grid(char **grid, int size)
+void	print_grid(char **grid, int *tet, int size)
 {
 	int	i;
-//	char c;
+	char c;
+	int *test;
 
+	test = tet;
 	i = -1;
-//	c = 'A';
+	c = 'A';
 //	insert_piece(grid, tet, c);
 	while (grid[++i])
 	{

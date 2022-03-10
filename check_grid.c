@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/09 12:48:25 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/09 15:21:56 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	check_grid(char **grid, int grid_count, int i)
 	t_tetris	*tmp;
 	t_tetris	*stack;
 
-	size = 4;
 	tet = (int *)malloc(sizeof(int) * 8);
 	count_hash = 0;
 	if (!tet)
@@ -58,8 +57,9 @@ int	check_grid(char **grid, int grid_count, int i)
 	if (error_check(grid, count_hash, i, x, y) != 1)
 		return (-1);
 	tmp = store_tet(tet, grid_count);
-	size = start_size(tmp);
-	printf("after size =\n");
+	size = 4;
+//	size = start_size(tmp);
+	printf("after size, size  =%d\n", size);
 	stack = id_to_coord(tmp);
 	printf("after stack =\n");
 	stck_free(tmp);
@@ -70,12 +70,13 @@ int	check_grid(char **grid, int grid_count, int i)
 		printf("inside the while to increase size\n");
 		free_grid(grid, size);
 		size = size + 1;
+		printf("size is now = %d\n", size);
 		grid = gen_grid(size);
 	}
 	solve_tet(grid, stack, size);
 	printf("after solve tet in check grid\n");
-//	insert_piece(grid, tet, stack->c);
-//	printf("after inser piece in check grid\n");
+	insert_piece(grid, tet, stack->c);
+	printf("after inser piece in check grid\n");
 	print_grid(grid, tet, size);
 	printf("after print grid in check grid\n");
 
@@ -221,12 +222,10 @@ t_tetris	*store_tet(int *tet, int grid_count)
 	t_tetris	*first;
 	char		c;
 	int			i;
-	int			counter;
 
 	i = 0;
 	c = 'A';
 	first = NULL;
-	counter = 2;
 
 	tet_translated = trans_coord(tet, grid_count);
 	printf("after magic, new coord = %d", tet_translated[0]);
@@ -247,7 +246,6 @@ t_tetris	*store_tet(int *tet, int grid_count)
 		first = add_piece(tet_id, c++);
 	else
 		piece = append(tet_id, first, c++);
-	counter--;
 
 	return (first);
 }

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/09 13:17:03 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/09 15:21:03 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	insert_piece(char **grid, int *tet, char c)
 	{
 		y = tet[i + 1];
 		x = tet[i];
-		grid[y][x] = c;
+		grid[x][y] = c;
 		i += 2;
 	}
 	printf("piece inserted\n");
@@ -103,13 +103,10 @@ tet->c so that we get some help from the struct in fillit.h */
 void	print_grid(char **grid, int *tet, int size)
 {
 	int	i;
-	char c;
 	int *test;
 
 	test = tet;
 	i = -1;
-	c = 'A';
-//	insert_piece(grid, tet, c);
 	while (grid[++i])
 	{
 		ft_putstr(grid[i]);

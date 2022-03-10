@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/09 15:21:03 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/10 11:35:40 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
 	if (collision(grid, tet, size))
 	{
 		printf("collision = %d\n", collision(grid, tet, size));
-//		insert_piece(grid, tet, stack->c);
+		insert_piece(grid, tet, stack->c);
 		if (solve_tet(grid, stack->next, size))
 		{
 			printf("after solve_tet");

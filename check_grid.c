@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/09 15:21:56 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/10 11:57:08 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,11 @@ int	check_grid(char **grid, int grid_count, int i)
 		printf("size is now = %d\n", size);
 		grid = gen_grid(size);
 	}
-	solve_tet(grid, stack, size);
-	printf("after solve tet in check grid\n");
-	insert_piece(grid, tet, stack->c);
-	printf("after inser piece in check grid\n");
 	print_grid(grid, tet, size);
 	printf("after print grid in check grid\n");
 
 	stck_free_coord(stack);
 	printf("end of check_grid\n");
-//	print_list(stack);
 	return (*tet);
 }
 

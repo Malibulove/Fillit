@@ -183,7 +183,7 @@ int		low_y(int *tet)
 
 // -------------- LISTING --------------------------------------------------------
 
-/* Adds a list in the end. Might not be needed. */
+/* Creates the head of the list. */
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris	*piece;
@@ -195,7 +195,7 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 	return (piece);
 }
 
-/* Creates the head of the list. Might not be needed. */
+/* Adds a list in the end.*/
 t_tetris	*append(void *tet_id, t_tetris *head, char c)
 {
 	t_tetris	*cursor;
@@ -209,39 +209,52 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
+t_tetris	*store_first(int *tet, int grid_count)
+{
+	char		*tet_id;
+	t_tetris	*first;
+	char		c;
+
+	c = 'A';
+	tet = (int [8]) {0,0,0,1,1,0,1,1};
+	grid_count = 0;
+	tet = trans_coord(tet, grid_count);
+	if (!(tet_id = get_tetid(tet)))
+	{
+	printf("tetriminos not recognised\n");
+	ft_exit();
+	}
+	if (grid_count == 0)
+		first = add_piece(tet_id, c++);
+	return (0);
+}
+
 t_tetris	*store_tet(int *tet, int grid_count)
 {
-	int			*tet_translated;
 	char		*tet_id;
 	t_tetris	*piece;
 	t_tetris	*first;
 	char		c;
-	int			i;
+	int			counter;
 
-	i = 0;
-	c = 'A';
-	first = NULL;
-
-	tet_translated = trans_coord(tet, grid_count);
-	printf("after magic, new coord = %d", tet_translated[0]);
-	printf("%d", tet_translated[1]);
-	printf("%d", tet_translated[2]);
-	printf("%d", tet_translated[3]);
-	printf("%d", tet_translated[4]);
-	printf("%d", tet_translated[5]);
-	printf("%d", tet_translated[6]);
-	printf("%d", tet_translated[7]);
+	c = 'B';
+	counter = 4;
+	first = store_first(tet, grid_count);
+	if (grid_count != 0 && counter <= 4)
+	{
+	tet = trans_coord(tet, grid_count);
+	printf("after magic, new coord = %d", tet[0]);
+	printf("%d", tet[1]);
+	printf("%d", tet[2]);
 	printf("\n");
 	if (!(tet_id = get_tetid(tet)))
 	{
-		printf("tetriminos not recognised\n");
+	printf("tetriminos not recognised\n");
 	ft_exit();
 	}
-	if (first == NULL)
-		first = add_piece(tet_id, c++);
-	else
-		piece = append(tet_id, first, c++);
-
+	piece = append(tet_id, first, c++);
+	counter--;
+	}
 	return (first);
 }
 

@@ -199,6 +199,10 @@ int		low_y(int *tet)
 
 // -------------- LISTING --------------------------------------------------------
 
+<<<<<<< HEAD
+=======
+/* Creates the head of the list. */
+>>>>>>> 7155f2b3498aa1987502269bb5ae12877b011e25
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris	*piece;
@@ -210,6 +214,10 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 	return (piece);
 }
 
+<<<<<<< HEAD
+=======
+/* Adds a list in the end.*/
+>>>>>>> 7155f2b3498aa1987502269bb5ae12877b011e25
 t_tetris	*append(void *tet_id, t_tetris *head, char c)
 {
 	t_tetris	*cursor;
@@ -223,15 +231,20 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
+<<<<<<< HEAD
 t_tetris	*store_tet(const int fd, char *line)
 {
 	int			*tet;
+=======
+t_tetris	*store_first(int *tet, int grid_count)
+{
+>>>>>>> 7155f2b3498aa1987502269bb5ae12877b011e25
 	char		*tet_id;
-	t_tetris	*piece;
 	t_tetris	*first;
 	char		c;
 
 	c = 'A';
+<<<<<<< HEAD
 	first = NULL;
 	while (1)
 	{
@@ -248,6 +261,47 @@ t_tetris	*store_tet(const int fd, char *line)
 		free(line);
 	}
 	close(fd);
+=======
+	tet = (int [8]) {0,0,0,1,1,0,1,1};
+	grid_count = 0;
+	tet = trans_coord(tet, grid_count);
+	if (!(tet_id = get_tetid(tet)))
+	{
+	printf("tetriminos not recognised\n");
+	ft_exit();
+	}
+	if (grid_count == 0)
+		first = add_piece(tet_id, c++);
+	return (0);
+}
+
+t_tetris	*store_tet(int *tet, int grid_count)
+{
+	char		*tet_id;
+	t_tetris	*piece;
+	t_tetris	*first;
+	char		c;
+	int			counter;
+
+	c = 'B';
+	counter = 4;
+	first = store_first(tet, grid_count);
+	if (grid_count != 0 && counter <= 4)
+	{
+	tet = trans_coord(tet, grid_count);
+	printf("after magic, new coord = %d", tet[0]);
+	printf("%d", tet[1]);
+	printf("%d", tet[2]);
+	printf("\n");
+	if (!(tet_id = get_tetid(tet)))
+	{
+	printf("tetriminos not recognised\n");
+	ft_exit();
+	}
+	piece = append(tet_id, first, c++);
+	counter--;
+	}
+>>>>>>> 7155f2b3498aa1987502269bb5ae12877b011e25
 	return (first);
 }
 

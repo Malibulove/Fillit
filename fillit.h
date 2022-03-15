@@ -91,6 +91,10 @@ int			count_tet(t_tetris *stack);
 void	stck_free(t_tetris *stack);
 void	stck_free_coord(t_tetris *stack);
 void	free_grid(char **grid, int size);
+<<<<<<< HEAD
 int		*one_tetris(const int fd, char *line);
+=======
+t_tetris	*store_first(int *tet, int grid_count);
+>>>>>>> 7155f2b3498aa1987502269bb5ae12877b011e25
 
 #endif

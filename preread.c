@@ -6,32 +6,28 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 12:33:37 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/02/15 17:54:34 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/11 17:23:11 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
-
-int	preread(char **argv)
+int	preread(const int fd)
 {
-	int		size;
-	int		ret;
-	char	*line;
-	int		fd;
+	char *line;
 
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-		return (0);
-	size = 0;
 	line = NULL;
-	ret = get_next_line(fd, &line);
-	while (ret > 0)
+	while (1)
 	{
-		size++;
-		ret = get_next_line(fd, &line);
+		printf("before read one\n");
+		read_one(fd, line);
+		printf("after read one \n");
+		if (!get_next_line(fd, &line))
+			break ;
+//		free(line);
+		if (ft_strlen(line) != 0)
+			ft_exit();
 	}
-	printf("size = %d\n", size);
 	close(fd);
-	return (size);
+	return (1);
 }

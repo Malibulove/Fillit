@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/10 11:35:40 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/14 17:51:45 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		solve_tet(char **grid, t_tetris *stack, int size)
 	int		y;
 	int		*tet;
 
+	printf("INSIDE SOLVE TET\n");
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
 	if (!stack)
@@ -43,24 +44,6 @@ int		solve_tet(char **grid, t_tetris *stack, int size)
 	return (0);
 }
 
-int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
-{
-	if (collision(grid, tet, size))
-	{
-		printf("collision = %d\n", collision(grid, tet, size));
-		insert_piece(grid, tet, stack->c);
-		if (solve_tet(grid, stack->next, size))
-		{
-			printf("after solve_tet");
-			free(tet);
-			return (1);
-		}
-		clear_piece(grid, tet);
-	}
-	return (0);
-}
-
-/* Here we include the tet being handled as part of the first grid. */
 void	insert_piece(char **grid, int *tet, char c)
 {
 	int i;
@@ -98,24 +81,21 @@ void	clear_piece(char **grid, int *tet)
 	}
 }
 
-/* Here we print the grid by using differing letters. 'A' is used as a placeholder here, later we can use something like
-tet->c so that we get some help from the struct in fillit.h */
-void	print_grid(char **grid, int *tet, int size)
+void	print_grid(char **grid, int size)
 {
 	int	i;
-	int *test;
 
-	test = tet;
 	i = -1;
+	printf("start of printing\n");
 	while (grid[++i])
 	{
 		ft_putstr(grid[i]);
 		ft_putchar('\n');
 	}
 	free_grid(grid, size);
+	printf("end of print grid\n");
 }
 
-/* This and the following function move the tetriminos maximum as many ticks as there are space. */
 int		*x_shift(int *tet, int x)
 {
 	int i;
@@ -146,7 +126,6 @@ int		*y_shift(int *tet, int y)
 	return (tet);
 }
 
-/* This function serves as a port combining x and y shifting. */
 int		*shift_tet(int *tet, int x, int y)
 {
 	int	i;
@@ -173,6 +152,7 @@ int		start_size(t_tetris *stack)
 	blocks = (count_tet(stack) * 4);
 	while (blocks > (size * size))
 		size += 1;
+	printf("size at the end of start size = %d\n", size);
 	return (size);
 }
 

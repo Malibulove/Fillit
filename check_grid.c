@@ -6,28 +6,49 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/10 11:57:08 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/14 17:58:51 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "fillit.h"
 
-int	check_grid(char **grid, int grid_count, int i)
+int		read_one(const int fd, char *line)
+{
+	int n_line;
+	int count;
+
+	n_line = 0;
+	count = 0;
+	while (n_line < 4)
+	{
+		if (get_next_line(fd, &line))
+		{
+			count += h_count(line);
+			if (ft_strlen(line) != 4 || count > 4 || !chk_char(line))
+			{
+				printf("grid problem read one\n");
+				ft_exit();
+			}
+			free(line);
+		}
+		n_line++;
+	}
+	if (count < 4)
+		ft_exit();
+	return (1);
+}
+
+int		check_grid(char **grid, int size)
 {
 	int	x;
 	int	z;
 	int	y;
-	int	size;
 	int	count_hash;
-	int	*tet;
-	t_tetris	*tmp;
-	t_tetris	*stack;
+	int grid_count;
 
-	tet = (int *)malloc(sizeof(int) * 8);
+	grid_count = size;
 	count_hash = 0;
-	if (!tet)
-		printf("malloc error");
 	z = 0;
 	x = 0 + (grid_count * 5);
 	while (x < (4 + (grid_count * 5)))
@@ -41,9 +62,6 @@ int	check_grid(char **grid, int grid_count, int i)
 			{
 				if (count_hash >= 4)
 					return(-1);
-				tet[z] = x;
-				tet[z + 1] = y;
-				z = z + 2;
 				count_hash++;
 			}
 			y++;
@@ -51,34 +69,39 @@ int	check_grid(char **grid, int grid_count, int i)
 		if (ft_strcmp(&grid[x][y], "\0"))
 			return (-1);
 		x++;
+		z++;
 	}
-	z++;
 	y = 0;
-	if (error_check(grid, count_hash, i, x, y) != 1)
+	if (error_check(grid, count_hash, size, x, y) != 1)
 		return (-1);
-	tmp = store_tet(tet, grid_count);
-	size = 4;
-//	size = start_size(tmp);
-	printf("after size, size  =%d\n", size);
-	stack = id_to_coord(tmp);
-	printf("after stack =\n");
-	stck_free(tmp);
-	grid = gen_grid(size);
-	printf("grid gen\n");
-		while (!solve_tet(grid, stack, size))
-	{
-		printf("inside the while to increase size\n");
-		free_grid(grid, size);
-		size = size + 1;
-		printf("size is now = %d\n", size);
-		grid = gen_grid(size);
-	}
-	print_grid(grid, tet, size);
-	printf("after print grid in check grid\n");
+	return(1);
+}
 
-	stck_free_coord(stack);
-	printf("end of check_grid\n");
-	return (*tet);
+int		h_count(char *line)
+{
+	int count;
+
+	count = 0;
+	if (!line)
+		return (0);
+	while (*line)
+	{
+		if (*line == '#')
+			count++;
+		line++;
+	}
+	return (count);
+}
+
+int		chk_char(char *line)
+{
+	while (*line)
+	{
+		if (*line != '.' && *line != '#')
+			return (0);
+		line++;
+	}
+	return (1);
 }
 
 int	error_check(char **grid, int count_hash, int i, int x, int y)
@@ -116,33 +139,27 @@ int	*print_tet(int *tet, int grid_count)
 }
 
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------
-
-int	*trans_coord(int *tet, int grid_count)
+int		*trans_coord(int *tet)
 {
-	int	lx;
-	int	ly;
-	int	i;
-	int	size;
+	int lx;
+	int ly;
+	int i;
+	int size;
 
-	printf("doing magic coord trans\n");
 	size = 4;
-	printf("grid count = %d\n", grid_count);
-	lx = low_x(tet, grid_count);
+	lx = low_x(tet);
 	ly = low_y(tet);
-	printf("lx = %d\n", lx);
-	printf("ly = %d\n", ly);
 	i = 0;
 	while (size--)
 	{
-		tet[i] = (tet[i] - grid_count * 5) - lx;
-		tet[i + 1] = tet[i + 1] - ly;
-		i = i + 2;
+		tet[i] -= lx;
+		tet[i + 1] -= ly;
+		i += 2;
 	}
-	printf("magic is done, now we can check if tetriminos is valid\n");
 	return (tet);
 }
 
-int		low_x(int *tet, int grid_count)
+int		low_x(int *tet)
 {
 	int x;
 	int i;
@@ -153,12 +170,11 @@ int		low_x(int *tet, int grid_count)
 	x = tet[i];
 	while (size--)
 	{
-		if ((tet[i] - (grid_count * 5)) >= 0 && (tet[i] - (grid_count * 5)) <= 3)
-			if ((tet[i] - grid_count * 5) < x)
-				x = tet[i] - (grid_count * 5);
+		if (tet[i] >= 0 && tet[i] <= 3)
+			if (tet[i] < x)
+				x = tet[i];
 		i += 2;
 	}
-	i = 0;
 	return (x);
 }
 
@@ -183,7 +199,6 @@ int		low_y(int *tet)
 
 // -------------- LISTING --------------------------------------------------------
 
-/* Adds a list in the end. Might not be needed. */
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris	*piece;
@@ -195,7 +210,6 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 	return (piece);
 }
 
-/* Creates the head of the list. Might not be needed. */
 t_tetris	*append(void *tet_id, t_tetris *head, char c)
 {
 	t_tetris	*cursor;
@@ -209,91 +223,61 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
-t_tetris	*store_tet(int *tet, int grid_count)
+t_tetris	*store_tet(const int fd, char *line)
 {
-	int			*tet_translated;
+	int			*tet;
 	char		*tet_id;
 	t_tetris	*piece;
 	t_tetris	*first;
 	char		c;
-	int			i;
 
-	i = 0;
 	c = 'A';
 	first = NULL;
-
-	tet_translated = trans_coord(tet, grid_count);
-	printf("after magic, new coord = %d", tet_translated[0]);
-	printf("%d", tet_translated[1]);
-	printf("%d", tet_translated[2]);
-	printf("%d", tet_translated[3]);
-	printf("%d", tet_translated[4]);
-	printf("%d", tet_translated[5]);
-	printf("%d", tet_translated[6]);
-	printf("%d", tet_translated[7]);
-	printf("\n");
-	if (!(tet_id = get_tetid(tet)))
+	while (1)
 	{
-		printf("tetriminos not recognised\n");
-	ft_exit();
+		tet = trans_coord(one_tetris(fd, line));
+		if (!(tet_id = get_tetid(tet)))
+			ft_exit();
+		if (first == NULL)
+			first = add_piece(tet_id, c++);
+		else
+			piece = append(tet_id, first, c++);
+		free(tet);
+		if (!(get_next_line(fd, &line)))
+			break ;
+		free(line);
 	}
-	if (first == NULL)
-		first = add_piece(tet_id, c++);
-	else
-		piece = append(tet_id, first, c++);
-
+	close(fd);
 	return (first);
 }
 
-/* Finds the name of the tetrimino by comparing it to the arrays in fillit.h. */
 char	*get_tetid(int *tet)
 {
-	char	*name;
+	char *name;
 
 	name = NULL;
-	if (tetcmp(tet, I_PIECE, sizeof(tet)) == 1)
-		name = "I_PIECE";
-	else if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
-		name = "IH_PIECE";
-	else if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
-		name = "O_PIECE";
-	else if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
-		name = "L_PIECE";
-	else if (tetcmp(tet, LR_PIECE, sizeof(tet)) == 1)
-		name = "LR_PIECE";
-	else if (tetcmp(tet, LD_PIECE, sizeof(tet)) == 1)
-		name = "LD_PIECE";
-	else if (tetcmp(tet, LL_PIECE, sizeof(tet)) == 1)
-		name = "LL_PIECE";
-	else if (tetcmp(tet, J_PIECE, sizeof(tet)) == 1)
-		name = "J_PIECE";
-	else if (tetcmp(tet, JR_PIECE, sizeof(tet)) == 1)
-		name = "JR_PIECE";
-	else if (tetcmp(tet, JD_PIECE, sizeof(tet)) == 1)
-		name = "JD_PIECE";
-	else if (tetcmp(tet, JL_PIECE,sizeof(tet)) == 1)
-		name = "JL_PIECE";
-	else if (tetcmp(tet, T_PIECE, sizeof(tet)) == 1)
-		name = "T_PIECE";
-	else if (tetcmp(tet, TR_PIECE, sizeof(tet)) == 1)
-		name = "TR_PIECE";
-	else if (tetcmp(tet, TD_PIECE, sizeof(tet)) == 1)
-		name = "TD_PIECE";
-	else if (tetcmp(tet, TL_PIECE, sizeof(tet)) == 1)
-		name = "TL_PIECE";
-	else if (tetcmp(tet, S_PIECE, sizeof(tet)) == 1)
-		name = "S_PIECE";
-	else if (tetcmp(tet, SR_PIECE, sizeof(tet)) == 1)
-		name = "SR_PIECE";
-	else if (tetcmp(tet, Z_PIECE, sizeof(tet)) == 1)
-		name = "Z_PIECE";
-	else if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
-		name = "ZR_PIECE";
-	printf("it's a match with : %s\n", name);
+	(tetcmp(tet, I_PIECE, sizeof(tet))) && (name = "I_PIECE");
+	(tetcmp(tet, IH_PIECE, sizeof(tet))) && (name = "IH_PIECE");
+	(tetcmp(tet, O_PIECE, sizeof(tet))) && (name = "O_PIECE");
+	(tetcmp(tet, L_PIECE, sizeof(tet))) && (name = "L_PIECE");
+	(tetcmp(tet, LR_PIECE, sizeof(tet))) && (name = "LR_PIECE");
+	(tetcmp(tet, LD_PIECE, sizeof(tet))) && (name = "LD_PIECE");
+	(tetcmp(tet, LL_PIECE, sizeof(tet))) && (name = "LL_PIECE");
+	(tetcmp(tet, J_PIECE, sizeof(tet))) && (name = "J_PIECE");
+	(tetcmp(tet, JR_PIECE, sizeof(tet))) && (name = "JR_PIECE");
+	(tetcmp(tet, JD_PIECE, sizeof(tet))) && (name = "JD_PIECE");
+	(tetcmp(tet, JL_PIECE, sizeof(tet))) && (name = "JL_PIECE");
+	(tetcmp(tet, T_PIECE, sizeof(tet))) && (name = "T_PIECE");
+	(tetcmp(tet, TR_PIECE, sizeof(tet))) && (name = "TR_PIECE");
+	(tetcmp(tet, TD_PIECE, sizeof(tet))) && (name = "TD_PIECE");
+	(tetcmp(tet, TL_PIECE, sizeof(tet))) && (name = "TL_PIECE");
+	(tetcmp(tet, S_PIECE, sizeof(tet))) && (name = "S_PIECE");
+	(tetcmp(tet, SR_PIECE, sizeof(tet))) && (name = "SR_PIECE");
+	(tetcmp(tet, Z_PIECE, sizeof(tet))) && (name = "Z_PIECE");
+	(tetcmp(tet, ZR_PIECE, sizeof(tet))) && (name = "ZR_PIECE");
 	return (name);
 }
 
-/* Compares the user input tetrimino to the tetriminos in fillit.h. */
 int	tetcmp(int *tet, int *libtet, int n)
 {
 	int	i;
@@ -308,7 +292,6 @@ int	tetcmp(int *tet, int *libtet, int n)
 	return (1);
 }
 
-/* Converts the name back into and actual tetrimino. */
 int		*convert_id(char *name)
 {
 	int	*tet;
@@ -336,7 +319,6 @@ int		*convert_id(char *name)
 	return (tet);
 }
 
-/* Serves as a port to create the list. */
 t_tetris	*id_to_coord(t_tetris *stack)
 {
 	t_tetris	*head;
@@ -355,10 +337,10 @@ t_tetris	*id_to_coord(t_tetris *stack)
 			piece = append(convert_id(tet_id), head, c++);
 		stack = stack->next;
 	}
+	printf("end of id to coord\n");
 	return (head);
 }
 
-/* Duplicates the coordinate arrays. */
 int		dup_coord(int *dst, int *src)
 {
 	int	*pdst;
@@ -378,4 +360,33 @@ void	ft_exit(void)
 {
 	ft_putstr("error\n");
 	exit(EXIT_FAILURE);
+}
+
+int		*one_tetris(const int fd, char *line)
+{
+	int		x;
+	int		y;
+	int		*tab;
+	int		i;
+
+	y = -1;
+	tab = (int *)malloc(sizeof(int) * 8);
+	i = 0;
+	while (++y <= 3)
+	{
+		x = 0;
+		get_next_line(fd, &line);
+		while (line[x])
+		{
+			if (line[x] == '#')
+			{
+				tab[i] = x;
+				tab[i + 1] = y;
+				i += 2;
+			}
+			x++;
+		}
+		free(line);
+	}
+	return (tab);
 }

@@ -92,5 +92,6 @@ void	stck_free(t_tetris *stack);
 void	stck_free_coord(t_tetris *stack);
 void	free_grid(char **grid, int size);
 int		*one_tetris(const int fd, char *line);
+t_tetris	*store_first(int *first_tet);
 
 #endif

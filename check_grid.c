@@ -223,25 +223,38 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
-t_tetris	*store_tet(const int fd, char *line)
+t_tetris	*store_first(int *first_tet)
 {
-	int			*tet;
 	char		*tet_id;
 	t_tetris	*first;
-		t_tetris	*piece;
 	char		c;
 
 	c = 'A';
-	first = NULL;
+	if (!(tet_id = get_tetid(first_tet)))
+		ft_exit();
+//	tet_id = get_tetid(first_tet);
+	first = add_piece(tet_id, c);
+	return (first);
+}
+
+t_tetris	*store_tet(const int fd, char *line)
+{
+	int			*tet;
+	int			*first_tet;
+	char		*tet_id;
+	t_tetris	*first;
+	t_tetris	*piece;
+	char		c;
+
+	c = 'B';
+	first_tet = (int [8]) {0,0,1,0,2,0,3,0}; // this is an I piece
+	first = store_first(first_tet);
 	while (1)
 	{
 		tet = trans_coord(one_tetris(fd, line));
 		if (!(tet_id = get_tetid(tet)))
 			ft_exit();
-		if (first == NULL)
-			first = add_piece(tet_id, c++);
-		else
-			piece = append(tet_id, first, c++);
+		piece = append(tet_id, first, c++);
 		free(tet);
 		if (!(get_next_line(fd, &line)))
 			break ;

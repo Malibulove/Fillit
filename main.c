@@ -6,7 +6,7 @@
 /*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/14 12:54:49 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/15 16:58:24 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	main(int argc, char **argv)
 	char		**grid;
 	printf("start solver driver\n");
 	tmp = store_tet(fd, NULL);
-//	size = start_size(tmp);
-	size = 4;
+	printf("after store tet \n");
+	size = start_size(tmp);
 	stack = id_to_coord(tmp);
 	stck_free(tmp);
 	printf("tmp freed\n");

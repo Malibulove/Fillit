@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/16 11:59:59 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/16 15:43:05 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,19 +223,6 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
-t_tetris	*store_first(int *first_tet)
-{
-	char		*tet_id;
-	t_tetris	*first;
-	char		c;
-
-	c = 'A';
-	if (!(tet_id = get_tetid(first_tet)))
-		ft_exit();
-//	tet_id = get_tetid(first_tet);
-	first = add_piece(tet_id, c);
-	return (first);
-}
 
 t_tetris	*store_tet(const int fd, char *line)
 {

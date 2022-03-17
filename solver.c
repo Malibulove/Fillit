@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/14 17:51:45 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/17 10:00:48 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int		start_size(t_tetris *stack)
 	int		size;
 
 	size = 2;
+	printf("count_tet = %d\n", count_tet(stack));
 	blocks = (count_tet(stack) * 4);
 	while (blocks > (size * size))
 		size += 1;

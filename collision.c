@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/04 16:51:40 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/17 10:54:14 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ int	box_collision(int *tet, int size)
 
 	x = top_x(tet);
 	y = top_y(tet);
-	if (x > size || y > size)
+	if (x >= size || y >= size)
 		return(1);
 	return(0);
 }
 
 /* Here we check if the coordinates of tetriminos inside the grid array correspond to the first tetrimino as hashes.
 If yes (instead of periods), theres collision. */
-int		piece_collision(char **grid, int *tet, int size)
+int		piece_collision(char **grid, int *tet)
 {
 	int i;
+	int size;
 
+	size = 4;
 	i = 0;
 	while (size--)
 	{
@@ -88,5 +90,5 @@ int		piece_collision(char **grid, int *tet, int size)
 /* This function serves a port for both the box collision and the piece collision. */
 int	collision(char **grid, int *tet, int size)
 {
-	return (!(box_collision(tet, size)) && !(piece_collision(grid, tet, size)));
+	return (!(box_collision(tet, size)) && !(piece_collision(grid, tet)));
 }

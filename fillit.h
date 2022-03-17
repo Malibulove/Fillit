@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/16 11:24:17 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/17 10:53:26 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		ft_exit(void);
 int			top_x(int *tet);
 int			top_y(int *tet);
 int			box_collision(int *tet, int size);
-int			piece_collision(char **grid, int *tet, int size);
+int			piece_collision(char **grid, int *tet);
 int			collision(char **grid, int *tet, int size);
 char		contain_grid(char **grid);
 int			preread(const int fd);

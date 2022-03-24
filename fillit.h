@@ -33,7 +33,7 @@ typedef struct		t_piece
 	int				coord[8];
 }					s_piece;
 
-static int		give_value_to_tet(void);
+void		give_value_to_tet(void);
 int		h_count(char *line);
 int		chk_char(char *line);
 int			check_grid(char **grid, int size);

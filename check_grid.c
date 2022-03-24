@@ -252,19 +252,8 @@ t_tetris	*store_tet(const int fd, char *line)
 	return (first);
 }
 
-static int		give_value_to_tet(void)
+void		give_value_to_tet(void)
 {
-	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
-
-	printf("%d", p1.coord[0]);
-	return(0);
-
-}
-
-char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
-{
-	char	*name;
-	name = NULL;
 	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
 	s_piece p2 = {"ih_piece", {0,0,1,0,2,0,3,0}};
 	s_piece p3 = {"o_piece", {0,0,1,0,0,1,1,1}};
@@ -285,13 +274,38 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
 	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
 
+}
 
-	if (tetcmp(tet, p3.coord, sizeof(tet)) == 1)
-	name = "o_piece";
+char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
+{
+	char	*name;
+	name = NULL;
+//	give_value_to_tet();
+	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
+	s_piece p2 = {"ih_piece", {0,0,1,0,2,0,3,0}};
+	s_piece p3 = {"o_piece", {0,0,1,0,0,1,1,1}};
+	s_piece p4 = {"l_piece", {0,0,0,1,0,2,1,2}};
+	s_piece p5 = {"lr_piece", {0,0,1,0,2,0,0,1}};
+	s_piece p6 = {"ld_piece", {0,0,1,0,1,1,1,2}};
+	s_piece p7 = {"ll_piece", {2,0,0,1,1,1,2,1}};
+	s_piece p8 = {"j_piece", {1,0,1,1,0,2,1,2}};
+	s_piece p9 = {"jr_piece", {0,0,0,1,1,1,2,1}};
+	s_piece p10 = {"jd_piece", {0,0,1,0,0,1,0,2}};
+	s_piece p11 = {"jl_piece", {0,0,1,0,2,0,2,1}};
+	s_piece p12 = {"t_piece", {1,0,0,1,1,1,2,1}};
+	s_piece p13 = {"tr_piece", {0,0,0,1,1,1,0,2}};
+	s_piece p14 = {"td_piece", {0,0,1,0,2,0,1,1}};
+	s_piece p15 = {"tl_piece", {1,0,0,1,1,1,1,2}};
+	s_piece p16 = {"s_piece", {1,0,2,0,0,1,1,1}};
+	s_piece p17 = {"sr_piece", {0,0,0,1,1,1,1,2}};
+	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
+	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
 	if (tetcmp(tet, p1.coord, sizeof(tet)) == 1)
 	name = "i_piece";
 	if (tetcmp(tet, p2.coord, sizeof(tet)) == 1)
 	name = "ih_piece";
+	if (tetcmp(tet, p3.coord, sizeof(tet)) == 1)
+	name = "o_piece";
 	if (tetcmp(tet, p4.coord, sizeof(tet)) == 1)
 	name = "l_piece";
 	if (tetcmp(tet, p5.coord, sizeof(tet)) == 1)
@@ -366,7 +380,6 @@ int		*convert_id(char *name)
 	s_piece p17 = {"sr_piece", {0,0,0,1,1,1,1,2}};
 	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
 	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
-
 	tet = (int *)malloc(sizeof(int) * 8);
 
 	(ft_strcmp(name, "i_piece") == 0) && (dup_coord(tet, p1.coord));

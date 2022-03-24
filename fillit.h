@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/17 10:53:26 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/24 11:36:37 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,13 @@ typedef struct		s_tetris
 	struct s_tetris	*next;
 }					t_tetris;
 
-# define I_PIECE (int [8]) {0,0,1,0,2,0,3,0}
-# define IH_PIECE (int [8]) {0,0,0,1,0,2,0,3}
-# define O_PIECE (int [8]) {0,0,0,1,1,0,1,1}
-# define L_PIECE (int [8]) {0,0,1,0,2,0,2,1}
-# define LR_PIECE (int [8]) {0,0,0,1,0,2,1,0}
-# define LD_PIECE (int [8]) {0,0,0,1,1,1,2,1}
-# define LL_PIECE (int [8]) {0,2,1,0,1,1,1,2}
-# define J_PIECE (int [8]) {0,1,1,1,2,0,2,1}
-# define JR_PIECE (int [8]) {0,0,1,0,1,1,1,2}
-# define JD_PIECE (int [8]) {0,0,0,1,1,0,2,0}
-# define JL_PIECE (int [8]) {0,0,0,1,0,2,1,2}
-# define T_PIECE (int [8]) {0,0,0,1,0,2,1,1}
-# define TR_PIECE (int [8]) {0,1,1,0,1,1,2,1}
-# define TD_PIECE (int [8]) {0,1,1,0,1,1,1,2}
-# define TL_PIECE (int [8]) {0,0,1,0,1,1,2,0}
-# define S_PIECE (int [8]) {0,1,0,2,1,0,1,1}
-# define SR_PIECE (int [8]) {0,0,1,0,1,1,2,1}
-# define Z_PIECE (int [8]) {0,0,0,1,1,1,1,2}
-# define ZR_PIECE (int [8]) {0,1,1,0,1,1,2,0}
+typedef struct		t_piece
+{
+	char			name[20]; 
+	int				coord[8];
+}					s_piece;
 
+static int		give_value_to_tet(void);
 int		h_count(char *line);
 int		chk_char(char *line);
 int			check_grid(char **grid, int size);

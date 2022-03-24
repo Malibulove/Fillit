@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/17 10:00:48 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/17 12:39:47 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	insert_piece(char **grid, int *tet, char c)
 	{
 		y = tet[i + 1];
 		x = tet[i];
-		grid[x][y] = c;
+		grid[y][x] = c;
 		i += 2;
 	}
 	printf("piece inserted\n");

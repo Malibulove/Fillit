@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/16 15:43:05 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/24 11:37:32 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,15 +252,27 @@ t_tetris	*store_tet(const int fd, char *line)
 	return (first);
 }
 
+static int		give_value_to_tet(void)
+{
+	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
+
+	printf("%d", p1.coord[0]);
+	return(0);
+
+}
+
 char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
 {
 	char	*name;
-
 	name = NULL;
-	if (tetcmp(tet, I_PIECE, sizeof(tet)) == 1)
+
+	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
+
+	if (tetcmp(tet, p1.coord, sizeof(tet)) == 1)
 		name = "I_PIECE";
-	else if (tetcmp(tet, IH_PIECE, sizeof(tet)) == 1)
-		name = "IH_PIECE";
+	/*
+	else if (tetcmp(tet, ih_piece, sizeof(tet)) == 1)
+		name = "ih_piece";
 	else if (tetcmp(tet, O_PIECE, sizeof(tet)) == 1)
 		name = "O_PIECE";
 	else if (tetcmp(tet, L_PIECE, sizeof(tet)) == 1)
@@ -295,6 +307,7 @@ char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to 
 		name = "Z_PIECE";
 	else if	(tetcmp(tet, ZR_PIECE, sizeof(tet)) == 1)
 		name = "ZR_PIECE";
+	*/
 	printf("it's a match with : %s\n", name);
 	return (name);
 }
@@ -318,9 +331,11 @@ int	tetcmp(int *tet, int *libtet, int n)
 int		*convert_id(char *name)
 {
 	int	*tet;
-
+	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
 	tet = (int *)malloc(sizeof(int) * 8);
-	(ft_strcmp(name, "I_PIECE") == 0) && (dup_coord(tet, I_PIECE));
+
+	(ft_strcmp(name, "I_PIECE") == 0) && (dup_coord(tet, p1.coord));
+	/*
 	(ft_strcmp(name, "IH_PIECE") == 0) && (dup_coord(tet, IH_PIECE));
 	(ft_strcmp(name, "O_PIECE") == 0) && (dup_coord(tet, O_PIECE));
 	(ft_strcmp(name, "L_PIECE") == 0) && (dup_coord(tet, L_PIECE));
@@ -339,6 +354,7 @@ int		*convert_id(char *name)
 	(ft_strcmp(name, "SR_PIECE") == 0) && (dup_coord(tet, SR_PIECE));
 	(ft_strcmp(name, "Z_PIECE") == 0) && (dup_coord(tet, Z_PIECE));
 	(ft_strcmp(name, "ZR_PIECE") == 0) && (dup_coord(tet, ZR_PIECE));
+	*/
 	int i;
 	i = 0;
 	printf("tet inside convert id = ");
@@ -413,8 +429,8 @@ int		*one_tetris(const int fd, char *line)
 		{
 			if (line[x] == '#')
 			{
-				tet[i] = y;
-				tet[i + 1] = x;
+				tet[i] = x;
+				tet[i + 1] = y;
 				i += 2;
 			}
 			x++;

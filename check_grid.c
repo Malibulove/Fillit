@@ -66,40 +66,6 @@ int		chk_char(char *line)
 	return (1);
 }
 
-int	error_check(char **grid, int count_hash, int i, int x, int y)
-{
-	if (&grid[x][y] == NULL && i == 4)
-	{
-		if (count_hash != 4)
-			return (-1);
-	}
-	else if (count_hash != 4 || ft_strcmp(&grid[x][y], "\0"))
-		return (-1);
-	return (1);
-}
-
-int	*print_tet(int *tet, int grid_count)
-{
-	int	j;
-	int	test;
-
-	j = 0;
-	while (j < 8)
-	{
-		if (j == 0 || j == 2 || j == 4 || j == 6)
-		{
-			test = (tet[j] - (5 * grid_count));
-			printf("%d", test);
-		}
-		else
-			printf("%d", tet[j]);
-		j++;
-	}
-	printf(" grid count = %d", grid_count);
-	printf("\n");
-	return (tet);
-}
-
 // -------------- TRANSLATING THE COORDINATES --------------------------------------------------------
 int		*trans_coord(int *tet)
 {

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = main.c check_grid.c preread.c collision.c  solver.c \
+SRCS = main.c check_grid.c collision.c  solver.c \
 tet_making.c tet_making2.c tet_making3.c tet_making4.c
 HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)

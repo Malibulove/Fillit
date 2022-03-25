@@ -11,12 +11,13 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = main.c check_grid.c preread.c check_grid_old.c collision.c  solver.c
+SRCS = main.c check_grid.c preread.c collision.c  solver.c \
+tet_making.c tet_making2.c tet_making3.c tet_making4.c
 HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/
 LIBFT = ./libft/libft.a
-FLAGS = 
+FLAGS = #-Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 

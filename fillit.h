@@ -27,27 +27,52 @@ typedef struct		s_tetris
 	struct s_tetris	*next;
 }					t_tetris;
 
-typedef struct		t_piece
+typedef struct		s_piece
 {
 	char			name[20]; 
 	int				coord[8];
-}					s_piece;
+}					t_piece;
 
-void		give_value_to_tet(void);
-int		h_count(char *line);
-int		chk_char(char *line);
-int			check_grid(char **grid, int size);
-int			check_grid_old(char **grid, int grid_count);
-int			*print_tet(int *tet, int grid_count);
-int			error_check(char** grid, int count_hash, int i, int x, int y);
-int		solve_driver(int fd);
+/*
+**	Pieces.
+*/
+
+	t_piece i_piece(void);
+	t_piece ih_piece(void);
+	t_piece o_piece(void);
+	t_piece l_piece(void);
+	t_piece lr_piece(void);
+	t_piece ld_piece(void);
+	t_piece ll_piece(void);
+	t_piece j_piece(void);
+	t_piece jr_piece(void);
+	t_piece jd_piece(void);
+	t_piece jl_piece(void);
+	t_piece tt_piece(void);
+	t_piece tr_piece(void);
+	t_piece td_piece(void);
+	t_piece tl_piece(void);
+	t_piece ss_piece(void);
+	t_piece sr_piece(void);
+	t_piece z_piece(void);
+	t_piece zr_piece(void);
+
+/*
+**	Prototypes.
+*/
+
+char		*check_tet(int *tet);
+void		assign(t_piece *p, char *name, int* coord);
+int			h_count(char *line);
+int			chk_char(char *line);
+int			solve_driver(int fd);
 char		*get_tetid(int *tet);
 int			*trans_coord(int *tet);
 int			dup_coord(int *dst, int *src);
 int			read_one(const int fd, char *line);
 int			low_x(int *tet);
 int			low_y(int *tet);
-int			tetcmp(int *tet, int *arr, int n);
+int			tetcmp(int *tet, int *libtet);
 t_tetris	*store_tet(const int fd, char *line);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*add_piece(void *tet_id, char c);
@@ -69,16 +94,16 @@ void		print_grid(char **grid, int size);
 void		insert_piece(char **grid, int *tet, char c);
 t_tetris	*id_to_coord(t_tetris *stack);
 void		clear_piece(char **grid, int *tet);
-int		help_solve(char **grid, int *tet, t_tetris *stack, int size);
-char	*gen_line(int col);
-int		start_size(t_tetris *stack);
-char	**gen_grid(int size);
+int			help_solve(char **grid, int *tet, t_tetris *stack, int size);
+char		*gen_line(int col);
+int			start_size(t_tetris *stack);
+char		**gen_grid(int size);
 int			count_tet(t_tetris *stack);
 
-void	stck_free(t_tetris *stack);
-void	stck_free_coord(t_tetris *stack);
-void	free_grid(char **grid, int size);
-int		*one_tetris(const int fd, char *line);
+void		stck_free(t_tetris *stack);
+void		stck_free_coord(t_tetris *stack);
+void		free_grid(char **grid, int size);
+int			*one_tetris(const int fd, char *line);
 t_tetris	*store_first(int *first_tet);
 
 #endif

@@ -39,44 +39,6 @@ int		read_one(const int fd, char *line)
 	return (1);
 }
 
-int		check_grid(char **grid, int size)
-{
-	int	x;
-	int	z;
-	int	y;
-	int	count_hash;
-	int grid_count;
-
-	grid_count = size;
-	count_hash = 0;
-	z = 0;
-	x = 0 + (grid_count * 5);
-	while (x < (4 + (grid_count * 5)))
-	{
-		y = 0;
-		while (y < 4)
-		{
-			if (grid[x][y] != '.' && grid[x][y] != '#')
-				return (-1);
-			if (grid[x][y] == '#')
-			{
-				if (count_hash >= 4)
-					return(-1);
-				count_hash++;
-			}
-			y++;
-		}
-		if (ft_strcmp(&grid[x][y], "\0"))
-			return (-1);
-		x++;
-		z++;
-	}
-	y = 0;
-	if (error_check(grid, count_hash, size, x, y) != 1)
-		return (-1);
-	return(1);
-}
-
 int		h_count(char *line)
 {
 	int count;
@@ -252,105 +214,71 @@ t_tetris	*store_tet(const int fd, char *line)
 	return (first);
 }
 
-void		give_value_to_tet(void)
-{
-	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
-	s_piece p2 = {"ih_piece", {0,0,1,0,2,0,3,0}};
-	s_piece p3 = {"o_piece", {0,0,1,0,0,1,1,1}};
-	s_piece p4 = {"l_piece", {0,0,0,1,0,2,1,2}};
-	s_piece p5 = {"lr_piece", {0,0,1,0,2,0,0,1}};
-	s_piece p6 = {"ld_piece", {0,0,1,0,1,1,1,2}};
-	s_piece p7 = {"ll_piece", {2,0,0,1,1,1,2,1}};
-	s_piece p8 = {"j_piece", {1,0,1,1,0,2,1,2}};
-	s_piece p9 = {"jr_piece", {0,0,0,1,1,1,2,1}};
-	s_piece p10 = {"jd_piece", {0,0,1,0,0,1,0,2}};
-	s_piece p11 = {"jl_piece", {0,0,1,0,2,0,2,1}};
-	s_piece p12 = {"t_piece", {1,0,0,1,1,1,2,1}};
-	s_piece p13 = {"tr_piece", {0,0,0,1,1,1,0,2}};
-	s_piece p14 = {"td_piece", {0,0,1,0,2,0,1,1}};
-	s_piece p15 = {"tl_piece", {1,0,0,1,1,1,1,2}};
-	s_piece p16 = {"s_piece", {1,0,2,0,0,1,1,1}};
-	s_piece p17 = {"sr_piece", {0,0,0,1,1,1,1,2}};
-	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
-	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
 
-}
 
 char	*get_tetid(int *tet) // finds the name of the tetrimino by comparing it to the arrays in fillit.h
 {
 	char	*name;
-	name = NULL;
-//	give_value_to_tet();
-	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
-	s_piece p2 = {"ih_piece", {0,0,1,0,2,0,3,0}};
-	s_piece p3 = {"o_piece", {0,0,1,0,0,1,1,1}};
-	s_piece p4 = {"l_piece", {0,0,0,1,0,2,1,2}};
-	s_piece p5 = {"lr_piece", {0,0,1,0,2,0,0,1}};
-	s_piece p6 = {"ld_piece", {0,0,1,0,1,1,1,2}};
-	s_piece p7 = {"ll_piece", {2,0,0,1,1,1,2,1}};
-	s_piece p8 = {"j_piece", {1,0,1,1,0,2,1,2}};
-	s_piece p9 = {"jr_piece", {0,0,0,1,1,1,2,1}};
-	s_piece p10 = {"jd_piece", {0,0,1,0,0,1,0,2}};
-	s_piece p11 = {"jl_piece", {0,0,1,0,2,0,2,1}};
-	s_piece p12 = {"t_piece", {1,0,0,1,1,1,2,1}};
-	s_piece p13 = {"tr_piece", {0,0,0,1,1,1,0,2}};
-	s_piece p14 = {"td_piece", {0,0,1,0,2,0,1,1}};
-	s_piece p15 = {"tl_piece", {1,0,0,1,1,1,1,2}};
-	s_piece p16 = {"s_piece", {1,0,2,0,0,1,1,1}};
-	s_piece p17 = {"sr_piece", {0,0,0,1,1,1,1,2}};
-	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
-	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
-	if (tetcmp(tet, p1.coord, sizeof(tet)) == 1)
-	name = "i_piece";
-	if (tetcmp(tet, p2.coord, sizeof(tet)) == 1)
-	name = "ih_piece";
-	if (tetcmp(tet, p3.coord, sizeof(tet)) == 1)
-	name = "o_piece";
-	if (tetcmp(tet, p4.coord, sizeof(tet)) == 1)
-	name = "l_piece";
-	if (tetcmp(tet, p5.coord, sizeof(tet)) == 1)
-	name = "lr_piece";
-	if (tetcmp(tet, p6.coord, sizeof(tet)) == 1)
-	name = "ld_piece";
-	if (tetcmp(tet, p7.coord, sizeof(tet)) == 1)
-	name = "ll_piece";
-	if (tetcmp(tet, p8.coord, sizeof(tet)) == 1)
-	name = "j_piece";
-	if (tetcmp(tet, p9.coord, sizeof(tet)) == 1)
-	name = "jr_piece";
-	if (tetcmp(tet, p10.coord, sizeof(tet)) == 1)
-	name = "jd_piece";
-	if (tetcmp(tet, p11.coord, sizeof(tet)) == 1)
-	name = "jl_piece";
-	if (tetcmp(tet, p12.coord, sizeof(tet)) == 1)
-	name = "t_piece";
-	if (tetcmp(tet, p13.coord, sizeof(tet)) == 1)
-	name = "tr_piece";
-	if (tetcmp(tet, p14.coord, sizeof(tet)) == 1)
-	name = "td_piece";
-	if (tetcmp(tet, p15.coord, sizeof(tet)) == 1)
-	name = "tl_piece";
-	if (tetcmp(tet, p16.coord, sizeof(tet)) == 1)
-	name = "s_piece";
-	if (tetcmp(tet, p17.coord, sizeof(tet)) == 1)
-	name = "sr_piece";
-	if (tetcmp(tet, p18.coord, sizeof(tet)) == 1)
-	name = "z_piece";
-	if (tetcmp(tet, p19.coord, sizeof(tet)) == 1)
-	name = "zr_piece";
-	printf("it's a match with : %s\n", name);
+
+	t_piece i_piece(void);
+	t_piece ih_piece(void);
+	t_piece o_piece(void);
+	t_piece l_piece(void);
+	t_piece lr_piece(void);
+	t_piece ld_piece(void);
+	t_piece ll_piece(void);
+	t_piece j_piece(void);
+	t_piece jr_piece(void);
+	t_piece jd_piece(void);
+	t_piece jl_piece(void);
+	t_piece tt_piece(void);
+	t_piece tr_piece(void);
+	t_piece td_piece(void);
+	t_piece tl_piece(void);
+	t_piece ss_piece(void);
+	t_piece sr_piece(void);
+	t_piece z_piece(void);
+	t_piece zr_piece(void);
+	name = check_tet(tet);
+	printf("It's a match with : %s\n", name);
 	return (name);
 }
 
-int	tetcmp(int *tet, int *libtet, int n)
+char	*check_tet(int *tet)
+{
+	char *name;
+	name = NULL;
+	((tetcmp(tet, i_piece().coord) == 1) && (name = "i_piece"));
+	((tetcmp(tet, ih_piece().coord) == 1) && (name = "ih_piece"));
+	((tetcmp(tet, o_piece().coord) == 1) && (name = "o_piece"));
+	((tetcmp(tet, l_piece().coord) == 1) && (name = "l_piece"));
+	((tetcmp(tet, lr_piece().coord) == 1) && (name = "lr_piece"));
+	((tetcmp(tet, ld_piece().coord) == 1) && (name = "ld_piece"));
+	((tetcmp(tet, ll_piece().coord) == 1) && (name = "ll_piece"));
+	((tetcmp(tet, j_piece().coord) == 1) && (name = "j_piece"));
+	((tetcmp(tet, jr_piece().coord) == 1) && (name = "jr_piece"));
+	((tetcmp(tet, jd_piece().coord) == 1) && (name = "jd_piece"));
+	((tetcmp(tet, jl_piece().coord) == 1) && (name = "jl_piece"));
+	((tetcmp(tet, tt_piece().coord) == 1) && (name = "tt_piece"));
+	((tetcmp(tet, tr_piece().coord) == 1) && (name = "tr_piece"));
+	((tetcmp(tet, td_piece().coord) == 1) && (name = "td_piece"));
+	((tetcmp(tet, tl_piece().coord) == 1) && (name = "tl_piece"));
+	((tetcmp(tet, ss_piece().coord) == 1) && (name = "ss_piece"));
+	((tetcmp(tet, sr_piece().coord) == 1) && (name = "sr_piece"));
+	((tetcmp(tet, z_piece().coord) == 1) && (name = "z_piece"));
+	((tetcmp(tet, zr_piece().coord) == 1) && (name = "zr_piece"));
+	return(name);
+}
+
+int	tetcmp(int *tet, int *libtet)
 {
 	int	i;
 
 	i = 0;
-	printf("tet inside tet cmp = ");
-	while (i < n)
+	printf("tet inside tet cmp\n");
+	while (i < 8)
 	{
-		printf("%d", tet[i]);
+		printf( "coord[%d] => %d | %d\n", i, tet[i], libtet[i]);
 		if (tet[i] != libtet[i])
 			return (-1);
 		i++;
@@ -361,49 +289,30 @@ int	tetcmp(int *tet, int *libtet, int n)
 int		*convert_id(char *name)
 {
 	int	*tet;
-	s_piece p1 = {"i_piece", {0,0,0,1,0,2,0,3}};
-	s_piece p2 = {"ih_piece", {0,0,1,0,2,0,3,0}};
-	s_piece p3 = {"o_piece", {0,0,1,0,0,1,1,1}};
-	s_piece p4 = {"l_piece", {0,0,0,1,0,2,1,2}};
-	s_piece p5 = {"lr_piece", {0,0,1,0,2,0,0,1}};
-	s_piece p6 = {"ld_piece", {0,0,1,0,1,1,1,2}};
-	s_piece p7 = {"ll_piece", {2,0,0,1,1,1,2,1}};
-	s_piece p8 = {"j_piece", {1,0,1,1,0,2,1,2}};
-	s_piece p9 = {"jr_piece", {0,0,0,1,1,1,2,1}};
-	s_piece p10 = {"jd_piece", {0,0,1,0,0,1,0,2}};
-	s_piece p11 = {"jl_piece", {0,0,1,0,2,0,2,1}};
-	s_piece p12 = {"t_piece", {1,0,0,1,1,1,2,1}};
-	s_piece p13 = {"tr_piece", {0,0,0,1,1,1,0,2}};
-	s_piece p14 = {"td_piece", {0,0,1,0,2,0,1,1}};
-	s_piece p15 = {"tl_piece", {1,0,0,1,1,1,1,2}};
-	s_piece p16 = {"s_piece", {1,0,2,0,0,1,1,1}};
-	s_piece p17 = {"sr_piece", {0,0,0,1,1,1,1,2}};
-	s_piece p18 = {"z_piece", {0,0,1,0,1,1,2,1}};
-	s_piece p19 = {"zr_piece", {1,0,0,1,1,1,0,2}};
 	tet = (int *)malloc(sizeof(int) * 8);
-
-	(ft_strcmp(name, "i_piece") == 0) && (dup_coord(tet, p1.coord));
-	(ft_strcmp(name, "ih_piece") == 0) && (dup_coord(tet, p2.coord));
-	(ft_strcmp(name, "o_piece") == 0) && (dup_coord(tet, p3.coord));
-	(ft_strcmp(name, "l_piece") == 0) && (dup_coord(tet, p4.coord));
-	(ft_strcmp(name, "lr_piece") == 0) && (dup_coord(tet, p5.coord));
-	(ft_strcmp(name, "ld_piece") == 0) && (dup_coord(tet, p6.coord));
-	(ft_strcmp(name, "ll_piece") == 0) && (dup_coord(tet, p7.coord));
-	(ft_strcmp(name, "j_piece") == 0) && (dup_coord(tet, p8.coord));
-	(ft_strcmp(name, "jr_piece") == 0) && (dup_coord(tet, p9.coord));
-	(ft_strcmp(name, "jd_piece") == 0) && (dup_coord(tet, p10.coord));
-	(ft_strcmp(name, "jl_piece") == 0) && (dup_coord(tet, p11.coord));
-	(ft_strcmp(name, "t_piece") == 0) && (dup_coord(tet, p12.coord));
-	(ft_strcmp(name, "tr_piece") == 0) && (dup_coord(tet, p13.coord));
-	(ft_strcmp(name, "td_piece") == 0) && (dup_coord(tet, p14.coord));
-	(ft_strcmp(name, "tl_piece") == 0) && (dup_coord(tet, p15.coord));
-	(ft_strcmp(name, "s_piece") == 0) && (dup_coord(tet, p16.coord));
-	(ft_strcmp(name, "sr_piece") == 0) && (dup_coord(tet, p17.coord));
-	(ft_strcmp(name, "z_piece") == 0) && (dup_coord(tet, p18.coord));
-	(ft_strcmp(name, "zr_piece") == 0) && (dup_coord(tet, p19.coord));
+	printf("Shape of tetriminos ==> %s ", name);
+	(ft_strcmp(name, "i_piece") == 0) && (dup_coord(tet, i_piece().coord));
+	(ft_strcmp(name, "ih_piece") == 0) && (dup_coord(tet, ih_piece().coord));
+	(ft_strcmp(name, "o_piece") == 0) && (dup_coord(tet, o_piece().coord));
+	(ft_strcmp(name, "l_piece") == 0) && (dup_coord(tet, l_piece().coord));
+	(ft_strcmp(name, "lr_piece") == 0) && (dup_coord(tet, lr_piece().coord));
+	(ft_strcmp(name, "ld_piece") == 0) && (dup_coord(tet, ld_piece().coord));
+	(ft_strcmp(name, "ll_piece") == 0) && (dup_coord(tet, ll_piece().coord));
+	(ft_strcmp(name, "j_piece") == 0) && (dup_coord(tet, j_piece().coord));
+	(ft_strcmp(name, "jr_piece") == 0) && (dup_coord(tet, jr_piece().coord));
+	(ft_strcmp(name, "jd_piece") == 0) && (dup_coord(tet, jd_piece().coord));
+	(ft_strcmp(name, "jl_piece") == 0) && (dup_coord(tet, jl_piece().coord));
+	(ft_strcmp(name, "tt_piece") == 0) && (dup_coord(tet, tt_piece().coord));
+	(ft_strcmp(name, "tr_piece") == 0) && (dup_coord(tet, tr_piece().coord));
+	(ft_strcmp(name, "td_piece") == 0) && (dup_coord(tet, td_piece().coord));
+	(ft_strcmp(name, "tl_piece") == 0) && (dup_coord(tet, tl_piece().coord));
+	(ft_strcmp(name, "ss_piece") == 0) && (dup_coord(tet, ss_piece().coord));
+	(ft_strcmp(name, "sr_piece") == 0) && (dup_coord(tet, sr_piece().coord));
+	(ft_strcmp(name, "z_piece") == 0) && (dup_coord(tet, z_piece().coord));
+	(ft_strcmp(name, "zr_piece") == 0) && (dup_coord(tet, zr_piece().coord));
 	int i;
 	i = 0;
-	printf("tet inside convert id = ");
+	printf("= ");
 	while (i < 8)
 	{
 		printf("%d", tet[i]);

@@ -13,8 +13,8 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-/* This and the following function measure the maximum x and y coordinates of the tetriminos
-when the piece is positioned in the origo. */
+/* This and the following function measure the maximum x and y coordinates of 
+the tetriminos when the piece is positioned in the origo. */
 int	top_x(int *tet)
 {
 	int	line_count;
@@ -24,7 +24,6 @@ int	top_x(int *tet)
 	i = 0;
 	line_count = 0;
 	x = tet[i];
-
 	while (line_count < 3)
 	{
 		i = i + 2;
@@ -32,7 +31,7 @@ int	top_x(int *tet)
 			x = tet[i];
 		line_count++;
 	}
-	return(x);
+	return (x);
 }
 
 int	top_y(int *tet)
@@ -44,7 +43,6 @@ int	top_y(int *tet)
 	i = 1;
 	column_count = 0;
 	y = tet[i];
-
 	while (column_count < 3)
 	{
 		i = i + 2;
@@ -52,11 +50,12 @@ int	top_y(int *tet)
 			y = tet[i];
 		column_count++;
 	}
-	return(y);
+	return (y);
 }
 
-/* If the maximum x and y coordinates of the tetriminos are bigger or the same (is this right?) as the size,
-the function returns a flag meaning the collision happens. */
+/* If the maximum x and y coordinates of the tetriminos are bigger or the
+same (is this right?) as the size, the function returns a flag meaning
+the collision happens. */
 int	box_collision(int *tet, int size)
 {
 	int	x;
@@ -65,16 +64,17 @@ int	box_collision(int *tet, int size)
 	x = top_x(tet);
 	y = top_y(tet);
 	if (x >= size || y >= size)
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
-/* Here we check if the coordinates of tetriminos inside the grid array correspond to the first tetrimino as hashes.
+/* Here we check if the coordinates of tetriminos inside the grid array 
+correspond to the first tetrimino as hashes.
 If yes (instead of periods), theres collision. */
-int		piece_collision(char **grid, int *tet)
+int	piece_collision(char **grid, int *tet)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	size = 4;
 	i = 0;
@@ -87,7 +87,8 @@ int		piece_collision(char **grid, int *tet)
 	return (0);
 }
 
-/* This function serves a port for both the box collision and the piece collision. */
+/* This function serves a port for both the box collision and
+the piece collision. */
 int	collision(char **grid, int *tet, int size)
 {
 	return (!(box_collision(tet, size)) && !(piece_collision(grid, tet)));

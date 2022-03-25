@@ -13,11 +13,11 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-int		solve_tet(char **grid, t_tetris *stack, int size)
+int	solve_tet(char **grid, t_tetris *stack, int size)
 {
-	int		x;
-	int		y;
-	int		*tet;
+	int	x;
+	int	y;
+	int	*tet;
 
 	printf("INSIDE SOLVE TET\n");
 	y = -1;
@@ -35,7 +35,7 @@ int		solve_tet(char **grid, t_tetris *stack, int size)
 		{
 			printf("x = %d\n", x);
 			dup_coord(tet, stack->tet_id);
-			shift_tet(tet, x ,y);
+			shift_tet(tet, x, y);
 			if (help_solve(grid, tet, stack, size))
 				return (1);
 		}
@@ -46,9 +46,9 @@ int		solve_tet(char **grid, t_tetris *stack, int size)
 
 void	insert_piece(char **grid, int *tet, char c)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -65,9 +65,9 @@ void	insert_piece(char **grid, int *tet, char c)
 
 void	clear_piece(char **grid, int *tet)
 {
-	int i;
-	int x;
-	int y;
+	int	i;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -96,10 +96,10 @@ void	print_grid(char **grid, int size)
 	printf("end of print grid\n");
 }
 
-int		*x_shift(int *tet, int x)
+int	*x_shift(int *tet, int x)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	size = 4;
 	i = 0;
@@ -111,10 +111,10 @@ int		*x_shift(int *tet, int x)
 	return (tet);
 }
 
-int		*y_shift(int *tet, int y)
+int	*y_shift(int *tet, int y)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	size = 4;
 	i = 1;
@@ -126,7 +126,7 @@ int		*y_shift(int *tet, int y)
 	return (tet);
 }
 
-int		*shift_tet(int *tet, int x, int y)
+int	*shift_tet(int *tet, int x, int y)
 {
 	int	i;
 
@@ -143,7 +143,7 @@ int		*shift_tet(int *tet, int x, int y)
 	return (tet);
 }
 
-int		start_size(t_tetris *stack)
+int	start_size(t_tetris *stack)
 {
 	int		blocks;
 	int		size;
@@ -163,7 +163,8 @@ char	*gen_line(int col)
 	int		i;
 
 	i = 0;
-	if (!(line = (char *)malloc(sizeof(char) * col + 1)))
+	line = (char *)malloc(sizeof(char) * col + 1);
+	if (!line)
 		return (NULL);
 	while (i < col)
 	{
@@ -181,7 +182,8 @@ char	**gen_grid(int size)
 	char	*line;
 
 	i = 0;
-	if (!(grid = (char **)malloc(sizeof(char *) * size + 1)))
+	grid = (char **)malloc(sizeof(char *) * size + 1);
+	if (!grid)
 		return (NULL);
 	while (i < size)
 	{
@@ -195,7 +197,7 @@ char	**gen_grid(int size)
 	return (grid);
 }
 
-int			count_tet(t_tetris *stack)
+int	count_tet(t_tetris *stack)
 {
 	int			c;
 	t_tetris	*tmp;
@@ -212,7 +214,7 @@ int			count_tet(t_tetris *stack)
 
 void	stck_free(t_tetris *stack)
 {
-	t_tetris *tmp;
+	t_tetris	*tmp;
 
 	tmp = NULL;
 	while (stack)
@@ -225,7 +227,7 @@ void	stck_free(t_tetris *stack)
 
 void	stck_free_coord(t_tetris *stack)
 {
-	t_tetris *tmp;
+	t_tetris	*tmp;
 
 	tmp = NULL;
 	while (stack)
@@ -239,7 +241,7 @@ void	stck_free_coord(t_tetris *stack)
 
 void	free_grid(char **grid, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

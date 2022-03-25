@@ -34,22 +34,21 @@ int	main(int argc, char **argv)
 	close(fd);
 }
 
-	int		solve_driver(int fd)
+int	solve_driver(int fd)
 {
 	t_tetris	*tmp;
 	t_tetris	*stack;
 	int			size;
 	char		**grid;
+
 	printf("start solver driver\n");
 	tmp = store_tet(fd, NULL);
-	printf("after store tet \n");
 	size = start_size(tmp);
 	stack = id_to_coord(tmp);
 	stck_free(tmp);
-	printf("tmp freed\n");
 	grid = gen_grid(size);
 	printf("after grid_size\n");
-		while (!solve_tet(grid, stack, size))
+	while (!solve_tet(grid, stack, size))
 	{
 		printf("inside the while to increase size\n");
 		free_grid(grid, size);
@@ -64,7 +63,7 @@ int	main(int argc, char **argv)
 	return (1);
 }
 
-int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
+int	help_solve(char **grid, int *tet, t_tetris *stack, int size)
 {
 	if (collision(grid, tet, size))
 	{
@@ -81,7 +80,7 @@ int		help_solve(char **grid, int *tet, t_tetris *stack, int size)
 
 int	preread(const int fd)
 {
-	char *line;
+	char	*line;
 
 	line = NULL;
 	while (1)
@@ -91,7 +90,6 @@ int	preread(const int fd)
 		printf("after read one \n");
 		if (!get_next_line(fd, &line))
 			break ;
-		free(line);
 		if (ft_strlen(line) != 0)
 			ft_exit();
 	}

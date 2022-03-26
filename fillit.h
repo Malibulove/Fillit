@@ -21,6 +21,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <sys/stat.h>
+#include <time.h> // need to be removed before submit
 # include <stdio.h> // need to be removed before submit
 # include <fcntl.h>
 
@@ -128,10 +129,14 @@ int			smallest_y(int *tet);
 **	identification.c
 */
 
-char		*get_tetid(int *tet);
 char		*check_tet(int *tet);
 int			tetcmp(int *tet, int *libtet);
 int			*convert_id(char *id);
+char		*get_tetid_io(int *tet, char *name);
+char		*get_tetid_l(int *tet, char *name);
+char		*get_tetid_j(int *tet, char *name);
+char		*get_tetid_tt(int *tet, char *name);
+char		*get_tetid_sz(int *tet, char *name);
 
 /*
 **	collision.c

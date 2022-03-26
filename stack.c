@@ -50,7 +50,7 @@ t_tetris	*store_tet(const int fd, char *line)
 	while (1)
 	{
 		tet = trans_coord(one_tetris(fd, line));
-		tet_id = get_tetid(tet);
+		tet_id = check_tet(tet);
 		if (!tet_id)
 			ft_exit();
 		if (first == NULL)

@@ -16,6 +16,10 @@
 int	main(int argc, char **argv)
 {
 	int		fd;
+	float temps;
+	clock_t t1, t2;
+ 
+    t1 = clock();
 
 	if (argc > 2)
 		return (0);
@@ -32,6 +36,9 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
+    t2 = clock();
+    temps = (float)(t2-t1)/CLOCKS_PER_SEC;
+    printf("temps = %f\n", temps);
 }
 
 int	solve_driver(int fd)

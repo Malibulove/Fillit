@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef FILLIT_H
 # define FILLIT_H
 
@@ -29,18 +28,18 @@
 **	Structs
 */
 
-typedef struct		s_tetris
+typedef struct s_tetris
 {
 	void			*tet_id;
 	char			c;
 	struct s_tetris	*next;
-}					t_tetris;
+}				t_tetris;
 
-typedef struct		s_piece
+typedef struct s_piece
 {
-	char			name[20]; 
-	int				coord[8];
-}					t_piece;
+	char		name[20];
+	int			coord[8];
+}				t_piece;
 
 /*
 **	Prototypes
@@ -50,25 +49,25 @@ typedef struct		s_piece
 **	Pieces
 */
 
-	t_piece i_piece(void);
-	t_piece ih_piece(void);
-	t_piece o_piece(void);
-	t_piece l_piece(void);
-	t_piece lr_piece(void);
-	t_piece ld_piece(void);
-	t_piece ll_piece(void);
-	t_piece j_piece(void);
-	t_piece jr_piece(void);
-	t_piece jd_piece(void);
-	t_piece jl_piece(void);
-	t_piece tt_piece(void);
-	t_piece tr_piece(void);
-	t_piece td_piece(void);
-	t_piece tl_piece(void);
-	t_piece ss_piece(void);
-	t_piece sr_piece(void);
-	t_piece z_piece(void);
-	t_piece zr_piece(void);
+t_piece		i_piece(void);
+t_piece		ih_piece(void);
+t_piece		o_piece(void);
+t_piece		l_piece(void);
+t_piece		lr_piece(void);
+t_piece		ld_piece(void);
+t_piece		ll_piece(void);
+t_piece		j_piece(void);
+t_piece		jr_piece(void);
+t_piece		jd_piece(void);
+t_piece		jl_piece(void);
+t_piece		tt_piece(void);
+t_piece		tr_piece(void);
+t_piece		td_piece(void);
+t_piece		tl_piece(void);
+t_piece		ss_piece(void);
+t_piece		sr_piece(void);
+t_piece		z_piece(void);
+t_piece		zr_piece(void);
 
 /*
 **	solver.c
@@ -85,6 +84,15 @@ int			start_size(t_tetris *stack);
 char		*gen_line(int col);
 char		**gen_grid(int size);
 int			count_tet(t_tetris *stack);
+
+/*
+**	grid.c
+*/
+
+/*
+**	free.c
+*/
+
 void		stck_free(t_tetris *stack);
 void		stck_free_coord(t_tetris *stack);
 void		free_grid(char **grid, int size);
@@ -96,27 +104,41 @@ void		free_grid(char **grid, int size);
 int			read_one(const int fd, char *line);
 int			h_count(char *line);
 int			chk_char(char *line);
-int			*trans_coord(int *tet);
-int			low_x(int *tet);
-int			low_y(int *tet);
+t_tetris	*id_to_coord(t_tetris *stack);
+int			dup_coord(int *dst, int *src);
+
+/*
+**	stack.c
+*/
+
 t_tetris	*add_piece(void *tet_id, char c);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*store_tet(const int fd, char *line);
+int			*one_tetris(const int fd, char *line);
+
+/*
+**	coord_swap.c
+*/
+
+int			*trans_coord(int *tet);
+int			smallest_x(int *tet);
+int			smallest_y(int *tet);
+
+/*
+**	identification.c
+*/
+
 char		*get_tetid(int *tet);
 char		*check_tet(int *tet);
 int			tetcmp(int *tet, int *libtet);
 int			*convert_id(char *id);
-t_tetris	*id_to_coord(t_tetris *stack);
-int			dup_coord(int *dst, int *src);
-void		ft_exit(void);
-int			*one_tetris(const int fd, char *line);
 
 /*
 **	collision.c
 */
 
-int			top_x(int *tet);
-int			top_y(int *tet);
+int			biggest_x(int *tet);
+int			biggest_y(int *tet);
 int			box_collision(int *tet, int size);
 int			piece_collision(char **grid, int *tet);
 int			collision(char **grid, int *tet, int size);
@@ -128,5 +150,6 @@ int			collision(char **grid, int *tet, int size);
 int			solve_driver(int fd);
 int			help_solve(char **grid, int *tet, t_tetris *stack, int size);
 int			preread(const int fd);
+void		ft_exit(void);
 
 #endif

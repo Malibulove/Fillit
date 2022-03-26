@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 NAME = fillit
-SRCS = main.c check_grid.c collision.c  solver.c \
-tet_making.c tet_making2.c tet_making3.c tet_making4.c
+SRCS = main.c check_grid.c coord_swap.c stack.c collision.c free.c solver.c \
+identification.c tet_making.c tet_making2.c tet_making3.c tet_making4.c
 HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/

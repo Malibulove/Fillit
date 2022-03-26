@@ -96,3 +96,9 @@ int	preread(const int fd)
 	close(fd);
 	return (1);
 }
+
+void	ft_exit(void)
+{
+	ft_putstr("error\n");
+	exit(EXIT_FAILURE);
+}

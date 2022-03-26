@@ -21,7 +21,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <sys/stat.h>
-#include <time.h> // need to be removed before submit
+# include <time.h> // need to be removed before submit
 # include <stdio.h> // need to be removed before submit
 # include <fcntl.h>
 
@@ -41,10 +41,6 @@ typedef struct s_piece
 	char		name[20];
 	int			coord[8];
 }				t_piece;
-
-/*
-**	Prototypes
-*/
 
 /*
 **	Pieces
@@ -75,20 +71,26 @@ t_piece		zr_piece(void);
 */
 
 int			solve_tet(char **grid, t_tetris *stack, int size);
-void		insert_piece(char **grid, int *tet, char c);
-void		clear_piece(char **grid, int *tet);
-void		print_grid(char **grid, int size);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
-int			start_size(t_tetris *stack);
-char		*gen_line(int col);
-char		**gen_grid(int size);
-int			count_tet(t_tetris *stack);
 
 /*
 **	grid.c
 */
+
+int			count_tet(t_tetris *stack);
+int			start_size(t_tetris *stack);
+char		*gen_line(int col);
+char		**gen_grid(int size);
+
+/*
+**	grid.utils
+*/
+
+void		insert_piece(char **grid, int *tet, char c);
+void		clear_piece(char **grid, int *tet);
+void		print_grid(char **grid, int size);
 
 /*
 **	free.c
@@ -132,6 +134,11 @@ int			smallest_y(int *tet);
 char		*check_tet(int *tet);
 int			tetcmp(int *tet, int *libtet);
 int			*convert_id(char *id);
+
+/*
+**	initialization.c
+*/
+
 char		*get_tetid_io(int *tet, char *name);
 char		*get_tetid_l(int *tet, char *name);
 char		*get_tetid_j(int *tet, char *name);

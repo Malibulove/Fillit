@@ -16,11 +16,11 @@
 int	main(int argc, char **argv)
 {
 	int		fd;
-	float temps;
-	clock_t t1, t2;
- 
-    t1 = clock();
+	float	time;
+	clock_t	t1;
+	clock_t	t2;
 
+	t1 = clock();
 	if (argc > 2)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
@@ -36,9 +36,9 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
-    t2 = clock();
-    temps = (float)(t2-t1)/CLOCKS_PER_SEC;
-    printf("temps = %f\n", temps);
+	t2 = clock();
+	time = (float)(t2 - t1) / CLOCKS_PER_SEC;
+	printf("time = %f\n", time);
 }
 
 int	solve_driver(int fd)

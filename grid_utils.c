@@ -29,7 +29,6 @@ void	insert_piece(char **grid, int *tet, char c)
 		grid[y][x] = c;
 		i += 2;
 	}
-	printf("piece inserted\n");
 }
 
 void	clear_piece(char **grid, int *tet)
@@ -55,12 +54,10 @@ void	print_grid(char **grid, int size)
 	int	i;
 
 	i = -1;
-	printf("start of printing\n");
 	while (grid[++i])
 	{
 		ft_putstr(grid[i]);
 		ft_putchar('\n');
 	}
 	free_grid(grid, size);
-	printf("end of print grid\n");
 }

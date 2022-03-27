@@ -21,8 +21,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <sys/stat.h>
-# include <time.h> // need to be removed before submit
-# include <stdio.h> // need to be removed before submit
 # include <fcntl.h>
 
 /*
@@ -96,17 +94,17 @@ void		print_grid(char **grid, int size);
 **	free.c
 */
 
-void		stck_free(t_tetris *stack);
-void		stck_free_coord(t_tetris *stack);
+void		stack_free(t_tetris *stack);
+void		stack_free_coord(t_tetris *stack);
 void		free_grid(char **grid, int size);
 
 /*
 **	check_grid.c
 */
 
-int			read_one(const int fd, char *line);
+int			one_grid(const int fd, char *line);
 int			h_count(char *line);
-int			chk_char(char *line);
+int			check_char(char *line);
 t_tetris	*id_to_coord(t_tetris *stack);
 int			dup_coord(int *dst, int *src);
 
@@ -133,7 +131,7 @@ int			smallest_y(int *tet);
 
 char		*check_tet(int *tet);
 int			tetcmp(int *tet, int *libtet);
-int			*convert_id(char *id);
+int			*char_to_int_id(char *id);
 
 /*
 **	initialization.c
@@ -151,7 +149,7 @@ char		*get_tetid_sz(int *tet, char *name);
 
 int			biggest_x(int *tet);
 int			biggest_y(int *tet);
-int			box_collision(int *tet, int size);
+int			size_collision(int *tet, int size);
 int			piece_collision(char **grid, int *tet);
 int			collision(char **grid, int *tet, int size);
 
@@ -160,8 +158,8 @@ int			collision(char **grid, int *tet, int size);
 */
 
 int			solve_driver(int fd);
-int			help_solve(char **grid, int *tet, t_tetris *stack, int size);
+int			solve_helper(char **grid, int *tet, t_tetris *stack, int size);
 int			preread(const int fd);
-void		ft_exit(void);
+void		error_handling(void);
 
 #endif

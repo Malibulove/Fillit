@@ -34,11 +34,9 @@ int	start_size(t_tetris *stack)
 	int		size;
 
 	size = 2;
-	printf("count_tet = %d\n", count_tet(stack));
 	blocks = (count_tet(stack) * 4);
 	while (blocks > (size * size))
 		size += 1;
-	printf("size at the end of start size = %d\n", size);
 	return (size);
 }
 

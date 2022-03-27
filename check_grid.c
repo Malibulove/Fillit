@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-int	read_one(const int fd, char *line)
+int	one_grid(const int fd, char *line)
 {
 	int	n_line;
 	int	count;
@@ -25,17 +25,14 @@ int	read_one(const int fd, char *line)
 		if (get_next_line(fd, &line))
 		{
 			count += h_count(line);
-			if (ft_strlen(line) != 4 || count > 4 || !chk_char(line))
-			{
-				printf("grid problem read one\n");
-				ft_exit();
-			}
+			if (ft_strlen(line) != 4 || count > 4 || !check_char(line))
+				error_handling();
 			free(line);
 		}
 		n_line++;
 	}
 	if (count < 4)
-		ft_exit();
+		error_handling();
 	return (1);
 }
 
@@ -55,7 +52,7 @@ int	h_count(char *line)
 	return (count);
 }
 
-int	chk_char(char *line)
+int	check_char(char *line)
 {
 	while (*line)
 	{
@@ -79,12 +76,11 @@ t_tetris	*id_to_coord(t_tetris *stack)
 	{
 		tet_id = stack->tet_id;
 		if (head == NULL)
-			head = add_piece(convert_id(tet_id), c++);
+			head = add_piece(char_to_int_id(tet_id), c++);
 		else
-			piece = append(convert_id(tet_id), head, c++);
+			piece = append(char_to_int_id(tet_id), head, c++);
 		stack = stack->next;
 	}
-	printf("end of id to coord\n");
 	return (head);
 }
 

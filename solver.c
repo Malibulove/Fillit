@@ -19,7 +19,6 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 	int	y;
 	int	*tet;
 
-	printf("INSIDE SOLVE TET\n");
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
 	if (!stack)
@@ -30,13 +29,11 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 	while (++y < size)
 	{
 		x = -1;
-		printf("y = %d\n", y);
 		while (++x < size)
 		{
-			printf("x = %d\n", x);
 			dup_coord(tet, stack->tet_id);
 			shift_tet(tet, x, y);
-			if (help_solve(grid, tet, stack, size))
+			if (solve_helper(grid, tet, stack, size))
 				return (1);
 		}
 	}
@@ -81,12 +78,5 @@ int	*shift_tet(int *tet, int x, int y)
 	i = 0;
 	tet = x_shift(tet, x);
 	tet = y_shift(tet, y);
-	printf("tet after shift = ");
-	while (i < 8)
-	{
-		printf("%d", tet[i]);
-		i++;
-	}
-	printf("\n");
 	return (tet);
 }

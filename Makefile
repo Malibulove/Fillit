@@ -6,7 +6,7 @@
 #    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/03/23 16:55:27 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/03/26 13:46:39 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/
 LIBFT = ./libft/libft.a
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = # -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 

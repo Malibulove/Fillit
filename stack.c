@@ -52,7 +52,7 @@ t_tetris	*store_tet(const int fd, char *line)
 		tet = trans_coord(one_tetris(fd, line));
 		tet_id = check_tet(tet);
 		if (!tet_id)
-			ft_exit();
+			error_handling();
 		if (first == NULL)
 			first = add_piece(tet_id, c++);
 		else

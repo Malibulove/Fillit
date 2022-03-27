@@ -13,7 +13,7 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-void	stck_free(t_tetris *stack)
+void	stack_free(t_tetris *stack)
 {
 	t_tetris	*tmp;
 
@@ -26,7 +26,7 @@ void	stck_free(t_tetris *stack)
 	}
 }
 
-void	stck_free_coord(t_tetris *stack)
+void	stack_free_coord(t_tetris *stack)
 {
 	t_tetris	*tmp;
 

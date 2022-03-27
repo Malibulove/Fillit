@@ -28,7 +28,6 @@ char	*check_tet(int *tet)
 		name = get_tetid_tt(tet, name);
 	if (!name)
 		name = get_tetid_sz(tet, name);
-	printf("It's a match with : %s\n", name);
 	return (name);
 }
 
@@ -37,10 +36,8 @@ int	tetcmp(int *tet, int *libtet)
 	int	i;
 
 	i = 0;
-	printf("tet inside tet cmp\n");
 	while (i < 8)
 	{
-		printf("coord[%d] => %d | %d\n", i, tet[i], libtet[i]);
 		if (tet[i] != libtet[i])
 			return (-1);
 		i++;
@@ -48,13 +45,11 @@ int	tetcmp(int *tet, int *libtet)
 	return (1);
 }
 
-int	*convert_id(char *name)
+int	*char_to_int_id(char *name)
 {
 	int	*tet;
-	int	i;
 
 	tet = (int *)malloc(sizeof(int) * 8);
-	printf("Shape of tetriminos ==> %s ", name);
 	(ft_strcmp(name, "i_piece") == 0) && (dup_coord(tet, i_piece().coord));
 	(ft_strcmp(name, "ih_piece") == 0) && (dup_coord(tet, ih_piece().coord));
 	(ft_strcmp(name, "o_piece") == 0) && (dup_coord(tet, o_piece().coord));
@@ -74,14 +69,5 @@ int	*convert_id(char *name)
 	(ft_strcmp(name, "sr_piece") == 0) && (dup_coord(tet, sr_piece().coord));
 	(ft_strcmp(name, "z_piece") == 0) && (dup_coord(tet, z_piece().coord));
 	(ft_strcmp(name, "zr_piece") == 0) && (dup_coord(tet, zr_piece().coord));
-	i = 0;
-	printf("= ");
-	while (i < 8)
-	{
-		printf("%d", tet[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
 	return (tet);
 }

@@ -13,8 +13,6 @@
 #include "libft/libft.h"
 #include "fillit.h"
 
-/* This and the following function measure the maximum x and y coordinates of 
-the tetriminos when the piece is positioned in the origo. */
 int	biggest_x(int *tet)
 {
 	int	line_count;
@@ -53,10 +51,7 @@ int	biggest_y(int *tet)
 	return (y);
 }
 
-/* If the maximum x and y coordinates of the tetriminos are bigger or the
-same (is this right?) as the size, the function returns a flag meaning
-the collision happens. */
-int	box_collision(int *tet, int size)
+int	size_collision(int *tet, int size)
 {
 	int	x;
 	int	y;
@@ -68,9 +63,6 @@ int	box_collision(int *tet, int size)
 	return (0);
 }
 
-/* Here we check if the coordinates of tetriminos inside the grid array 
-correspond to the first tetrimino as hashes.
-If yes (instead of periods), theres collision. */
 int	piece_collision(char **grid, int *tet)
 {
 	int	i;
@@ -87,9 +79,7 @@ int	piece_collision(char **grid, int *tet)
 	return (0);
 }
 
-/* This function serves a port for both the box collision and
-the piece collision. */
 int	collision(char **grid, int *tet, int size)
 {
-	return (!(box_collision(tet, size)) && !(piece_collision(grid, tet)));
+	return (!(size_collision(tet, size)) && !(piece_collision(grid, tet)));
 }

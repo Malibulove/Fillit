@@ -56,21 +56,6 @@ int	solve_driver(int fd)
 	return (1);
 }
 
-int	solve_helper(char **grid, int *tet, t_tetris *stack, int size)
-{
-	if (collision(grid, tet, size))
-	{
-		insert_piece(grid, tet, stack->c);
-		if (solve_tet(grid, stack->next, size))
-		{
-			free(tet);
-			return (1);
-		}
-		clear_piece(grid, tet);
-	}
-	return (0);
-}
-
 int	preread(const int fd)
 {
 	char	*line;

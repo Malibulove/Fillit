@@ -72,6 +72,7 @@ int			solve_tet(char **grid, t_tetris *stack, int size);
 int			*x_shift(int *tet, int x);
 int			*y_shift(int *tet, int y);
 int			*shift_tet(int *tet, int x, int y);
+int			solve_helper(char **grid, int *tet, t_tetris *stack, int size);
 
 /*
 **	grid.c
@@ -158,7 +159,6 @@ int			collision(char **grid, int *tet, int size);
 */
 
 int			solve_driver(int fd);
-int			solve_helper(char **grid, int *tet, t_tetris *stack, int size);
 int			preread(const int fd);
 void		error_handling(void);
 

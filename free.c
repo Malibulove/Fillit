@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:25:06 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 02:25:18 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:09:02 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 void	stack_free(t_tetris *stack)

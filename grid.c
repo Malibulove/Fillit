@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 05:14:21 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 05:14:25 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:52:25 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
-int	count_tet(t_tetris *stack)
+static int	count_tet(t_tetris *stack)
 {
 	int			c;
 	t_tetris	*tmp;

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:43 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 12:34:49 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:32:28 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 t_tetris	*add_piece(void *tet_id, char tet_c)

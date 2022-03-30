@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   identification.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:38:58 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 02:38:59 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:28:44 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 char	*check_tet(int *tet)

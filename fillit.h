@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/24 11:36:37 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 16:22:59 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 */
 
 # include "libft/libft.h"
-# include <string.h>
-# include <stdlib.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 
@@ -69,16 +67,11 @@ t_piece		zr_piece(void);
 */
 
 int			solve_tet(char **grid, t_tetris *stack, int size);
-int			*x_shift(int *tet, int x);
-int			*y_shift(int *tet, int y);
-int			*shift_tet(int *tet, int x, int y);
-int			solve_helper(char **grid, int *tet, t_tetris *stack, int size);
 
 /*
 **	grid.c
 */
 
-int			count_tet(t_tetris *stack);
 int			start_size(t_tetris *stack);
 char		*gen_line(int col);
 char		**gen_grid(int size);
@@ -123,8 +116,6 @@ int			*one_tetris(const int fd, char *line);
 */
 
 int			*trans_coord(int *tet);
-int			smallest_x(int *tet);
-int			smallest_y(int *tet);
 
 /*
 **	identification.c
@@ -148,18 +139,12 @@ char		*get_tetid_sz(int *tet, char *name);
 **	collision.c
 */
 
-int			biggest_x(int *tet);
-int			biggest_y(int *tet);
-int			size_collision(int *tet, int size);
-int			piece_collision(char **grid, int *tet);
 int			collision(char **grid, int *tet, int size);
 
 /*
 **	main.c
 */
 
-int			solve_driver(int fd);
-int			preread(const int fd);
-void		error_handling(void);
+int			error_handling(void);
 
 #endif

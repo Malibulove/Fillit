@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+         #
+#    By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/03/26 13:46:39 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/03/30 15:52:02 by ekantane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ $(NAME):
 clean:
 	rm -rf $(OBJ)
 	make clean -C libft/
-	
+
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C libft/
-	
+
 re: fclean all

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   tet_making.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 17:31:20 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/25 17:31:22 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:38:04 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 t_piece	i_piece(void)

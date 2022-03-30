@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.utils.c                                       :+:      :+:    :+:   */
+/*   grid_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 05:21:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 05:21:12 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:47:05 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 void	insert_piece(char **grid, int *tet, char c)

@@ -6,14 +6,13 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:09:30 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/17 10:54:14 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:21:54 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
-int	biggest_x(int *tet)
+static int	biggest_x(int *tet)
 {
 	int	line_count;
 	int	i;
@@ -32,7 +31,7 @@ int	biggest_x(int *tet)
 	return (x);
 }
 
-int	biggest_y(int *tet)
+static int	biggest_y(int *tet)
 {
 	int	column_count;
 	int	i;
@@ -51,7 +50,7 @@ int	biggest_y(int *tet)
 	return (y);
 }
 
-int	size_collision(int *tet, int size)
+static int	size_collision(int *tet, int size)
 {
 	int	x;
 	int	y;
@@ -63,7 +62,7 @@ int	size_collision(int *tet, int size)
 	return (0);
 }
 
-int	piece_collision(char **grid, int *tet)
+static int	piece_collision(char **grid, int *tet)
 {
 	int	i;
 	int	size;

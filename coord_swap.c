@@ -3,15 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   coord_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:25 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 02:30:26 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:29:18 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
+
+static int	smallest_x(int *tet)
+{
+	int	x;
+	int	i;
+	int	size;
+
+	size = 4;
+	i = 0;
+	x = tet[i];
+	while (size--)
+	{
+		if (tet[i] >= 0 && tet[i] <= 3)
+			if (tet[i] < x)
+				x = tet[i];
+		i += 2;
+	}
+	return (x);
+}
+
+static int	smallest_y(int *tet)
+{
+	int	y;
+	int	i;
+	int	size;
+
+	size = 4;
+	i = 1;
+	y = tet[i];
+	while (size--)
+	{
+		if (tet[i] >= 0 && tet[i] <= 3)
+			if (tet[i] < y)
+				y = tet[i];
+		i += 2;
+	}
+	return (y);
+}
 
 int	*trans_coord(int *tet)
 {
@@ -31,42 +68,4 @@ int	*trans_coord(int *tet)
 		i += 2;
 	}
 	return (tet);
-}
-
-int	smallest_x(int *tet)
-{
-	int	x;
-	int	i;
-	int	size;
-
-	size = 4;
-	i = 0;
-	x = tet[i];
-	while (size--)
-	{
-		if (tet[i] >= 0 && tet[i] <= 3)
-			if (tet[i] < x)
-				x = tet[i];
-		i += 2;
-	}
-	return (x);
-}
-
-int	smallest_y(int *tet)
-{
-	int	y;
-	int	i;
-	int	size;
-
-	size = 4;
-	i = 1;
-	y = tet[i];
-	while (size--)
-	{
-		if (tet[i] >= 0 && tet[i] <= 3)
-			if (tet[i] < y)
-				y = tet[i];
-		i += 2;
-	}
-	return (y);
 }

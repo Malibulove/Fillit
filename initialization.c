@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycucchi <yoan066@yahoo.fr>                 +#+  +:+       +#+        */
+/*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 05:05:24 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/26 05:05:25 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/30 14:27:58 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 char	*get_tetid_io(int *tet, char *name)

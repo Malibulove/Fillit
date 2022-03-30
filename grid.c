@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 05:14:21 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 14:52:25 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:35:35 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	**gen_grid(int size)
 	while (i < size)
 	{
 		grid[i] = (char *)malloc(sizeof(char) * size + 1);
+		if (!grid[i])
+			return (NULL);
 		line = gen_line(size);
 		ft_strcpy(grid[i], line);
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:43 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 14:32:28 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:36:44 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 	t_tetris	*piece;
 
 	piece = (t_tetris *)malloc(sizeof(t_tetris));
+	if (!piece)
+		return (NULL);
 	piece->tet_id = tet_id;
 	piece->c = tet_c;
 	piece->next = NULL;
@@ -74,6 +76,8 @@ int	*one_tetris(const int fd, char *line)
 
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
+	if (!tet)
+		return (NULL);
 	i = 0;
 	while (++y <= 3)
 	{

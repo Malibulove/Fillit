@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:38:58 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 14:28:44 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:36:02 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	*char_to_int_id(char *name)
 	int	*tet;
 
 	tet = (int *)malloc(sizeof(int) * 8);
+	if (!tet)
+		return (NULL);
 	(ft_strcmp(name, "i_piece") == 0) && (dup_coord(tet, i_piece().coord));
 	(ft_strcmp(name, "ih_piece") == 0) && (dup_coord(tet, ih_piece().coord));
 	(ft_strcmp(name, "o_piece") == 0) && (dup_coord(tet, o_piece().coord));

@@ -48,7 +48,7 @@ void	clear_piece(char **grid, int *tet)
 	}
 }
 
-void	print_grid(char **grid, int size)
+void	print_grid(char **grid)
 {
 	int	i;
 
@@ -58,5 +58,4 @@ void	print_grid(char **grid, int size)
 		ft_putstr(grid[i]);
 		ft_putchar('\n');
 	}
-	free_grid(grid, size);
 }

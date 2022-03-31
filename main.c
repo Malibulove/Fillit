@@ -30,7 +30,8 @@ static int	solve_driver(int fd)
 		size = size + 1;
 		grid = gen_grid(size);
 	}
-	print_grid(grid, size);
+	print_grid(grid);
+	free_grid(grid, size);
 	stack_free_coord(stack);
 	return (1);
 }

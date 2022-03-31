@@ -82,7 +82,7 @@ char		**gen_grid(int size);
 
 void		insert_piece(char **grid, int *tet, char c);
 void		clear_piece(char **grid, int *tet);
-void		print_grid(char **grid, int size);
+void		print_grid(char **grid);
 
 /*
 **	free.c

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:54:19 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/31 17:05:15 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/03/31 18:08:18 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
 	if (!tet)
-//		return (NULL);
+		return (0);
 	if (!stack)
 	{
 		free(tet);

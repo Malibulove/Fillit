@@ -21,14 +21,19 @@ static int	solve_driver(int fd)
 
 	tmp = store_tet(fd, NULL);
 	size = start_size(tmp);
-	stack = id_to_coord(tmp);
+	if (!(stack = id_to_coord(tmp)))
+		return (0);
 	stack_free(tmp);
 	grid = gen_grid(size);
-	while (!solve_tet(grid, stack, size))
+	if (!grid)
+		return(0);
+	while (!(solve_tet(grid, stack, size)))
 	{
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
+		if (!grid)
+			return(0);
 	}
 	print_grid(grid);
 	free_grid(grid, size);
@@ -82,7 +87,9 @@ int	main(int argc, char **argv)
 		if (preread(fd))
 		{
 			fd = open(argv[1], O_RDONLY);
-			solve_driver(fd);
+			if (solve_driver(fd) == 0)
+				return (error_handling());
+
 		}
 	}
 	close(fd);

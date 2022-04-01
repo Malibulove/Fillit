@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 05:14:21 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 16:35:35 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/01 12:58:14 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*gen_line(int col)
 	int		i;
 
 	i = 0;
-	line = (char *)malloc(sizeof(char) * col + 1);
+	line = (char *)malloc(sizeof(char) * (col + 1));
 	if (!line)
 		return (NULL);
 	while (i < col)
@@ -64,15 +64,15 @@ char	**gen_grid(int size)
 	char	*line;
 
 	i = 0;
-	grid = (char **)malloc(sizeof(char *) * size + 1);
+	grid = (char **)malloc(sizeof(char *) * (size + 1));
 	if (!grid)
 		return (NULL);
 	while (i < size)
 	{
-		grid[i] = (char *)malloc(sizeof(char) * size + 1);
-		if (!grid[i])
-			return (NULL);
+		grid[i] = (char *)malloc(sizeof(char) * (size + 1));
 		line = gen_line(size);
+		if (!grid[i] || !line)
+			return (NULL);
 		ft_strcpy(grid[i], line);
 		free(line);
 		i++;

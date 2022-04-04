@@ -18,7 +18,7 @@ HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/
 LIBFT = ./libft/libft.a
-FLAGS = -Wall -Wextra -fsanitize=address #-Werror
+FLAGS = -Wall -Wextra #-fsanitize=address #-Werror
 
 .PHONY: all clean fclean re
 

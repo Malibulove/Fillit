@@ -25,15 +25,15 @@ static int	solve_driver(int fd)
 		return (0);
 	stack_free(tmp);
 	grid = gen_grid(size);
-	if (!grid)
-		return(0);
+//	if (!grid)
+//		return(0);
 	while (!(solve_tet(grid, stack, size)))
 	{
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
-		if (!grid)
-			return(0);
+//		if (!grid)
+//			return(0);
 	}
 	print_grid(grid);
 	free_grid(grid, size);
@@ -93,5 +93,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
+	system("leaks fillit");
 	return (0);
 }

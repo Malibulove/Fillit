@@ -40,8 +40,8 @@ int	h_count(char *line)
 	int	count;
 
 	count = 0;
-	if (!line)
-		return (0);
+//	if (!line)
+//		return (0);
 	while (*line)
 	{
 		if (*line == '#')
@@ -68,15 +68,12 @@ t_tetris	*id_to_coord(t_tetris *stack)
 	t_tetris	*piece;
 	char		*tet_id;
 	char		c;
-	int			*check;
 
 	c = 'A';
 	head = NULL;
 	while (stack)
 	{
 		tet_id = stack->tet_id;
-		if (!(check = char_to_int_id(tet_id)))
-			return (NULL);
 		if (head == NULL)
 			head = add_piece(char_to_int_id(tet_id), c++);
 		else

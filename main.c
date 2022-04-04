@@ -21,7 +21,8 @@ static int	solve_driver(int fd)
 
 	tmp = store_tet(fd, NULL);
 	size = start_size(tmp);
-	if (!(stack = id_to_coord(tmp)))
+	stack = id_to_coord(tmp);
+	if (!stack)
 		return (0);
 	stack_free(tmp);
 	grid = gen_grid(size);
@@ -62,8 +63,9 @@ static int	preread(const int fd)
 			break ;
 		if (ft_strlen(line) != 0)
 			return (error_handling());
+		free (line);
 	}
-	close(fd);
+	close (fd);
 	return (1);
 }
 
@@ -89,10 +91,8 @@ int	main(int argc, char **argv)
 			fd = open(argv[1], O_RDONLY);
 			if (solve_driver(fd) == 0)
 				return (error_handling());
-
 		}
 	}
 	close(fd);
-	system("leaks fillit");
 	return (0);
 }

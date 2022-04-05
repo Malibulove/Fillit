@@ -6,7 +6,7 @@
 #    By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/04/01 15:36:12 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/04/05 09:44:59 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/
 LIBFT = ./libft/libft.a
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra #-fsanitize=address
 
 .PHONY: all clean fclean re
 
@@ -29,8 +29,8 @@ $(NAME):
 	gcc $(FLAGS) -c $(SRCS)
 	gcc $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
 
-#debug:
-#	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
+debug:
+	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
 
 clean:
 	rm -rf $(OBJ)

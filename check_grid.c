@@ -25,13 +25,16 @@ int	one_grid(const int fd, char *line)
 		{
 			count += h_count(line);
 			if (ft_strlen(line) != 4 || count > 4 || !check_char(line))
-				error_handling();
+			{
+				free(line);
+				return(error_handling());
+			}
 			free(line);
 		}
 		n_line++;
 	}
 	if (count < 4)
-		error_handling();
+		return(error_handling());
 	return (1);
 }
 
@@ -40,8 +43,8 @@ int	h_count(char *line)
 	int	count;
 
 	count = 0;
-//	if (!line)
-//		return (0);
+	if (!line)
+		return (0);
 	while (*line)
 	{
 		if (*line == '#')

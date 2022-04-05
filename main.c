@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 16:24:01 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/05 09:36:06 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static int	solve_driver(int fd)
 		return (0);
 	stack_free(tmp);
 	grid = gen_grid(size);
-//	if (!grid)
-//		return(0);
+	if (!grid)
+		return(0);
 	while (!(solve_tet(grid, stack, size)))
 	{
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
-//		if (!grid)
-//			return(0);
+		if (!grid)
+			return(0);
 	}
 	print_grid(grid);
 	free_grid(grid, size);
@@ -51,18 +51,22 @@ static int	preread(const int fd)
 	counter = 0;
 	while (1)
 	{
-		one_grid(fd, line);
+		if (one_grid(fd, line) == -1)
+			return (0);
 		counter++;
 		if (counter > 26)
 		{
-			close(fd);
 			ft_putstr("error\n");
 			return (0);
 		}
 		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
-			return (error_handling());
+		{
+			free(line);
+			ft_putstr("error\n");
+			return (0);
+		}
 		free (line);
 	}
 	close (fd);
@@ -94,5 +98,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
+	system("leaks fillit");
 	return (0);
 }

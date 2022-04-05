@@ -77,10 +77,20 @@ t_tetris	*id_to_coord(t_tetris *stack)
 	while (stack)
 	{
 		tet_id = stack->tet_id;
+		if (!tet_id)
+			return (NULL);
 		if (head == NULL)
+		{
 			head = add_piece(char_to_int_id(tet_id), c++);
+			if (!head)
+				return (NULL);
+		}
 		else
+		{
 			piece = append(char_to_int_id(tet_id), head, c++);
+			if (!piece)
+				return (NULL);
+		}
 		stack = stack->next;
 	}
 	return (head);

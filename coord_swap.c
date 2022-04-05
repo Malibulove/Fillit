@@ -57,6 +57,8 @@ int	*trans_coord(int *tet)
 	int	i;
 	int	size;
 
+	if (!tet)
+		return (NULL);
 	size = 4;
 	lx = smallest_x(tet);
 	ly = smallest_y(tet);

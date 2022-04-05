@@ -42,6 +42,13 @@ static int	solve_driver(int fd)
 	return (1);
 }
 
+int	error_line(char *line)
+{
+	free(line);
+	ft_putstr("error\n");
+	return (0);
+}
+
 static int	preread(const int fd)
 {
 	char	*line;
@@ -62,11 +69,7 @@ static int	preread(const int fd)
 		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
-		{
-			free(line);
-			ft_putstr("error\n");
-			return (0);
-		}
+			error_line(line);
 		free (line);
 	}
 	close (fd);

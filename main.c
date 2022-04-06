@@ -35,8 +35,6 @@ static int	solve_driver(int fd)
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
-		if (!grid)
-			return (0);
 	}
 	print_grid(grid);
 	free_grid(grid, size);

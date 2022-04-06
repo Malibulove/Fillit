@@ -42,7 +42,7 @@ static int	solve_driver(int fd)
 	return (1);
 }
 
-int	error_line(char *line)
+static int	error_line(char *line)
 {
 	free(line);
 	ft_putstr("error\n");

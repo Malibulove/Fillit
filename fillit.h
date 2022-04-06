@@ -145,7 +145,6 @@ int			collision(char **grid, int *tet, int size);
 **	main.c
 */
 
-int 		error_line(char *line);
 int			error_handling(void);
 
 #endif

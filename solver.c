@@ -75,12 +75,16 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
-	if (!tet)
-		return (0);
+	tet = NULL;
 	if (!stack)
 	{
 		free(tet);
-		return (1);
+		return (-1);
+	}
+		if (!tet)
+	{
+		free(tet);
+		return (-1);
 	}
 	while (++y < size)
 	{

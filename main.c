@@ -30,12 +30,15 @@ static int	solve_driver(int fd)
 	grid = gen_grid(size);
 	if (!grid)
 		return (0);
-	while (!(solve_tet(grid, stack, size)))
+	if (solve_tet(grid, stack, size) == 1)
 	{
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
+		solve_tet(grid, stack, size);
 	}
+	else
+		return (0);
 	print_grid(grid);
 	free_grid(grid, size);
 	stack_free_coord(stack);

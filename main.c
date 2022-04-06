@@ -72,7 +72,7 @@ static int	preread(const int fd)
 		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
-			error_line(line);
+			return(error_line(line));
 		free (line);
 	}
 	close (fd);

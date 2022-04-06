@@ -78,7 +78,7 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 	if (!stack || !tet)
 	{
 		free(tet);
-		return (-1);
+		return (1);
 	}
 	while (++y < size)
 	{
@@ -87,10 +87,10 @@ int	solve_tet(char **grid, t_tetris *stack, int size)
 		{
 			dup_coord(tet, stack->tet_id);
 			shift_tet(tet, x, y);
-			if (solve_helper(grid, tet, stack, size) == 1)
+			if (solve_helper(grid, tet, stack, size))
 				return (1);
 		}
 	}
 	free(tet);
-	return (1);
+	return (0);
 }

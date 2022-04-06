@@ -146,5 +146,5 @@ int			collision(char **grid, int *tet, int size);
 */
 
 int			error_handling(void);
-
+int			error_line(char *line);
 #endif

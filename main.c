@@ -30,26 +30,23 @@ static int	solve_driver(int fd)
 	grid = gen_grid(size);
 	if (!grid)
 		return (0);
-	if (solve_tet(grid, stack, size) == 1)
+	while (!solve_tet(grid, stack, size))
 	{
 		free_grid(grid, size);
 		size = size + 1;
 		grid = gen_grid(size);
-		solve_tet(grid, stack, size);
 	}
-	else
-		return (0);
 	print_grid(grid);
 	free_grid(grid, size);
 	stack_free_coord(stack);
 	return (1);
 }
 
-static int	error_line(char *line)
+int	error_line(char *line)
 {
 	free(line);
 	ft_putstr("error\n");
-	return (0);
+	return (-1);
 }
 
 static int	preread(const int fd)

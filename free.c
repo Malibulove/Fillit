@@ -6,16 +6,17 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:25:06 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 16:32:51 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:42:49 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	free_stuff(t_tetris *first, int *tet)
+t_tetris	*free_stuff(t_tetris *first, int *tet)
 {
 	stack_free(first);
 	free(tet);
+	return (0);
 }
 
 void	stack_free(t_tetris *stack)

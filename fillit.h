@@ -87,7 +87,6 @@ void		print_grid(char **grid);
 **	free.c
 */
 
-t_tetris	*free_stuff(t_tetris *first, int *tet);
 void		stack_free(t_tetris *stack);
 void		stack_free_coord(t_tetris *stack);
 void		free_grid(char **grid, int size);
@@ -143,5 +142,6 @@ int			collision(char **grid, int *tet, int size);
 **	main.c
 */
 
+int			error_line(char *line);
 int			error_handling(void);
 #endif

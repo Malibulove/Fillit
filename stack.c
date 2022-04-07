@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:43 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 16:44:30 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:32:30 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,26 +69,39 @@ t_tetris	*append(void *tet_id, t_tetris *head, char c)
 	return (head);
 }
 
+static t_tetris	*store_helper(t_tetris *first, char *tet_id)
+{
+	t_tetris	*piece;
+	char		c;
+
+	piece = NULL;
+	c = 'A';
+	if (first == NULL)
+		first = add_piece(tet_id, c++);
+	else
+		piece = append(tet_id, first, c++);
+	return (first);
+}
+
 t_tetris	*store_tet(const int fd, char *line)
 {
 	int			*tet;
 	char		*tet_id;
 	t_tetris	*first;
-	t_tetris	*piece;
-	char		c;
 
-	c = 'A';
 	first = NULL;
 	while (1)
 	{
 		tet = trans_coord(one_tetris(fd, line));
 		tet_id = check_tet(tet);
 		if (!tet || !tet_id)
-			return (free_stuff(first, tet));
-		if (first == NULL)
-			first = add_piece(tet_id, c++);
-		else
-			piece = append(tet_id, first, c++);
+		{
+			free(tet);
+			free(tet_id);
+			stack_free(first);
+			return (NULL);
+		}
+		first = store_helper(first, tet_id);
 		free(tet);
 		if (!(get_next_line(fd, &line)))
 			break ;

@@ -52,10 +52,7 @@ int	one_grid(const int fd, char *line)
 		{
 			count += h_count(line);
 			if (ft_strlen(line) != 4 || count > 4 || !check_char(line))
-			{
-				free(line);
-				return (0);
-			}
+				return (error_line(line));
 			free(line);
 		}
 		n_line++;

@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 13:10:20 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 18:16:49 by ycucchi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	preread(const int fd)
 		counter++;
 		if (counter > 26)
 			return (error_handling());
-		if (!get_next_line(fd, &line))
+		if (!get_next_line(fd, &line) || get_next_line(fd, &line) == '\0')
 			break ;
 		if (ft_strlen(line) != 0)
 			return (error_line(line));
@@ -81,7 +81,12 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 
-	if (argc > 2 || argv[1][0] == '.')
+	if (argc != 2)
+	{
+		ft_putstr("usage: fillit input_file\n");
+		return (0);
+	}
+	if (argv[1][0] == '.')
 		return (error_handling());
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)

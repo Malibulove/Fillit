@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <sys/stat.h>
 
 static int	solve_driver(int fd)
 {

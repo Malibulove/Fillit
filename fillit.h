@@ -18,7 +18,6 @@
 */
 
 # include "libft/libft.h"
-# include <sys/stat.h>
 # include <fcntl.h>
 
 /*

@@ -69,21 +69,14 @@ t_tetris	*store_tet(const int fd, char *line)
 	return (first);
 }
 
-int	*one_tetris(const int fd, char *line)
+static int	*convert_char_to_int(const int fd, char *line, int *tet)
 {
-	int		x;
-	int		y;
-	int		*tet;
-	int		i;
+	int	x;
+	int	y;
+	int	i;
 
-	y = -1;
-	tet = (int *)malloc(sizeof(int) * 8);
-	if (!tet)
-	{
-		free(tet);
-		return (NULL);
-	}
 	i = 0;
+	y = -1;
 	while (++y <= 3)
 	{
 		x = -1;
@@ -100,4 +93,17 @@ int	*one_tetris(const int fd, char *line)
 		free(line);
 	}
 	return (tet);
+}
+
+int	*one_tetris(const int fd, char *line)
+{
+	int		*tet;
+
+	tet = (int *)malloc(sizeof(int) * 8);
+	if (!tet)
+	{
+		free(tet);
+		return (NULL);
+	}
+	return (convert_char_to_int(fd, line, tet));
 }

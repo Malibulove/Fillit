@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 13:26:58 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:30:35 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		print_grid(char **grid);
 **	free.c
 */
 
+void		free_stuff(t_tetris *first, int *tet);
 void		stack_free(t_tetris *stack);
 void		stack_free_coord(t_tetris *stack);
 void		free_grid(char **grid, int size);

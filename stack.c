@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:43 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 13:18:03 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 16:32:30 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,7 @@ t_tetris	*store_tet(const int fd, char *line)
 		tet = trans_coord(one_tetris(fd, line));
 		tet_id = check_tet(tet);
 		if (!tet || !tet_id)
-		{
-			stack_free(first);
-			free(tet);
-			return (NULL);
-		}
+			free_stuff(first, tet);
 		if (first == NULL)
 			first = add_piece(tet_id, c++);
 		else

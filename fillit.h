@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 16:22:59 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:10:30 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,4 @@ int			collision(char **grid, int *tet, int size);
 */
 
 int			error_handling(void);
-int			error_line(char *line);
 #endif

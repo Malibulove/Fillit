@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/05 09:36:06 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/04/07 13:10:20 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	solve_driver(int fd)
 	return (1);
 }
 
-int	error_line(char *line)
+static int	error_line(char *line)
 {
 	free(line);
 	ft_putstr("error\n");

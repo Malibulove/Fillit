@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <sys/stat.h>
 
 static int	solve_driver(int fd)
 {
@@ -97,6 +96,5 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
-	system("leaks fillit");
 	return (0);
 }

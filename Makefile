@@ -18,7 +18,7 @@ HEADER = fillit.h
 OBJ = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft/
 LIBFT = ./libft/libft.a
-FLAGS = -Wall -Wextra #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 
@@ -29,9 +29,6 @@ $(NAME):
 	gcc $(FLAGS) -c $(SRCS)
 	gcc $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
 
-debug:
-	gcc -g $(FLAGS) -I . libft/libft.a $(SRCS) -o debug
-
 clean:
 	rm -rf $(OBJ)
 	make clean -C libft/
@@ -39,7 +36,5 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C libft/
-	rm -rf debug.dSYM
-	rm -rf debug
 
 re: fclean all

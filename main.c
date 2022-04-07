@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 static int	solve_driver(int fd)
 {
@@ -20,10 +21,19 @@ static int	solve_driver(int fd)
 	char		**grid;
 
 	tmp = store_tet(fd, NULL);
+	if (!tmp)
+	{
+		free(tmp);
+		return (0);
+	}
 	size = start_size(tmp);
 	stack = id_to_coord(tmp);
 	if (!stack || !tmp)
+	{
+		stack_free_coord(stack);
+		stack_free(stack);
 		return (0);
+	}
 	stack_free(tmp);
 	grid = gen_grid(size);
 	if (!grid)
@@ -92,7 +102,8 @@ int	main(int argc, char **argv)
 		{
 			fd = open(argv[1], O_RDONLY);
 			if (solve_driver(fd) == 0)
-				return (error_handling());
+				printf("yolo");
+//				return (error_handling());
 		}
 	}
 	close(fd);

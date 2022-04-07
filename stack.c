@@ -44,7 +44,10 @@ t_tetris	*add_piece(void *tet_id, char tet_c)
 
 	piece = (t_tetris *)malloc(sizeof(t_tetris));
 	if (!piece || !tet_id)
+	{
+		stack_free(piece);
 		return (NULL);
+	}
 	piece->tet_id = tet_id;
 	piece->c = tet_c;
 	piece->next = NULL;
@@ -81,7 +84,11 @@ t_tetris	*store_tet(const int fd, char *line)
 		tet = trans_coord(one_tetris(fd, line));
 		tet_id = check_tet(tet);
 		if (!tet || !tet_id)
+		{
+			stack_free(first);
+			free(tet);
 			return (NULL);
+		}
 		if (first == NULL)
 			first = add_piece(tet_id, c++);
 		else

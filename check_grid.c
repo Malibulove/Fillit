@@ -6,11 +6,27 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 12:37:09 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 14:34:42 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:20:50 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static int	h_count(char *line)
+{
+	int	count;
+
+	count = 0;
+	if (!line)
+		return (0);
+	while (*line)
+	{
+		if (*line == '#')
+			count++;
+		line++;
+	}
+	return (count);
+}
 
 int	one_grid(const int fd, char *line)
 {
@@ -36,22 +52,6 @@ int	one_grid(const int fd, char *line)
 	if (count < 4)
 		return (0);
 	return (1);
-}
-
-int	h_count(char *line)
-{
-	int	count;
-
-	count = 0;
-	if (!line)
-		return (0);
-	while (*line)
-	{
-		if (*line == '#')
-			count++;
-		line++;
-	}
-	return (count);
 }
 
 int	check_char(char *line)

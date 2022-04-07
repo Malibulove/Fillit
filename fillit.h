@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 17:28:36 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 13:10:30 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:20:59 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void		free_grid(char **grid, int size);
 */
 
 int			one_grid(const int fd, char *line);
-int			h_count(char *line);
 int			check_char(char *line);
 t_tetris	*id_to_coord(t_tetris *stack);
 int			dup_coord(int *dst, int *src);

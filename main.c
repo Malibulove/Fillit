@@ -20,11 +20,9 @@ static int	solve_driver(int fd)
 	char		**grid;
 
 	tmp = store_tet(fd, NULL);
-	if (!tmp)
-		return (0);
-	size = start_size(tmp); 
+	size = start_size(tmp);
 	stack = id_to_coord(tmp);
-	if (!stack)
+	if (!stack || !tmp)
 		return (0);
 	stack_free(tmp);
 	grid = gen_grid(size);
@@ -66,7 +64,7 @@ static int	preread(const int fd)
 		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
-			return(error_line(line));
+			return (error_line(line));
 		free (line);
 	}
 	close (fd);

@@ -27,14 +27,14 @@ int	one_grid(const int fd, char *line)
 			if (ft_strlen(line) != 4 || count > 4 || !check_char(line))
 			{
 				free(line);
-				return(0);
+				return (0);
 			}
 			free(line);
 		}
 		n_line++;
 	}
 	if (count < 4)
-		return(0);
+		return (0);
 	return (1);
 }
 
@@ -80,17 +80,11 @@ t_tetris	*id_to_coord(t_tetris *stack)
 		if (!tet_id)
 			return (NULL);
 		if (head == NULL)
-		{
 			head = add_piece(char_to_int_id(tet_id), c++);
-			if (!head)
-				return (NULL);
-		}
 		else
-		{
 			piece = append(char_to_int_id(tet_id), head, c++);
-			if (!piece)
-				return (NULL);
-		}
+		if (!piece || !head)
+			return (NULL);
 		stack = stack->next;
 	}
 	return (head);

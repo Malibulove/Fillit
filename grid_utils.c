@@ -39,8 +39,6 @@ void	clear_piece(char **grid, int *tet)
 	x = 0;
 	y = 0;
 	i = 0;
-	if (!tet)
-		return;
 	while (i < 8)
 	{
 		y = tet[i + 1];

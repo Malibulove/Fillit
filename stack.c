@@ -53,17 +53,9 @@ t_tetris	*store_tet(const int fd, char *line)
 	while (1)
 	{
 		tet = trans_coord(one_tetris(fd, line));
-		if (!tet)
-		{
-			return(NULL);
-		}
 		tet_id = check_tet(tet);
-		if (!tet_id)
-		{
-			free(tet);
-			first = NULL;
-			return(first);
-		}
+		if (!tet)
+			return (NULL);
 		if (first == NULL)
 			first = add_piece(tet_id, c++);
 		else
@@ -87,13 +79,16 @@ int	*one_tetris(const int fd, char *line)
 	y = -1;
 	tet = (int *)malloc(sizeof(int) * 8);
 	if (!tet)
+	{
+		free(tet);
 		return (NULL);
+	}
 	i = 0;
 	while (++y <= 3)
 	{
-		x = 0;
+		x = -1;
 		get_next_line(fd, &line);
-		while (line[x])
+		while (line[++x])
 		{
 			if (line[x] == '#')
 			{
@@ -101,7 +96,6 @@ int	*one_tetris(const int fd, char *line)
 				tet[i + 1] = y;
 				i += 2;
 			}
-			x++;
 		}
 		free(line);
 	}

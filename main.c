@@ -40,13 +40,6 @@ static int	solve_driver(int fd)
 	return (1);
 }
 
-int	error_line(char *line)
-{
-	free(line);
-	ft_putstr("error\n");
-	return (0);
-}
-
 static int	preread(const int fd)
 {
 	char	*line;
@@ -69,6 +62,13 @@ static int	preread(const int fd)
 	}
 	close (fd);
 	return (1);
+}
+
+int	error_line(char *line)
+{
+	free(line);
+	ft_putstr("error\n");
+	return (0);
 }
 
 int	error_handling(void)
@@ -96,6 +96,5 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
-	system("leaks fillit");
 	return (0);
 }

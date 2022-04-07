@@ -106,7 +106,6 @@ int			dup_coord(int *dst, int *src);
 t_tetris	*add_piece(void *tet_id, char c);
 t_tetris	*append(void *tet_id, t_tetris *head, char c);
 t_tetris	*store_tet(const int fd, char *line);
-int			*one_tetris(const int fd, char *line);
 
 /*
 **	coord_swap.c

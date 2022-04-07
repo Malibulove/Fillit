@@ -83,6 +83,19 @@ static t_tetris	*store_helper(t_tetris *first, char *tet_id)
 	return (first);
 }
 
+static int	*one_tetris(const int fd, char *line)
+{
+	int		*tet;
+
+	tet = (int *)malloc(sizeof(int) * 8);
+	if (!tet)
+	{
+		free(tet);
+		return (NULL);
+	}
+	return (convert_char_to_int(fd, line, tet));
+}
+
 t_tetris	*store_tet(const int fd, char *line)
 {
 	int			*tet;
@@ -109,17 +122,4 @@ t_tetris	*store_tet(const int fd, char *line)
 	}
 	close(fd);
 	return (first);
-}
-
-int	*one_tetris(const int fd, char *line)
-{
-	int		*tet;
-
-	tet = (int *)malloc(sizeof(int) * 8);
-	if (!tet)
-	{
-		free(tet);
-		return (NULL);
-	}
-	return (convert_char_to_int(fd, line, tet));
 }

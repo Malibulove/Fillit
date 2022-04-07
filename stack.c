@@ -6,11 +6,37 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 02:30:43 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/03/30 16:36:44 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:18:03 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static int	*convert_char_to_int(const int fd, char *line, int *tet)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	y = -1;
+	while (++y <= 3)
+	{
+		x = -1;
+		get_next_line(fd, &line);
+		while (line[++x])
+		{
+			if (line[x] == '#')
+			{
+				tet[i] = x;
+				tet[i + 1] = y;
+				i += 2;
+			}
+		}
+		free(line);
+	}
+	return (tet);
+}
 
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
@@ -67,32 +93,6 @@ t_tetris	*store_tet(const int fd, char *line)
 	}
 	close(fd);
 	return (first);
-}
-
-static int	*convert_char_to_int(const int fd, char *line, int *tet)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	i = 0;
-	y = -1;
-	while (++y <= 3)
-	{
-		x = -1;
-		get_next_line(fd, &line);
-		while (line[++x])
-		{
-			if (line[x] == '#')
-			{
-				tet[i] = x;
-				tet[i + 1] = y;
-				i += 2;
-			}
-		}
-		free(line);
-	}
-	return (tet);
 }
 
 int	*one_tetris(const int fd, char *line)

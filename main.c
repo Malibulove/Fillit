@@ -96,5 +96,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
+	system("leaks fillit");
 	return (0);
 }

@@ -46,7 +46,7 @@ int	error_line(char *line)
 {
 	free(line);
 	ft_putstr("error\n");
-	return (-1);
+	return (0);
 }
 
 static int	preread(const int fd)
@@ -58,14 +58,11 @@ static int	preread(const int fd)
 	counter = 0;
 	while (1)
 	{
-		if (one_grid(fd, line) == -1)
-			return (0);
+		if (!one_grid(fd, line))
+			return (error_handling());
 		counter++;
 		if (counter > 26)
-		{
-			ft_putstr("error\n");
-			return (0);
-		}
+			return (error_handling());
 		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
@@ -79,7 +76,7 @@ static int	preread(const int fd)
 int	error_handling(void)
 {
 	ft_putstr("error\n");
-	return (-1);
+	return (0);
 }
 
 int	main(int argc, char **argv)

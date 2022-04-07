@@ -82,6 +82,7 @@ char		**gen_grid(int size);
 void		insert_piece(char **grid, int *tet, char c);
 void		clear_piece(char **grid, int *tet);
 void		print_grid(char **grid);
+int			dup_coord(int *dst, int *src);
 
 /*
 **	free.c
@@ -97,7 +98,7 @@ void		free_grid(char **grid, int size);
 
 int			one_grid(const int fd, char *line);
 t_tetris	*id_to_coord(t_tetris *stack);
-int			dup_coord(int *dst, int *src);
+int			*convert_char_to_int(const int fd, char *line, int *tet);
 
 /*
 **	stack.c

@@ -59,3 +59,18 @@ void	print_grid(char **grid)
 		ft_putchar('\n');
 	}
 }
+
+int	dup_coord(int *dst, int *src)
+{
+	int	*pdst;
+	int	i;
+
+	i = 0;
+	pdst = dst;
+	while (i < 8)
+	{
+		pdst[i] = src[i];
+		i++;
+	}
+	return (1);
+}

@@ -90,17 +90,28 @@ t_tetris	*id_to_coord(t_tetris *stack)
 	return (head);
 }
 
-int	dup_coord(int *dst, int *src)
+int	*convert_char_to_int(const int fd, char *line, int *tet)
 {
-	int	*pdst;
+	int	x;
+	int	y;
 	int	i;
 
 	i = 0;
-	pdst = dst;
-	while (i < 8)
+	y = -1;
+	while (++y <= 3)
 	{
-		pdst[i] = src[i];
-		i++;
+		x = -1;
+		get_next_line(fd, &line);
+		while (line[++x])
+		{
+			if (line[x] == '#')
+			{
+				tet[i] = x;
+				tet[i + 1] = y;
+				i += 2;
+			}
+		}
+		free(line);
 	}
-	return (1);
+	return (tet);
 }

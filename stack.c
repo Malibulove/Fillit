@@ -12,32 +12,6 @@
 
 #include "fillit.h"
 
-static int	*convert_char_to_int(const int fd, char *line, int *tet)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	i = 0;
-	y = -1;
-	while (++y <= 3)
-	{
-		x = -1;
-		get_next_line(fd, &line);
-		while (line[++x])
-		{
-			if (line[x] == '#')
-			{
-				tet[i] = x;
-				tet[i + 1] = y;
-				i += 2;
-			}
-		}
-		free(line);
-	}
-	return (tet);
-}
-
 t_tetris	*add_piece(void *tet_id, char tet_c)
 {
 	t_tetris	*piece;

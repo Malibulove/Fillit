@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/08 14:45:54 by ekantane         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:51:52 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,5 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
-	system ("leaks fillit");
 	return (0);
 }

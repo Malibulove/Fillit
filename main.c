@@ -6,7 +6,7 @@
 /*   By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 16:54:54 by ycucchi           #+#    #+#             */
-/*   Updated: 2022/04/07 18:16:49 by ycucchi          ###   ########.fr       */
+/*   Updated: 2022/04/08 14:45:54 by ekantane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	preread(const int fd)
 		counter++;
 		if (counter > 26)
 			return (error_handling());
-		if (!get_next_line(fd, &line) || get_next_line(fd, &line) == '\0')
+		if (!get_next_line(fd, &line))
 			break ;
 		if (ft_strlen(line) != 0)
 			return (error_line(line));
@@ -101,5 +101,6 @@ int	main(int argc, char **argv)
 		}
 	}
 	close(fd);
+	system ("leaks fillit");
 	return (0);
 }

@@ -62,6 +62,7 @@ int	one_grid(const int fd, char *line)
 	}
 	if (count < 4)
 		return (0);
+	
 	return (1);
 }
 

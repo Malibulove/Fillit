@@ -61,6 +61,7 @@ static int	remove_new_line(char **line, char **array, const int fd)
 	{
 		*line = ft_strdup(array[fd]);
 		ft_strdel(&array[fd]);
+		return (0);
 	}
 	return (1);
 }

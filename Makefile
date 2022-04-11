@@ -6,7 +6,7 @@
 #    By: ekantane <ekantane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 18:29:49 by ycucchi           #+#    #+#              #
-#    Updated: 2022/04/08 17:40:15 by ycucchi          ###   ########.fr        #
+#    Updated: 2022/04/11 14:34:33 by ycucchi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ $(NAME):
 	make -C $(LIBFT_PATH)
 	gcc $(FLAGS) -c $(SRCS)
 	gcc $(OBJ) $(LIBFT) $(FLAGS) -o $(NAME)
+
 
 clean:
 	rm -rf $(OBJ)
